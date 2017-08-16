@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <LineChart layoutX="37.0" layoutY="61.0" prefHeight="123.0" prefWidth="1018.0" title="금&#10;액" titleSide="LEFT">
+         <xAxis>
+            <CategoryAxis endMargin="0.0" label="2007                    2008                    2009                    2010                    2011                    2012                    2013                    2014                    2015" startMargin="0.0" tickLength="0.0">
+               <tickLabelFont>
+                  <Font name="Arial" size="13.0" />
+               </tickLabelFont>
+            </CategoryAxis>
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <BarChart layoutX="37.0" layoutY="278.0" prefHeight="123.0" prefWidth="1018.0" title="빈&#10;도&#10;수" titleSide="LEFT">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </BarChart>
+      <Label layoutX="70.0" layoutY="17.0" text="월별 수익">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="233.0" text="인기 상품 판매 빈도">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="61.0" layoutY="438.0" text="분기별 수익금액">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="530.0" layoutY="438.0" text="분류별 수익금액">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+      <SplitPane layoutX="67.0" layoutY="485.0" prefHeight="202.0" prefWidth="400.0">
+         <items>
+            <SplitPane dividerPositions="0.7019704433497537" maxWidth="-Infinity" prefHeight="202.0" prefWidth="400.0">
+               <items>
+                  <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="299.0">
+                     <children>
+                        <PieChart prefHeight="200.0" prefWidth="299.0" titleSide="BOTTOM" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="184.0" />
+               </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+      <SplitPane layoutX="530.0" layoutY="485.0" prefHeight="202.0" prefWidth="515.0">
+         <items>
+            <SplitPane dividerPositions="0.7019704433497537" maxWidth="-Infinity" prefHeight="202.0" prefWidth="515.0">
+               <items>
+                  <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="299.0">
+                     <children>
+                        <BarChart layoutX="28.0" layoutY="21.0" legendSide="TOP" prefHeight="221.0" prefWidth="327.0" title="금&#10;액" titleSide="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="236.0">
+                     <children>
+                        <Label layoutX="56.0" layoutY="32.0" text="조회년도">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <MenuButton layoutX="25.0" layoutY="108.0" mnemonicParsing="false" text="MenuButton">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+      <HBox alignment="CENTER" layoutX="994.0" layoutY="14.0" spacing="5.0">
+         <children>
+            <ImageView disable="true" fitHeight="23.0" fitWidth="50.0" layoutX="388.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/images/home.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="425.0" layoutY="8.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" text="HOME">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

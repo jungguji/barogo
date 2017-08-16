@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guestLogin.MembershipController">
+   <children>
+      <Line endX="265.0" layoutX="125.0" layoutY="60.0" startX="-115.0" />
+      <Line endX="265.0" layoutX="125.0" layoutY="550.0" startX="-115.0" />
+      <HBox alignment="CENTER" layoutX="27.0" layoutY="76.0" spacing="50.0">
+         <children>
+            <Label layoutX="85.0" layoutY="74.0" prefHeight="16.0" prefWidth="39.0" text="이름 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="name" layoutX="134.0" layoutY="69.0" prefHeight="26.0" prefWidth="200.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="27.0" layoutY="145.0" spacing="25.0">
+         <children>
+            <Label layoutX="66.0" layoutY="130.0" prefHeight="16.0" prefWidth="64.0" text="생년월일 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="birthday" layoutX="140.0" layoutY="125.0" prefHeight="26.0" prefWidth="200.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="27.0" layoutY="203.0" spacing="50.0">
+         <children>
+            <Label layoutX="123.0" layoutY="193.0" prefHeight="16.0" prefWidth="39.0" text="성별 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="male" layoutX="167.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleBtnRadioselect" prefHeight="16.0" prefWidth="56.0" text="남자" toggleGroup="$RadioGroup2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="RadioGroup2" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="female" layoutX="228.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleBtnRadioselect" prefHeight="16.0" prefWidth="56.0" text="여자" toggleGroup="$RadioGroup2" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="27.0" layoutY="259.0" spacing="60.0">
+         <children>
+            <Label layoutX="47.0" layoutY="242.0" prefHeight="16.0" prefWidth="32.0" text=" ID :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="id" layoutX="139.0" layoutY="237.0" prefHeight="26.0" prefWidth="152.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <Button fx:id="btnOverlap" layoutX="291.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleBtnOverlap" prefHeight="26.0" prefWidth="75.0" text="중복 확인">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
+      <HBox alignment="CENTER" layoutX="27.0" layoutY="319.0" spacing="27.0">
+         <children>
+            <Label layoutX="27.0" layoutY="319.0" prefHeight="16.0" prefWidth="64.0" text="비밀번호 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="password" layoutX="110.0" layoutY="286.0" prefHeight="26.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="25.0" layoutY="380.0">
+         <children>
+            <Label layoutX="27.0" layoutY="383.0" prefHeight="16.0" prefWidth="93.0" text="비밀번호 확인 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="repassword" layoutX="132.0" layoutY="378.0" prefHeight="26.0" prefWidth="180.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="27.0" layoutY="440.0" spacing="35.0">
+         <children>
+            <Label layoutX="27.0" layoutY="414.0" prefHeight="16.0" prefWidth="56.0" text="이메일 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="email" layoutX="137.0" layoutY="409.0" prefHeight="26.0" prefWidth="200.0">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <Button fx:id="btnJoin" layoutX="117.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleBtnJoin" prefHeight="26.0" prefWidth="166.0" text="가입 완료">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="13.0" layoutY="10.0" prefHeight="36.0" prefWidth="209.0" text="회원정보 입력">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="501.0" prefHeight="16.0" prefWidth="316.0" text="고객님의 정보를 모두 입력하시면 회원가입이 완료됩니다.&#10;&#10;">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="520.0" prefHeight="26.0" prefWidth="351.0" text="입력된 정보는 개인정보취급방침에 의해 안전하게 보호받습니다.&#10;&#10;&#10;">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="107.0" prefHeight="32.0" prefWidth="222.0" text="한글기준 2자~8자, 영문기준 4자~16자로&#10;입력해주세요.&#10;&#10;" textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="176.0" prefHeight="16.0" prefWidth="229.0" text="6자리의 생년월일을 입력하세요." textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl3" layoutX="117.0" layoutY="229.0" prefHeight="16.0" prefWidth="125.0" text="성별을 선택해 주세요." textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="292.0" prefHeight="16.0" prefWidth="245.0" text="영문 또는 숫자로 4자~12자로 입력해 주세요.&#10;" textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="354.0" prefHeight="16.0" prefWidth="265.0" text="영문, 숫자 혼합하여 8자~15자로 입력해주세요.&#10;" textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelpwch" layoutX="118.0" layoutY="414.0" prefHeight="16.0" prefWidth="265.0" text="비밀번호를 한번 더 입력하세요." textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="475.0" prefHeight="16.0" prefWidth="125.0" text="이메일을 입력하세요." textFill="#838383">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

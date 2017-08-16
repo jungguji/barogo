@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane 
+			fx:id="panePlanChk"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" 
+			minWidth="-Infinity" prefHeight="137.0" prefWidth="458.0" 
+			xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+			fx:controller="guestLogin.PlanChk"
+			>
+   <children>
+      <Label layoutX="65.0" layoutY="23.0" text="결제 방식을 선택하여 주십시오.">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnOK" layoutX="202.0" layoutY="69.0" mnemonicParsing="false" text="확인"
+      			onAction="#handleBtnOKAction">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

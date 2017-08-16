@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guestLogin.MembershipController">
+   <children>
+      <SplitPane orientation="VERTICAL" prefHeight="150.0" prefWidth="300.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="400.0">
+               <children>
+                  <HBox alignment="CENTER" layoutX="41.0" layoutY="49.0" spacing="15.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Desktop/image/noconfirm.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="105.0" layoutY="67.0" text="사용중인 ID입니다." textFill="#e47403">
+                           <font>
+                              <Font name="Arial Bold" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <Button fx:id="btnNoconfirm" layoutX="110.0" layoutY="163.0" mnemonicParsing="false" onAction="#handleBtnNoConfirm" prefHeight="20.0" prefWidth="80.0" text="확인">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

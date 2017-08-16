@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane 
+prefHeight="500.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="userInfoView.OrderController">
+   <children>
+      <SplitPane layoutX="448.0" layoutY="200.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView layoutX="811.0" layoutY="65.0" prefHeight="340.0" prefWidth="273.0">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <columns>
+                        <TableColumn minWidth="30.0" prefWidth="107.3333740234375" text="상품이름" />
+                        <TableColumn prefWidth="65.6666259765625" text="가격" />
+                        <TableColumn prefWidth="59.0" text="수량" />
+                        <TableColumn minWidth="5.0" prefWidth="40.3333740234375" text="비고" />
+                     </columns>
+                  </TableView>
+                  <VBox layoutX="34.0" layoutY="63.0" spacing="15.0">
+                     <children>
+                        <Button layoutX="63.0" layoutY="77.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="170.0" text="과자">
+                           <font>
+                              <Font name="Arial Bold" size="37.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="63.0" layoutY="161.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="170.0" text="음료수">
+                           <font>
+                              <Font name="Arial Bold" size="37.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="63.0" layoutY="256.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="170.0" text="라면">
+                           <font>
+                              <Font name="Arial Bold" size="37.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <Label layoutX="353.0" layoutY="16.0" prefHeight="36.0" prefWidth="136.0" text="상품주문">
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="809.0" layoutY="16.0" prefHeight="36.0" prefWidth="136.0" text="주문목록">
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="34.0" layoutY="16.0" prefHeight="36.0" prefWidth="136.0" text="상품분류">
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="228.0" layoutY="65.0" spacing="15.0">
+                     <children>
+                        <HBox layoutX="243.0" layoutY="65.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
+                           <children>
+                              <Button layoutX="241.0" layoutY="79.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="383.0" layoutY="85.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="530.0" layoutY="86.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="659.0" layoutY="94.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="238.0" layoutY="143.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
+                           <children>
+                              <Button layoutX="241.0" layoutY="79.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="383.0" layoutY="85.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="530.0" layoutY="86.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="659.0" layoutY="94.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="250.0" layoutY="236.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
+                           <children>
+                              <Button layoutX="241.0" layoutY="79.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="383.0" layoutY="85.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="530.0" layoutY="86.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="659.0" layoutY="94.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="251.0" layoutY="311.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
+                           <children>
+                              <Button layoutX="241.0" layoutY="79.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="383.0" layoutY="85.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="530.0" layoutY="86.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="659.0" layoutY="94.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="228.0" layoutY="401.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
+                           <children>
+                              <Button layoutX="241.0" layoutY="79.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="383.0" layoutY="85.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="530.0" layoutY="86.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="659.0" layoutY="94.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="155.0">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Button layoutX="997.0" layoutY="465.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" text="주문하기">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="1063.0" layoutY="424.0" prefHeight="26.0" prefWidth="21.0" text="원">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="927.0" layoutY="424.0" prefHeight="32.0" prefWidth="131.0" promptText="가격" text="가격">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="849.0" layoutY="427.0" prefHeight="26.0" prefWidth="57.0" text="총 금액">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="991.0" layoutY="9.0" spacing="5.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

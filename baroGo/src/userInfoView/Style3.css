@@ -1,0 +1,19 @@
+.root { -fx-background-image: url("images/background4.jpg"); }
+
+.fontStyle{ -fx-font-size: 16; -fx-font-family: "Arial"; } 
+.button{ 
+	-fx-text-fill: white;											
+	-fx-background-color: #06b8cc;
+	 } 
+	 
+.button:hover {
+    -fx-background-color : #01579B;
+    }
+    
+-.borders{ -fx-border-color: black; -fx-border-style: dashed; -fx-border-width: 2; }
+
+.split-pane:horizontal { -fx-background-image: url("images/background4.jpg"); }
+
+.split-pane:vertical { -fx-background-image: url("images/background4.jpg"); }
+
+

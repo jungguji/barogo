@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.Group?>
+
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="useInfo.UseInfoPopUP">
+   <children>
+      <SplitPane dividerPositions="0.5" layoutX="49.0" layoutY="77.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="41.0" prefWidth="998.0">
+               <children>
+                  <TextField fx:id="tfName" layoutX="14.0" layoutY="8.0" prefHeight="26.0" prefWidth="138.0" promptText="이름을 입력하세요">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="btnSearch" layoutX="169.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBtnUseSearchAction" prefHeight="23.0" prefWidth="81.0" text="회원 검색">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Line endX="370.0" layoutX="115.0" layoutY="160.0" startX="-105.0" />
+                  <Line endX="370.0" layoutX="115.0" layoutY="245.0" startX="-105.0" />
+                  <Line endX="370.0" layoutX="115.0" layoutY="380.0" startX="-105.0" />
+                  <HBox alignment="CENTER" layoutX="35.0" layoutY="22.0" spacing="15.0">
+                     <children>
+                        <Label layoutX="59.0" layoutY="27.0" text="PC 번호 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfPCNumber" layoutX="125.0" layoutY="22.0" prefHeight="26.0" prefWidth="138.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="272.0" layoutY="22.0" spacing="15.0">
+                     <children>
+                        <Label layoutX="273.0" layoutY="27.0" prefHeight="16.0" prefWidth="39.0" text="이름 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfUseName" layoutX="322.0" layoutY="22.0" prefHeight="26.0" prefWidth="138.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="273.0" layoutY="73.0" spacing="10.0">
+                     <children>
+                        <Label layoutX="268.0" layoutY="73.0" prefHeight="16.0" prefWidth="39.0" text="성별 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <RadioButton fx:id="rdoMan" layoutX="312.0" layoutY="73.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="56.0" text="남자" toggleGroup="$RadioGroup">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="RadioGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rdoWoman" layoutX="373.0" layoutY="73.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="56.0" text="여자" toggleGroup="$RadioGroup" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="40.0" layoutY="68.0" spacing="10.0">
+                     <children>
+                        <Label layoutX="64.0" layoutY="73.0" prefHeight="16.0" prefWidth="56.0" text="회원 ID :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfUseID" layoutX="125.0" layoutY="68.0" prefHeight="26.0" prefWidth="138.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="31.0" layoutY="111.0" spacing="15.0">
+                     <children>
+                        <Label layoutX="55.0" layoutY="116.0" prefHeight="16.0" prefWidth="64.0" text="비밀번호 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnPwChange" layoutX="139.0" layoutY="111.0" mnemonicParsing="false" onAction="#handleBtnPwChangeAction" prefHeight="26.0" prefWidth="110.0" text="비밀번호 변경">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="260.0" layoutY="119.0" spacing="12.0" />
+                  <HBox alignment="CENTER" layoutX="56.0" layoutY="189.0" spacing="15.0" />
+                  <HBox alignment="CENTER" layoutX="274.0" layoutY="189.0" spacing="15.0" />
+                  <HBox alignment="CENTER" layoutX="32.0" layoutY="322.0" spacing="15.0">
+                     <children>
+                        <Label layoutX="273.0" layoutY="27.0" prefHeight="16.0" prefWidth="65.0" text="사용 시간 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfUseTime" layoutX="322.0" layoutY="22.0" prefHeight="26.0" prefWidth="138.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="32.0" layoutY="276.0" spacing="15.0">
+                     <children>
+                        <Label layoutX="273.0" layoutY="27.0" prefHeight="16.0" prefWidth="65.0" text="남은 시간 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfRemainTime" layoutX="322.0" layoutY="22.0" prefHeight="26.0" prefWidth="138.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="31.0" layoutY="407.0" spacing="15.0">
+                     <children>
+                        <Label layoutX="273.0" layoutY="27.0" prefHeight="16.0" prefWidth="65.0" text="누적 금액 :">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfAccrueMoney" layoutX="322.0" layoutY="22.0" prefHeight="26.0" prefWidth="138.0">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="287.0" layoutY="440.0" spacing="15.0" />
+                  <Label layoutX="19.0" layoutY="459.0" prefHeight="16.0" prefWidth="77.0" text="누적 사용량 :">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfAccrueTime" layoutX="111.0" layoutY="454.0" prefHeight="26.0" prefWidth="138.0">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="btnClose" layoutX="223.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleBtnExitAction" prefHeight="23.0" prefWidth="50.0" text="확인">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="37.0" layoutY="194.0" prefHeight="16.0" prefWidth="56.0" text="이메일 :">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfUseEmail" layoutX="105.0" layoutY="189.0" prefHeight="26.0" prefWidth="356.0">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </TextField>
+                  <RadioButton fx:id="rdoLaterPay" layoutX="388.0" layoutY="116.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="56.0" text="후불" toggleGroup="$paymentplan">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="paymentplan" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rdoFirstPay" layoutX="323.0" layoutY="116.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="56.0" text="선불" toggleGroup="$paymentplan" />
+                  <Label layoutX="247.0" layoutY="116.0" prefHeight="16.0" prefWidth="64.0" text="결제방식 :">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
