@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,10 +75,10 @@ public class UseInfoPopUP extends Application implements Initializable {
 	public void start(Stage primaryStage) throws Exception
 	{
 		Parent root = FXMLLoader.load(getClass().getResource("useInfoPopUP.fxml"));
-		Scene scene = new Scene(root);		//Àå¸é »ý¼º
-		primaryStage.setTitle("È¸¿øÁ¤º¸");	//À©µµ¿ì Ã¢ Á¦¸ñ
-		primaryStage.setScene(scene);		//À©µµ¿ìÃ¢¿¡ Àå¸é ¼³Á¤
-		primaryStage.show();				//À©µµ¿ì º¸¿©ÁÖ±â
+		Scene scene = new Scene(root);		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		primaryStage.setTitle("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½
+		primaryStage.setScene(scene);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		primaryStage.show();				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	}
 
 	public void handleBtnExitAction(ActionEvent action)
@@ -96,12 +96,12 @@ public class UseInfoPopUP extends Application implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useSearch.fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 			   Scene anotherScene = new Scene(anotherPage);
 			   Stage stage = new  Stage();
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 			   Stage primaryStage = (Stage)btnClose.getScene().getWindow();
 			   primaryStage.close();
 			} catch (IOException e) {
@@ -118,12 +118,12 @@ public class UseInfoPopUP extends Application implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/password.fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 			   Scene anotherScene = new Scene(anotherPage);
 			   Stage stage = new  Stage();
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 			} catch (IOException e) {
 			   // TODO Auto-generated catch block
 			   e.printStackTrace();
@@ -134,6 +134,6 @@ public class UseInfoPopUP extends Application implements Initializable {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);	//main °´Ã¼ »ý¼º ¹× ¸ÞÀÎ À©µµ¿ì »ý¼º
+		launch(args);	//main ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 }

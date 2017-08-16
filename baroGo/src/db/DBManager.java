@@ -1,4 +1,4 @@
-package DB;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,56 +17,28 @@ import useInfo.UseBean;
 import userInfoView.userInfoBean;
 
 public class DBManager {
-	String strDriverName	= "com.mysql.jdbc.Driver";
-	String strDbURL			= "jdbc:mysql://localhost:3306/barogo?useUnicode=true&characterEncoding=UTF-8";
-	Connection db_conn		= null;
-	Statement stmt			= null;
-	ResultSet result		= null;
+	private final static String DRIVER_NAME	= "com.mysql.jdbc.Driver";
+	private final static String DB_URL			= "jdbc:mysql://localhost:3306/barogo?useUnicode=true&characterEncoding=UTF-8";
+	private static Connection db_conn		= null;
+	public static Statement stmt			= null;
+	public static ResultSet result		= null;
 	
 	UseBean useBean			= new UseBean();
-	public void mysqlConnection() {
+	public static void mysqlConnection() {
 		try {
-			Class.forName(strDriverName);
-			db_conn = DriverManager.getConnection(strDbURL, "love", "love99");
+			Class.forName(DRIVER_NAME);
+			db_conn = DriverManager.getConnection(DB_URL, "love", "love99");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void makeStatement() {
+	public static void makeStatement() {
 		try{
 			stmt = db_conn.createStatement();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public boolean login_query(String strID,String strPW, boolean isAdmin)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			
-			String strQuery = "select id from admins where id='" + strID + "' and pw='" + strPW + "';";
-			String strQuery2 = "select id from user where id='" + strID + "' and pw='" + strPW + "';";
-			
-			if(isAdmin) {
-				result = stmt.executeQuery(strQuery);
-			} else {
-				result = stmt.executeQuery(strQuery2);
-			}
-			
-			if(result.next()) {
-				System.out.println("�α��οϷ�");
-				return true;
-			} else {
-				System.out.println("�α��ν���");
-				return false;
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
 	
 	public void search_temp(String a_strName)

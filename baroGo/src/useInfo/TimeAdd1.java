@@ -6,7 +6,7 @@ package useInfo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,8 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * @author ÁöÁß±¸
- * 	1½Ã°£À» Ãß°¡ÇÏ´Â Å¬·¡½º
+ * @author ï¿½ï¿½ï¿½ß±ï¿½
+ * 	1ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class TimeAdd1 implements Initializable {
@@ -34,7 +34,7 @@ public class TimeAdd1 implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		strID = db.temp_id_print();
 		iAddTime = db.temp_time_print(strID);
-		lblAlert.setText("'"+strID + "' ´Ô¿¡°Ô "+ iAddTime +"½Ã°£À» Ãß°¡ÇÏ½Ã°Ú½À´Ï±î?");
+		lblAlert.setText("'"+strID + "' ï¿½Ô¿ï¿½ï¿½ï¿½ "+ iAddTime +"ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?");
 	}
 	
 	public void handleBtnOkAction(ActionEvent action)

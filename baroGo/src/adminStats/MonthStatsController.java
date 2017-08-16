@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,9 +34,9 @@ public class MonthStatsController implements Initializable {
 	DBManager db = new DBManager();
 	
 	ObservableList<String> MonthList = 
-			FXCollections.observableArrayList("1 ¿ù","2 ¿ù","3 ¿ù","4 ¿ù","5 ¿ù","6 ¿ù","7 ¿ù","8 ¿ù","9 ¿ù","10 ¿ù","11 ¿ù","12 ¿ù");
+			FXCollections.observableArrayList("1 ï¿½ï¿½","2 ï¿½ï¿½","3 ï¿½ï¿½","4 ï¿½ï¿½","5 ï¿½ï¿½","6 ï¿½ï¿½","7 ï¿½ï¿½","8 ï¿½ï¿½","9 ï¿½ï¿½","10 ï¿½ï¿½","11 ï¿½ï¿½","12 ï¿½ï¿½");
 	
-	ObservableList<String> YearList = FXCollections.observableArrayList("2016 ³â");
+	ObservableList<String> YearList = FXCollections.observableArrayList("2016 ï¿½ï¿½");
 	
 	ArrayList<StatsBean> statsList = new ArrayList<StatsBean>();
 	
@@ -71,7 +71,7 @@ public class MonthStatsController implements Initializable {
 		
 		
 		XYChart.Series series1 = new XYChart.Series();
-		series1.setName("ÃÑ¸ÅÃâ");
+		series1.setName("ï¿½Ñ¸ï¿½ï¿½ï¿½");
 		series1.setData(FXCollections.observableArrayList(
 				new XYChart.Data("1",68000),
 				new XYChart.Data("2",30000),
@@ -106,7 +106,7 @@ public class MonthStatsController implements Initializable {
 				));
 		
 		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("ÃÑ¸ÅÃâ");
+		series2.setName("ï¿½Ñ¸ï¿½ï¿½ï¿½");
 		series2.setData(FXCollections.observableArrayList(
 				new XYChart.Data("1",60000),
 				new XYChart.Data("2",28000),
@@ -164,11 +164,11 @@ public class MonthStatsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO ÀÚµ¿ »ý¼ºµÈ ¸Þ¼Òµå ½ºÅÓ
+		// TODO ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 		
-		cmbYear.setValue("2016 ³â");
+		cmbYear.setValue("2016 ï¿½ï¿½");
 		cmbYear.setItems(YearList);
-		cmbMonth.setValue("1 ¿ù");
+		cmbMonth.setValue("1 ï¿½ï¿½");
 		cmbMonth.setItems(MonthList);
 
 	}

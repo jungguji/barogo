@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -196,7 +196,7 @@ public class SaleController implements Initializable {
 		/*
 		System.out.println(sale.getProductName().contains(saleInfo[0]));
 		if (sale.getProductName().indexOf(saleInfo[0]) != -1) {
-			System.out.println("¿Í¿ì");
+			System.out.println("ï¿½Í¿ï¿½");
 		}
 		if (sale.getProductName().indexOf(saleInfo[0]) != -1) {}
 		System.out.println(sale.getProductName().contains(saleInfo[0]));

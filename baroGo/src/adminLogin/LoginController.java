@@ -1,7 +1,7 @@
 package adminLogin;
 
 
-import DB.DBManager;
+import db.LoginDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,47 +13,44 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 /**
  * 
- * @author ÁöÁß±¸
- * 	°ü¸®ÀÚ ·Î±×ÀÎÃ¢ ¹öÆ° ÄÁÆ®·Ñ·¯
- * 	id¿Í pw¸¦ ³Ñ°Ü¹Þ¾Æ db¿¡ ÀúÀåµÈ °ª°ú ºñ±³
- *  ¸ÂÀ¸¸é È¸¿øÁ¤º¸Ã¢(AdminMainView.fxml)À» ½ÇÇà
+ * @author ï¿½ï¿½ï¿½ß±ï¿½
+ *     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½Æ° ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
+ *     idï¿½ï¿½ pwï¿½ï¿½ ï¿½Ñ°Ü¹Þ¾ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+ *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢(AdminMainView.fxml)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  *
  */
 public class LoginController{
 
-	// Slogin.fxmlÀÇ TExtFieldÀÇ fx:id ÀÎ °Í ÀÌÇÏ µ¿¹®
-	@FXML private TextField 		id;
-	@FXML private PasswordField		pw;
-	@FXML private Button 			btnLogin;
+    @FXML private TextField         id;
+    @FXML private PasswordField        pw;
+    @FXML private Button             btnLogin;
 
-	private DBManager db = new DBManager();
-	private boolean result;
-
-	public void handleBtnLoginAction(ActionEvent action)
-	{
-		String strID = id.getText();
-		String strPW = pw.getText();
-		
-		result = db.login_query(strID, strPW, true);
-		
-		if(!result)
-		{
-			id.setText("");
-			pw.setText("");
-		} else  {
-			try{
-				
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../adminView/AdminMainView.fxml"));
-			Parent mainView = loader.load();
-
-			//Parent mainView = FXMLLoader.load(getClass().getResource("AdminMainView.fxml"));
-			Scene scene = new Scene(mainView);
-			scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
-			Stage primaryStage = (Stage)btnLogin.getScene().getWindow();
-			primaryStage.setScene(scene);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+    public void handleBtnLoginAction(ActionEvent action)
+    {
+        try {
+            String adminId = id.getText();
+            String adminPw = pw.getText();
+            
+            boolean isLogin = LoginDAO.adminLogin(adminId, adminPw);
+            
+            if(!isLogin) {
+                id.setText("");
+                pw.setText("");
+                
+                return;
+            }
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../adminView/AdminMainView.fxml"));
+            Parent mainView = loader.load();
+    
+            //Parent mainView = FXMLLoader.load(getClass().getResource("AdminMainView.fxml"));
+            Scene scene = new Scene(mainView);
+            scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
+            
+            Stage primaryStage = (Stage)btnLogin.getScene().getWindow();
+            primaryStage.setScene(scene);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

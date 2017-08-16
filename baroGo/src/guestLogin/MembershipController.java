@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +20,13 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author Á¤±â¼º
- * 	°Ô½ºÆ® È¸¿ø°¡ÀÔ ÄÁÆ®·Ñ·¯
- * 	Á¤º¸¸¦ DB¿¡ ÀúÀå
+ * @author ï¿½ï¿½ï¿½â¼º
+ * 	ï¿½Ô½ï¿½Æ® È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
+ * 	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  */
 public class MembershipController implements Initializable{
 
-	// Slogin.fxmlÀÇ TExtFieldÀÇ fx:id ÀÎ °Í ÀÌÇÏ µ¿¹®
+	// Slogin.fxmlï¿½ï¿½ TExtFieldï¿½ï¿½ fx:id ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@FXML private TextField			name;
 	@FXML private TextField			birthday;
 	@FXML private RadioButton		male;
@@ -61,13 +61,13 @@ public class MembershipController implements Initializable{
 		FXMLLoader another = new FXMLLoader( getClass().getResource( "Confirm.fxml" ));
 		try {
 		   AnchorPane anotherPage = (AnchorPane) another.load();
-		   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+		   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 		   Scene anotherScene = new Scene(anotherPage);
-			System.out.println("Áßº¹µÈ ID ÀÔ´Ï´Ù.");
+			System.out.println("ï¿½ßºï¿½ï¿½ï¿½ ID ï¿½Ô´Ï´ï¿½.");
 		   Stage stage = new  Stage();
 		   stage.setScene(anotherScene);
 		   stage.show();
-		   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+		   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 		} catch (IOException e) {
 		   // TODO Auto-generated catch block
 		   e.printStackTrace();
@@ -88,24 +88,24 @@ public class MembershipController implements Initializable{
 		boolean bUserSex;
 
 		if(userName.equals("")) {
-			System.out.println("ÀÌ¸§ÀÌ °ø¹éÀÔ´Ï´Ù.");
+			System.out.println("ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if(userbirtday.equals("")){
-			System.out.println("»ý³â¿ùÀÏÀÌ °ø¹éÀÔ´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if(male.isSelected() == false && female.isSelected() == false){
-			System.out.println("¼ºº°À» ¼±ÅÃÇØÁÖ½Ê½Ã¿À.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ê½Ã¿ï¿½.");
 		} else if(userID.equals("")){
-			System.out.println("ID°¡ °ø¹éÀÔ´Ï´Ù.");
+			System.out.println("IDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if(userPW.equals("")){
-			System.out.println("ºñ¹Ð¹øÈ£°¡ °ø¹éÀÔ´Ï´Ù.");
+			System.out.println("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if(userPWchk.equals("")){
-			System.out.println("ºñ¹Ð¹øÈ£ È®ÀÎ¶õÀÌ °ø¹éÀÔ´Ï´Ù.");
+			System.out.println("ï¿½ï¿½Ð¹ï¿½È£ È®ï¿½Î¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if(userEmail.equals("")) {
-			System.out.println("ÀÌ¸ÞÀÏÀÌ °ø¹éÀÔ´Ï´Ù.");
+			System.out.println("ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 		} else if(userPW.length() < 4) {
-			System.out.println("ºñ¹Ð¹øÈ£´Â ÃÖ¼Ò 4ÀÚ ÀÔ´Ï´Ù.");
+			System.out.println("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ö¼ï¿½ 4ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.");
 		}else if(!userPW.equals(userPWchk)) {
-			System.out.println("ÀÔ·ÂÇÑ µÎ ºñ¹Ð¹øÈ£°¡ ´Ù¸¨´Ï´Ù");
-			labelpwch.setText("ºÒÀÏÄ¡");
+			System.out.println("ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½Ï´ï¿½");
+			labelpwch.setText("ï¿½ï¿½ï¿½ï¿½Ä¡");
 		} else {
 			if(male.isSelected())
 			{
@@ -118,14 +118,14 @@ public class MembershipController implements Initializable{
 				FXMLLoader another = new FXMLLoader( getClass().getResource("JoinOK.fxml"));
 				try {
 				   AnchorPane anotherPage = (AnchorPane) another.load();
-				   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+				   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 				   Scene anotherScene = new Scene(anotherPage);
 				   
-				   System.out.println("È¸¿ø°¡ÀÔ ¿Ï·á!");
+				   System.out.println("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!");
 				   Stage stage = new  Stage();
 				   stage.setScene(anotherScene);
 				   stage.show();
-				   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+				   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 				} catch (IOException e) {
 				   // TODO Auto-generated catch block
 				   e.printStackTrace();
@@ -139,19 +139,19 @@ public class MembershipController implements Initializable{
 	}
 	
 	public void handleBtnlog(ActionEvent action){
-		System.out.println("·Î±×ÀÎ ÇÏ¼¼¿ä.");
+		System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½.");
 		Stage primaryStage = (Stage)btnlog.getScene().getWindow();
 		primaryStage.close();
 	}
 	
 	public void handleBtnConfirm(ActionEvent action){
-		System.out.println("»ç¿ë°¡´ÉÇÑ IDÀÔ´Ï´Ù.");
+		System.out.println("ï¿½ï¿½ë°¡ï¿½ï¿½ï¿½ï¿½ IDï¿½Ô´Ï´ï¿½.");
 		Stage primaryStage = (Stage)btnconfirm.getScene().getWindow();
 		primaryStage.close();
 	}
 	
 	public void handleBtnNoConfirm(ActionEvent action){
-		System.out.println("»ç¿ëÁßÀÎ IDÀÔ´Ï´Ù.");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IDï¿½Ô´Ï´ï¿½.");
 		Stage primaryStage = (Stage)btnNoconfirm.getScene().getWindow();
 		primaryStage.close();
 	}

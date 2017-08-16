@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * @author ÁöÁß±¸
+ * @author ï¿½ï¿½ï¿½ß±ï¿½
  *
  */
 public class CalculateView implements Initializable {
@@ -78,7 +78,7 @@ public class CalculateView implements Initializable {
 				new Sales("","", "")
 		);
 		
-		// Å×ÀÌºíÄÃ·³¿¡ °ª ÀúÀå
+		// ï¿½ï¿½ï¿½Ìºï¿½ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		TableColumn name = tvTotalSales.getColumns().get(0);
 		name.setCellValueFactory(new PropertyValueFactory("name"));
 		name.setStyle("-fx-alignment: CENTER;");
@@ -214,9 +214,9 @@ public class CalculateView implements Initializable {
 
 		lblTotalMoney.setText(String.valueOf(iResultsum));
 		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("ÃÑ ¸ÅÃâ¾×", String.valueOf(iSalesCount), String.valueOf(iSalesSum)),
-				new Sales("ÃÑ ¹ÝÇ°¾×", String.valueOf(iReturnCount) , String.valueOf(iReturnSum)),
-				new Sales("¼ø ¸ÅÃâ¾×", String.valueOf(iResultCount), String.valueOf(iResultsum))
+				new Sales("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", String.valueOf(iSalesCount), String.valueOf(iSalesSum)),
+				new Sales("ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½", String.valueOf(iReturnCount) , String.valueOf(iReturnSum)),
+				new Sales("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½", String.valueOf(iResultCount), String.valueOf(iResultsum))
 		);
 		tvTotalSales.setItems(salesList);
 	}
@@ -265,12 +265,12 @@ public class CalculateView implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../adminCalculate/" + action + ".fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 			   Scene anotherScene = new Scene(anotherPage);
 			   Stage stage = new  Stage();
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 			} catch (IOException e) {
 			   e.printStackTrace();
 			}

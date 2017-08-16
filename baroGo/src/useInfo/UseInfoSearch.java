@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import DB.DBManager;
+import db.DBManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -54,7 +54,7 @@ public class UseInfoSearch implements Initializable {
 			tables.getItems().add(userData);
 		}
 		
-		// Å×ÀÌºíºäÀÇ Çà Å¬¸¯ÇÞÀ»¶§
+		// ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		tables.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SearchBean>() {
 			@Override
 			public void changed(ObservableValue<? extends SearchBean> observable, SearchBean oldValue, SearchBean newValue) {
@@ -63,7 +63,7 @@ public class UseInfoSearch implements Initializable {
 			}
 		});
 		
-		// Å×ÀÌºíÄÃ·³¿¡ °ª ÀúÀå
+		// ï¿½ï¿½ï¿½Ìºï¿½ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		TableColumn names = tables.getColumns().get(0);
 		names.setCellValueFactory(new PropertyValueFactory("strName"));
 		names.setStyle("-fx-alignment: CENTER;");
@@ -144,8 +144,8 @@ public class UseInfoSearch implements Initializable {
 		}
 	}
 	
-	// ¼­Ä¡¹öÆ° Å¬¸¯ ÇÚµé·¯
-	// Å¬¸¯½Ã ÅØ½ºÆ® ÇÊµåÀÇ °ªÀ¸·Î °Ë»öµÈ ³»¿ëÀÌ tableview¿¡ Ãâ·Â‰Î
+	// ï¿½ï¿½Ä¡ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½Úµé·¯
+	// Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ tableviewï¿½ï¿½ ï¿½ï¿½Â‰ï¿½
 	public void handleBtnUseSearchAction(ActionEvent event)
 	{
 		ArrayList<UseBean>	arUseBean;
@@ -171,12 +171,12 @@ public class UseInfoSearch implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 			   Scene anotherScene = new Scene(anotherPage);
 			   Stage stage = new  Stage();
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 			} catch (IOException e) {
 			   // TODO Auto-generated catch block
 			   e.printStackTrace();
@@ -195,13 +195,13 @@ public class UseInfoSearch implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/TimeAddPeople.fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 			   Scene anotherScene = new Scene(anotherPage);
 			   Stage stage = new  Stage();
-			   stage.setTitle("°æ°í");
+			   stage.setTitle("ï¿½ï¿½ï¿½");
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 			} catch (IOException e) {
 			   // TODO Auto-generated catch block
 			   e.printStackTrace();
@@ -218,13 +218,13 @@ public class UseInfoSearch implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/TimeChk.fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane)another.load();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 			   Scene anotherScene = new Scene(anotherPage);
 			   Stage stage = new  Stage();
-			   stage.setTitle("½Ã°£ Ãß°¡");
+			   stage.setTitle("ï¿½Ã°ï¿½ ï¿½ß°ï¿½");
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+			   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 			} catch (IOException e) {
 			   // TODO Auto-generated catch block
 			   e.printStackTrace();

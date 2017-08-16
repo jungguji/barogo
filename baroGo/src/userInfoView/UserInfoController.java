@@ -7,9 +7,9 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
-import DB.DBManager;
 import adminChat.ServerBackground;
 import clientChat.ClientBack2;
+import db.DBManager;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -27,9 +27,9 @@ import userChat.ClientChatGui;
 
 /**
  * 
- * @author Á¤±â¼º
- * 	°Ô½ºÆ® °Ô½ºÆ® Action ÄÁÆ®·Ñ·¯
- * 	°Ô½ºÆ®ÀÇ Á¤º¸ È®ÀÎÃ¢
+ * @author ï¿½ï¿½ï¿½â¼º
+ * 	ï¿½Ô½ï¿½Æ® ï¿½Ô½ï¿½Æ® Action ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
+ * 	ï¿½Ô½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½Ã¢
  */
 public class UserInfoController implements Initializable{
 
@@ -60,15 +60,15 @@ public class UserInfoController implements Initializable{
 		FXMLLoader another = new FXMLLoader( getClass().getResource( "../userInfoView/Order.fxml" ));
 		try {
 		   AnchorPane anotherPage = (AnchorPane) another.load();
-		   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2
+		   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2
 		   Scene anotherScene = new Scene(anotherPage);
 		   anotherScene.getStylesheets().add(
-					getClass().getResource("Style3.css").toString()); // CSS Style Àû¿ë
-			System.out.println("»óÇ°À» ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î?");
+					getClass().getResource("Style3.css").toString()); // CSS Style ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?");
 		   Stage stage = new  Stage();
 		   stage.setScene(anotherScene);
 		   stage.show();
-		   // ´Ù¸¥Ã¢ ¶ç¿ì´Â ÀÛ¾÷ .... 2 ³¡.
+		   // ï¿½Ù¸ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ .... 2 ï¿½ï¿½.
 		} catch (IOException e) {
 		   // TODO Auto-generated catch block
 		   e.printStackTrace();
@@ -91,7 +91,7 @@ public class UserInfoController implements Initializable{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../guestLogin/Glogin.fxml"));
 			Parent mainView = loader.load();
 
-			System.out.println("·Î±×ÀÎÃ¢À¸·Î µ¹¾Æ°©´Ï´Ù.");
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½Ï´ï¿½.");
 			Scene scene = new Scene(mainView);
 
 			scene.getStylesheets().add(getClass().getResource("Style3.css").toExternalForm());
@@ -104,7 +104,7 @@ public class UserInfoController implements Initializable{
 	
 	public void handleBtnExitAction(ActionEvent action) throws InterruptedException 
 	{
-		if(salesType.getText().equals("¼±ºÒ"))
+		if(salesType.getText().equals("ï¿½ï¿½ï¿½ï¿½"))
 		{
 			db.user_data_save(lblid.getText(), lblremaintime.getText());
 			client.connet();
@@ -117,13 +117,13 @@ public class UserInfoController implements Initializable{
 		}
 
 		/*
-		System.out.println("ÄÄÇ»ÅÍ¸¦ Á¾·áÇÕ´Ï´Ù.");
+		System.out.println("ï¿½ï¿½Ç»ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 		Runtime runtime = Runtime.getRuntime();
 		try
 		{
 			Process process = runtime.exec("C:\\WINDOWS\\system32\\cmd.exe");
 			OutputStream os = process.getOutputStream();
-			os.write("shutdown -s -f -c -t \n\r".getBytes()); // 5ÃÊ ÀÌ³»·Î ÄÄÅÍ ²¨Áü
+			os.write("shutdown -s -f -c -t \n\r".getBytes()); // 5ï¿½ï¿½ ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			os.close();
 			process.waitFor();
 		} catch (IOException e) {
@@ -148,12 +148,12 @@ public class UserInfoController implements Initializable{
 		switch(payPlan)
 		{
 		case 0:
-			salesType.setText("¼±ºÒ");
+			salesType.setText("ï¿½ï¿½ï¿½ï¿½");
 			
 			beanUserInfo = db.actioninit_query(payPlan, userInfo[0], userInfo[1]);
 			lblid.setText(beanUserInfo.getUserID());
 			
-			lblfirstmoney.setText(beanUserInfo.getFirstMoney()+" ¿ø");
+			lblfirstmoney.setText(beanUserInfo.getFirstMoney()+" ï¿½ï¿½");
 			
 			String strInitRemainTime = beanUserInfo.getstrRemainTime();
 			
@@ -213,10 +213,10 @@ public class UserInfoController implements Initializable{
 			break;
 			
 		case 1:
-			salesType.setText("ÈÄºÒ");
+			salesType.setText("ï¿½Äºï¿½");
 			beanUserInfo = db.actioninit_query(payPlan, userInfo[0], userInfo[1]);
 			lblid.setText(beanUserInfo.getUserID());
-			lblLatermoney.setText(startMoney + "¿ø");
+			lblLatermoney.setText(startMoney + "ï¿½ï¿½");
 			
 			Task<Void> task = new Task<Void>() {
 				@Override
@@ -233,7 +233,7 @@ public class UserInfoController implements Initializable{
 								
 								String strStartTime = dateforamt.format(calendar.getTime());
 								lblusetime.setText(time);
-								lblLatermoney.setText(startMoney + "¿ø");
+								lblLatermoney.setText(startMoney + "ï¿½ï¿½");
 								
 								client.connet();
 								client.sendMessage(tfPCNum.getText() + "\n" 
@@ -277,6 +277,6 @@ public class UserInfoController implements Initializable{
 		
 		actioninit();
 		
-		// °ü¸®ÀÚ¿¡¼­ Ã¤ÆÃ ¿Ã °æ¿ì ´ë±â
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	}
 }
