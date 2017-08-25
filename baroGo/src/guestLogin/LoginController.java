@@ -1,6 +1,5 @@
 package guestLogin;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import jgj.util.barogo.ViewerUtil;
 
@@ -38,7 +36,7 @@ public class LoginController implements Initializable {
     @FXML private RadioButton         rdoFirstPay;
     @FXML private RadioButton         rdoLaterPay;
 
-    public void handleBtnLoginAction(ActionEvent action) {
+    public void handleBtnLoginAction(ActionEvent action) throws Exception {
         String userID = ID.getText();
         String userPW = PW.getText();
 
@@ -47,66 +45,45 @@ public class LoginController implements Initializable {
         boolean isLogin = LoginDAO.guestLogin(userID, userPW);
         boolean isRemaintime = db.paycheck_query(userID, userPW);
 
-        if (!isLogin) {
-            ID.setText("");
-            PW.setText("");
-            
-            return;
-        }
-        
-        if (!rdoFirstPay.isSelected() && !rdoLaterPay.isSelected()) {
-            FXMLLoader another = new FXMLLoader(getClass().getResource("PlanChk.fxml"));
-            try {
-                AnchorPane anotherPage = (AnchorPane) another.load();
-                // 다른창 띄우는 작업 .... 2
-                Scene anotherScene = new Scene(anotherPage);
-                Stage stage = new Stage();
-                stage.setScene(anotherScene);
-                stage.show();
-                // 다른창 띄우는 작업 .... 2 끝.
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            if (rdoFirstPay.isSelected() == true && !isRemaintime) {
+        try {
+            if (!isLogin) {
                 ID.setText("");
                 PW.setText("");
-                FXMLLoader another = new FXMLLoader(getClass().getResource("paycheck.fxml"));
-                try {
-                    AnchorPane anotherPage = (AnchorPane) another.load();
-                    // 다른창 띄우는 작업 .... 2
-                    Scene anotherScene = new Scene(anotherPage);
-                    anotherScene.getStylesheets().add(getClass().getResource("Style3.css").toString()); // CSS
-                                                                                                        // style
-                                                                                                        // 적용
-                    Stage stage = new Stage();
-                    stage.setScene(anotherScene);
-                    stage.show();
-                    // 다른창 띄우는 작업 .... 2 끝.
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                if (rdoFirstPay.isSelected() == true) {
-                    db.paymentPlanInsert_query(0, userID, userPW);
-                } else if (rdoLaterPay.isSelected() == true) {
-                    db.paymentPlanInsert_query(1, userID, userPW);
-                }
-                db.userTemp_query(userID, userPW);
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../userInfoView/userInfoView.fxml"));
-                    Parent mainView = loader.load();
-
-                    Scene scene = new Scene(mainView);
-                    scene.getStylesheets().add(getClass().getResource("Style3.css").toString()); // CSS
-                                                                                                    // style
-                                                                                                    // 적용
-                    Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
-                    primaryStage.setScene(scene);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                
+                return;
             }
+            
+            if (!rdoFirstPay.isSelected() && !rdoLaterPay.isSelected()) {
+                ViewerUtil.showStage(this, "PlanChk.fxml", "Style3.css");
+                return;
+            }
+            
+            if (rdoFirstPay.isSelected() && !isRemaintime) {
+                ID.setText("");
+                PW.setText("");
+                ViewerUtil.showStage(this, "paycheck.fxml", "Style3.css");
+                return;
+            }
+            
+            if (rdoFirstPay.isSelected()) {
+                db.paymentPlanInsert_query(0, userID, userPW);
+            } else if (rdoLaterPay.isSelected()) {
+                db.paymentPlanInsert_query(1, userID, userPW);
+            }
+            
+            db.userTemp_query(userID, userPW);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../userInfoView/userInfoView.fxml"));
+            Parent mainView = loader.load();
+
+            Scene scene = new Scene(mainView);
+            scene.getStylesheets().add(getClass().getResource("Style3.css").toString()); // CSS
+                                                                                            // style
+                                                                                            // 적용
+            Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
+            primaryStage.setScene(scene);
+        } catch (Exception e1) {
+            e1.printStackTrace();
         }
     }
 

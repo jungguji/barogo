@@ -81,74 +81,6 @@ public class DBManager {
 		return strResult;
 	}
 	
-	public ArrayList<UseBean> user_search(String a_strUserName, SearchBean bean) {
-		mysqlConnection();
-		makeStatement();
-		ArrayList<UseBean> arUseBean = new ArrayList<UseBean>();
-		try{
-			String strQuery = "select * from user where name = '" + a_strUserName +"';";
-			result = stmt.executeQuery(strQuery);
-			String strBirth;
-			while(result.next()) 
-			{
-				strBirth = result.getString("birth1") + "." + result.getString("birth2") + "." + result.getString("birth3");
-				bean.setStrName(result.getString("name"));
-				bean.setStrID(result.getString("id"));
-				bean.setBirth(strBirth);
-
-				// ���� â�� ���� ������ ��� ���� �����ؾ߉� 
-				useBean = new UseBean();
-				useBean.setiPCNumber(result.getInt(1));
-				useBean.setStrName(result.getString(2));
-				useBean.setStrID(result.getString(3));
-				useBean.setbSex(result.getBoolean(5));
-				useBean.setStrEmail(result.getString(6));
-				useBean.setbPaymentplan(result.getBoolean(8));
-				useBean.setStrRemaintime(result.getString(9));
-				useBean.setStrUsetime(result.getString(10));
-				useBean.setiAccruemoney(result.getInt(11));
-				useBean.setStrAccruetime(result.getString(12));
-				useBean.setiBirth1(result.getInt(13));
-				useBean.setiBirth2(result.getInt(14));
-				useBean.setiBirth3(result.getInt(15));
-				System.out.println("useBean : " + useBean.getStrID() );
-				arUseBean.add(useBean);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("DBManagerŬ���� user_search(String a_strUserName, SearchBean bean) ����");
-		}
-		return arUseBean;
-	}
-
-	public UseBean user_search(String a_strUserID) {
-		mysqlConnection();
-		makeStatement();
-		try{
-			String strQuery = "select * from user where id = '" + a_strUserID +"';";
-			result = stmt.executeQuery(strQuery);
-			
-			while(result.next()) 
-			{
-				useBean.setiPCNumber(result.getInt(1));
-				useBean.setStrName(result.getString(2));
-				useBean.setStrID(result.getString(3));
-				useBean.setbSex(result.getBoolean(5));
-				useBean.setStrEmail(result.getString(6));
-				useBean.setbPaymentplan(result.getBoolean(8));
-				useBean.setStrRemaintime(result.getString(9));
-				useBean.setStrUsetime(result.getString(10));
-				useBean.setiAccruemoney(result.getInt(11));
-				useBean.setStrAccruetime(result.getString(12));
-				useBean.setiBirth1(result.getInt(13));
-				useBean.setiBirth2(result.getInt(14));
-				useBean.setiBirth3(result.getInt(15));
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return useBean;
-	}
 	/*
 	 *  ���̺� �信�� ������ ����� ���� �ð�(remiantime)�� �߰��ϴ� �޼ҵ�
 	 */
@@ -195,27 +127,9 @@ public class DBManager {
 	}
 	
 	// ���̺�信�� ������ �ְ� ��������
-	public void select_user(String id)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strUpdate = "update timetemp set id='"+id+"';";
-			String strInsert = "insert into timetemp value('" + id + "',0);";
-			String strResult = temp_id_print();
-			if(strResult == null)
-			{
-				stmt.executeUpdate(strInsert);
-			} else {
-				stmt.executeUpdate(strUpdate);
-			}
-		}catch(Exception e) {
-			System.out.println("DBManagerŬ���� test() ����");
-			e.printStackTrace();
-		}
-	}
 	
-	public String temp_id_print()
+	
+	public static String temp_id_print()
 	{
 		mysqlConnection();
 		makeStatement();

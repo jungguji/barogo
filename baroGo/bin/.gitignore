@@ -1,4 +1,5 @@
-/DB/
+/guestLogin/
+/useInfo/
 /adminCalculate/
 /adminChat/
 /adminLogin/
@@ -6,10 +7,8 @@
 /adminStats/
 /adminView/
 /clientChat/
-/guestLogin/
+/db/
+/jgj/
 /serverChat/
-/useInfo/
 /userChat/
 /userInfoView/
-/jgj/
-/db/

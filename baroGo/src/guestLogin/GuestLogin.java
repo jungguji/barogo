@@ -23,7 +23,7 @@ public class GuestLogin extends Application {
 			primaryStage.setScene(scene); // 윈도우창에 장면 설정
 			primaryStage.show(); // 윈도우 보여주기
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 

@@ -17,7 +17,21 @@ public class ViewerUtil {
             stage.setScene(anotherScene);
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
+        }
+    }
+    
+    public static void showStageNotCss(Object object, String resourceDirectory) throws Exception {
+        try{
+            FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
+            AnchorPane anotherPage = (AnchorPane) another.load();
+            Scene anotherScene = new Scene(anotherPage);
+            
+            Stage stage = new  Stage();
+            stage.setScene(anotherScene);
+            stage.show();
+        } catch(Exception e) {
+            throw e;
         }
     }
 }
