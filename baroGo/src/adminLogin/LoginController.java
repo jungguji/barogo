@@ -13,10 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 /**
  * 
- * @author ���߱�
- *     ������ �α���â ��ư ��Ʈ�ѷ�
- *     id�� pw�� �Ѱܹ޾� db�� ����� ���� ��
- *  ������ ȸ������â(AdminMainView.fxml)�� ����
+ * @author 占쏙옙占쌩깍옙
+ *     占쏙옙占쏙옙占쏙옙 占싸깍옙占쏙옙창 占쏙옙튼 占쏙옙트占싼뤄옙
+ *     id占쏙옙 pw占쏙옙 占싼겨받억옙 db占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙
+ *  占쏙옙占쏙옙占쏙옙 회占쏙옙占쏙옙占쏙옙창(AdminMainView.fxml)占쏙옙 占쏙옙占쏙옙
  *
  */
 public class LoginController{
@@ -28,17 +28,17 @@ public class LoginController{
     public void handleBtnLoginAction(ActionEvent action)
     {
         try {
-            String adminId = id.getText();
-            String adminPw = pw.getText();
-            
-            boolean isLogin = LoginDAO.adminLogin(adminId, adminPw);
-            
-            if(!isLogin) {
-                id.setText("");
-                pw.setText("");
-                
-                return;
-            }
+//            String adminId = id.getText();
+//            String adminPw = pw.getText();
+//            
+//            boolean isLogin = LoginDAO.adminLogin(adminId, adminPw);
+//            
+//            if(!isLogin) {
+//                id.setText("");
+//                pw.setText("");
+//                
+//                return;
+//            }
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../adminView/AdminMainView.fxml"));
             Parent mainView = loader.load();
