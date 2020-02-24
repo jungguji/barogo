@@ -21,7 +21,7 @@ public class AdminLogin extends Application {
 					.load(getClass()
 					.getResource("Slogin.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("Style2.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 
 			primaryStage.setTitle("바로go 카운터");
 			primaryStage.setScene(scene);
