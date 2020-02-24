@@ -2,15 +2,18 @@ package adminView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
 import adminChat.ServerBackground;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,13 +22,12 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import serverChat.ServerBack2;
 /**
  * 
- * @author ���߱�
- *	����â ȸ���޴� ��Ʈ�ѷ�
- *	LoginController.java���� primaryStage�� �Ѱܹ޾�
- *	�� ������������ �˾����� ȸ������â(Member.fxml)�� ��Ÿ��
+ * @author 지중구
+ *		관리자 메인뷰를 나타내는 클래스
  */
 public class UseInfoViewController implements Initializable {
 	@FXML private MenuItem 		menuItemUseInfo;
@@ -37,9 +39,11 @@ public class UseInfoViewController implements Initializable {
 	@FXML private Button		btnSeat50, btnSeat51, btnSeat52, btnSeat53, btnSeat54, btnSeat55, btnSeat56, btnSeat57, btnSeat58, btnSeat59;
 	@FXML private Button		btnSeat60, btnSeat61, btnSeat62, btnSeat63, btnSeat64, btnSeat65, btnSeat66, btnSeat67, btnSeat68, btnSeat69;
 	@FXML private Button		btnSeat70, btnSeat71, btnSeat72, btnSeat73, btnSeat74, btnSeat75, btnSeat76, btnSeat77, btnSeat78, btnSeat79;
-	@FXML private Button		btnReset;
+	@FXML private Button		btnReset ;
 	@FXML private Text			txtPcNum, txtName, txtPaymentPlan, txtStartTime, txtUseTime, txtMoney;
 	@FXML private Label			lblRemainSeat;
+	@FXML private Button		btnOK;
+	@FXML private List<Button> bottonList;
 	
 	private static String[] 	astrReceive		= new String[81];
 	private static String[]		astrStartTime	= new String[81];
@@ -47,19 +51,44 @@ public class UseInfoViewController implements Initializable {
 	private static boolean[]	aisFlag			= new boolean[81];
 	private static int			iRemainSeat		= 80;
 	
+	private db.DBManager db = new db.DBManager();
+	
 	public void handleBtnUseInfoViewAction(ActionEvent action)
 	{ 
-		popup("useInfo", "useInfoPopUP");
+		try{
+			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
+			try {
+			   AnchorPane anotherPage = (AnchorPane) another.load();
+			   // 다른창 띄우는 작업 .... 2
+			   Scene anotherScene = new Scene(anotherPage);
+			   anotherScene.getStylesheets().add(getClass().getResource("../useInfo/useInfo.css").toExternalForm());
+			   Stage stage = new  Stage();
+			   stage.initStyle(StageStyle.TRANSPARENT);	// 테두리 제거
+			   stage.setScene(anotherScene);
+			   stage.show();
+			   // 다른창 띄우는 작업 .... 2 끝.
+			} catch (IOException e) {
+			   e.printStackTrace();
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		//popup("useInfo", "useInfoPopUP","useInfo");
 	}
 
 	public void handleBtnCalculateAction(ActionEvent action)
 	{
-		popup("adminCalculate", "Calculate");
+		popup("adminCalculate", "Calculate","adminCalculate");
 	}
 	
 	public void handleBtnSalesAction(ActionEvent action)
 	{
-		popup("adminSales", "product");
+		popup("adminSales", "product","product");
+	}
+	
+	public void handleBtnExitAction(ActionEvent action)
+	{
+        Platform.exit();
 	}
 	
 	public void handleBtnStatsAction(ActionEvent action)
@@ -68,12 +97,14 @@ public class UseInfoViewController implements Initializable {
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../adminStats/MonthStats.fxml" ));
 			try {
 				TabPane anotherPage = (TabPane) another.load();
-			   // �ٸ�â ���� �۾� .... 2
+			   // 다른창 띄우는 작업 .... 2
 			   Scene anotherScene = new Scene(anotherPage);
+			   anotherScene.getStylesheets().add(getClass().getResource("../adminStats/stats.css").toExternalForm());
 			   Stage stage = new  Stage();
+			   stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // �ٸ�â ���� �۾� .... 2 ��.
+			   // 다른창 띄우는 작업 .... 2 끝.
 			} catch (IOException e) {
 			   e.printStackTrace();
 			}
@@ -85,7 +116,13 @@ public class UseInfoViewController implements Initializable {
 	
 	public void handleBtnInfoAction(ActionEvent action)
 	{
-		popup("adminView","Infomation");
+		popup("adminView","Infomation","Information");
+	}
+	
+	public void handleBtnInfo(ActionEvent action)
+	{
+		Stage primaryStage = (Stage)btnOK.getScene().getWindow();
+		primaryStage.close();
 	}
 	
 	public void handleBtnResetAction(ActionEvent action)
@@ -107,21 +144,1262 @@ public class UseInfoViewController implements Initializable {
 		});
 	}
 	
-	public void handleMenuChatAction(ActionEvent action)
+	public void handleMenu1ChatAction(ActionEvent action) throws Exception
 	{
-		
+		System.out.println("@@@@@");
+	}
+	public void handleMenu2ChatAction(ActionEvent action) throws Exception
+	{
+	    System.out.println("@@@@@");
+	}
+	public void handleMenu3ChatAction(ActionEvent action) throws Exception
+	{
+	    System.out.println("@@@@@");
+	}
+	public void handleMenu4ChatAction(ActionEvent action) throws Exception
+	{
+	}
+	public void handleMenu5ChatAction(ActionEvent action) throws Exception
+	{
+	}
+	public void handleMenu6ChatAction(ActionEvent action) throws Exception
+	{
+	}
+	public void handleMenu7ChatAction(ActionEvent action) throws Exception
+	{
+	}
+	public void handleMenu8ChatAction(ActionEvent action) throws Exception
+	{
+	}
+	public void handleMenu9ChatAction(ActionEvent action) throws Exception
+	{
+	}
+	public void handleMenu10ChatAction(ActionEvent action) throws Exception
+	{
 	}
 	
-	public void handleMenuTimeAddAction(ActionEvent action)
+	public void handleMenuKick1Action(ActionEvent action)
 	{
-		
 	}
 	
+	public void handleMenuKick2Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick3Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick4Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick5Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick6Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick7Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick8Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick9Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuKick10Action(ActionEvent action)
+	{
+	}
+	
+	public void handleMenuTimeAdd1Action(ActionEvent action)
+	{
+		final String strPCNum = "1";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd2Action(ActionEvent action)
+	{
+		final String strPCNum = "2";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd3Action(ActionEvent action)
+	{
+		final String strPCNum = "3";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd4Action(ActionEvent action)
+	{
+		final String strPCNum = "4";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd5Action(ActionEvent action)
+	{
+		final String strPCNum = "5";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd6Action(ActionEvent action)
+	{
+		final String strPCNum = "6";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd7Action(ActionEvent action)
+	{
+		final String strPCNum = "7";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd8Action(ActionEvent action)
+	{
+		final String strPCNum = "8";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd9Action(ActionEvent action)
+	{
+		final String strPCNum = "9";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public void handleMenuTimeAdd10Action(ActionEvent action)
+	{
+		final String strPCNum = "10";
+		AnchorPane root = new AnchorPane();
+		ObservableList<Node> list = root.getChildren();
+		
+		root.prefHeight(186);
+		root.prefWidth(600);
+
+		Button btn1 = new Button();
+		
+		btn1.setLayoutX(28);
+		btn1.setLayoutY(26);
+		btn1.prefHeight(60);
+		btn1.prefWidth(90);
+		btn1.setText("1000원 \n (1시간)");
+		btn1.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 1);
+		});
+		
+		Button btn2 = new Button();
+		
+		btn2.setLayoutX(134);
+		btn2.setLayoutY(26);
+		btn2.prefHeight(60);
+		btn2.prefWidth(90);
+		btn2.setText("2000원 \n(2시간)");
+		btn2.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 2);
+		});
+		
+		Button btn3 = new Button();
+		
+		btn3.setLayoutX(234);
+		btn3.setLayoutY(26);
+		btn3.prefHeight(60);
+		btn3.prefWidth(90);
+		btn3.setText("3000원 \n(3시간)");
+		btn3.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 3);
+		});
+		
+		Button btn4 = new Button();
+		
+		btn4.setLayoutX(28);
+		btn4.setLayoutY(102);
+		btn4.prefHeight(60);
+		btn4.prefWidth(90);
+		btn4.setText("5000원 \n(5시간)");
+		btn4.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 5);
+		});
+		
+		Button btn5 = new Button();
+		
+		btn5.setLayoutX(134);
+		btn5.setLayoutY(102);
+		btn5.prefHeight(60);
+		btn5.prefWidth(90);
+		btn5.setText("7000원 \n(9시간)");
+		btn5.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 9);
+		});
+		
+		Button btn6 = new Button();
+		
+		btn6.setLayoutX(234);
+		btn6.setLayoutY(102);
+		btn6.prefHeight(60);
+		btn6.prefWidth(90);
+		btn6.setText("10000원 \n(13시간)");
+		btn6.setOnAction(event->{
+			handleItemTimeAdd(event, strPCNum, 13);
+		});
+		
+		Label lblView = new Label();
+		
+		lblView.setLayoutX(404);
+		lblView.setLayoutY(26);
+		lblView.setPrefWidth(118);
+		lblView.setPrefHeight(36);
+		lblView.setText("시간 추가");
+		
+		Button btnExit = new Button();
+		
+		btnExit.setLayoutX(468);
+		btnExit.setLayoutY(115);
+		btnExit.setPrefWidth(109);
+		btnExit.setPrefHeight(37);
+		btnExit.setText("돌아가기");
+		btnExit.setOnAction(event->{
+			Stage primaryStage = (Stage)root.getScene().getWindow();
+			primaryStage.close();
+		});
+		
+		list.add(btn1);
+		list.add(btn2);
+		list.add(btn3);
+		list.add(btn4);
+		list.add(btn5);
+		list.add(btn6);
+		list.add(lblView);
+		list.add(btnExit);
+		
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	
+	public void handleItemTimeAdd(ActionEvent aciotn, String a_strPCNum, int a_iAddTime)
+	{
+		
+		String strID = "jgji";
+		Platform.runLater(()->{
+			AnchorPane timeChk = new AnchorPane();
+			ObservableList<Node> list = timeChk.getChildren();
+			
+			timeChk.setPrefHeight(147);
+			timeChk.setPrefWidth(552);
+			
+			Button btnOK = new Button();
+			
+			btnOK.setLayoutX(105);
+			btnOK.setLayoutY(90);
+			btnOK.setPrefHeight(23);
+			btnOK.setPrefWidth(78);
+			btnOK.setText("예");
+			btnOK.setOnAction(event->{
+				Stage primaryStage = (Stage)timeChk.getScene().getWindow();
+				primaryStage.close();
+			});
+			
+			Button btnNo = new Button();
+			
+			btnNo.setLayoutX(383);
+			btnNo.setLayoutY(90);
+			btnNo.setPrefHeight(23);
+			btnNo.setPrefWidth(78);
+			btnNo.setText("아니오");
+			btnNo.setOnAction(event->{
+				Stage primaryStage = (Stage)timeChk.getScene().getWindow();
+				primaryStage.close();
+			});
+			
+			Label lblAlert = new Label();
+			
+			lblAlert.setLayoutX(105);
+			lblAlert.setLayoutY(14);
+			lblAlert.setPrefWidth(335);
+			lblAlert.setPrefHeight(37);
+			lblAlert.setText("'"+ strID + "' 님에게 "+ a_iAddTime +"시간을 추가하시겠습니까?");
+			
+			list.add(btnOK);
+			list.add(btnNo);
+			list.add(lblAlert);
+			
+			Scene scene = new Scene(timeChk);
+			scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+			Stage stage = new Stage();
+			stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
+			stage.setScene(scene);
+			stage.show();
+		});
+	}
+
 	public void handleBtnSeat1Action(ActionEvent action)
 	{
 		if(astrReceive[1] == null || astrReceive[1].length() == 0)
 		{
-			btnSeat1.setText("");
+		    bottonList.get(0).setText("");
 			txtPcNum.setText(btnSeat1.getId());
 			reset_btnText();
 		} else {
@@ -134,7 +1412,7 @@ public class UseInfoViewController implements Initializable {
 	{
 		if(astrReceive[2] == null || astrReceive[2].length() == 0)
 		{
-			btnSeat2.setText("");
+		    bottonList.get(1).setText("");
 			txtPcNum.setText(btnSeat2.getId());
 			reset_btnText();
 		} else {
@@ -257,7 +1535,7 @@ public class UseInfoViewController implements Initializable {
 	}
 	
 	
-	// ��ư�� ������Ÿ���� @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	// 버튼에 정보나타나게 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	public void print_btnText(StringTokenizer a_strToken, int a_iPCNum)
 	{
 		String[] astrUse = new String[10];
@@ -280,7 +1558,7 @@ public class UseInfoViewController implements Initializable {
 		case 1:
 			btnSeat1.setText(strPrint);
 			txtPcNum.setText(btnSeat1.getId());
-			// ó�� �����ߴ��� üũ
+			// 처음 접속했는지 체크
 			if (astrUse[2] == null || astrUse[2].length() == 0)
 			{
 				aiFlag[a_iPCNum] = 0;
@@ -291,7 +1569,7 @@ public class UseInfoViewController implements Initializable {
 					astrStartTime[a_iPCNum] = null;
 				}
 			}
-			// ������ ���۽ð� ����
+			// 맞으면 시작시간 저장
 			if (aiFlag[a_iPCNum] == 1) 
 			{
 				if (!aisFlag[a_iPCNum]) 
@@ -530,7 +1808,7 @@ public class UseInfoViewController implements Initializable {
 
 			break;
 			
-			// @@@@@@@@@@@@@@@@@@@@@ 10�������� �ÿ��Ҳ��� �� �ؿ��� �Ȱ�ħ~~~@@@@@@@@@@@@@@@@
+			// @@@@@@@@@@@@@@@@@@@@@ 10번까지만 시연할꺼라 이 밑에는 안고침~~~@@@@@@@@@@@@@@@@
 			/*
 			case 11:
 				btnSeat11.setText(strPrint);
@@ -1101,18 +2379,20 @@ public class UseInfoViewController implements Initializable {
 		txtMoney.setText(astrUse[5]);
 	}
 
-	public void popup(String a_strPackage, String a_strAction)
+	public void popup(String a_strPackage, String a_strAction,String a_strCss)
 	{
 		try{
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../" + a_strPackage + "/" + a_strAction + ".fxml" ));
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // �ٸ�â ���� �۾� .... 2
+			   // 다른창 띄우는 작업 .... 2
 			   Scene anotherScene = new Scene(anotherPage);
+			   anotherScene.getStylesheets().add(getClass().getResource("../" + a_strPackage + "/"+ a_strCss + ".css").toExternalForm());
 			   Stage stage = new  Stage();
+			   stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
 			   stage.setScene(anotherScene);
 			   stage.show();
-			   // �ٸ�â ���� �۾� .... 2 ��.
+			   // 다른창 띄우는 작업 .... 2 끝.
 			} catch (IOException e) {
 			   e.printStackTrace();
 			}
@@ -1123,12 +2403,6 @@ public class UseInfoViewController implements Initializable {
 	
 	public void appendMsg(String msg)
 	{
-		
-			System.out.println("########### appendMsg �ȿ��� msg ###########");
-			System.out.println(msg);
-			//btnSeat0.setText(msg);
-			//tfTest.setText(msg);
-		
 		StringTokenizer strToken = new StringTokenizer(msg, "\n");
 		String strSubMsg = null;
 		
@@ -1175,15 +2449,15 @@ public class UseInfoViewController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
-		// ����� ���� ������ ���󽺷���� ��� ��Ű�� ��û�� �ö��� Ȱ��ȭ��
-		// ServerBack2Ŭ������ Runnable �������̽��� ���
-		// ServerBackgorund�� ä�ÿ� ServerBack2�� ������ �޴� ��
+		// 통신을 위해 서버를 데몬스레드로 대기 시키고 요청이 올때만 활성화?
+		// ServerBack2클래스는 Runnable 인터페이스를 상속
+		// ServerBackgorund는 채팅용 ServerBack2는 데이터 받는 용
+		// ServerReceiverProduct는 상품 주문 올꺼 받는 용
 		for(int i = 0; i < aiFlag.length; i++)
 		{
 			aiFlag[i] = 0;
 			aisFlag[i] = false;
 		}
-		
 		
 		Thread th = new Thread(new ServerBack2());
 		Thread th2 = new Thread(new ServerBackground());

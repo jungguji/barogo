@@ -10,10 +10,11 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
+<?import java.util.ArrayList?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminView.UseInfoViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1050" prefWidth="1930.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminView.UseInfoViewController">
    <children>
       <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="900.0" prefWidth="1600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -44,6 +45,7 @@
                         <Menu mnemonicParsing="false" text="정보">
                            <items>
                               <MenuItem fx:id="menuItemInfo" mnemonicParsing="false" onAction="#handleBtnInfoAction" text="바로고 정보" />
+                              <MenuItem mnemonicParsing="false" onAction="#handleBtnExitAction" text="종료" />
                            </items>
                         </Menu>
                      </menus>
@@ -92,7 +94,7 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <GridPane gridLinesVisible="true" layoutX="28.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="306.0" prefWidth="200.0" snapToPixel="false">
+                                          <GridPane gridLinesVisible="true" layoutX="28.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="306.0" prefWidth="200.0" snapToPixel="false">
                                              <children>
                                                 <Text stroke="#3c0e0e" strokeType="OUTSIDE" strokeWidth="0.0" text="PC 번호" textAlignment="CENTER" GridPane.halignment="CENTER">
                                                    <font>
@@ -178,12 +180,11 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                           </GridPane>
-                                          <ImageView fitHeight="186.0" fitWidth="234.0" layoutX="9.0" layoutY="395.0" pickOnBounds="true">
+                                          <ImageView fx:id="Image" fitHeight="186.0" fitWidth="234.0" layoutX="9.0" layoutY="600.0" pickOnBounds="true">
                                              <image>
-                                                <Image url="@../../../../Desktop/logo.jpg" />
                                              </image>
                                           </ImageView>
-                                          <Button fx:id="btnReset" onAction="#handleBtnResetAction" layoutX="28.0" layoutY="27.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="200.0" text="새로고침" />
+                                          <Button fx:id="btnReset" layoutX="28.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleBtnResetAction" prefHeight="23.0" prefWidth="200.0" text="새로고침" />
                                        </children>
                                     </AnchorPane>
                                 </items>
@@ -192,9 +193,9 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <VBox layoutX="14.0" layoutY="14.0" spacing="8.0">
+                              <VBox layoutX="44.0" layoutY="14.0" spacing="33.0">
                                  <children>
-                                    <HBox layoutX="14.0" layoutY="14.0" spacing="10.0">
+                                    <HBox layoutX="14.0" layoutY="14.0" spacing="40.0">
                                        <children>
                                        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1번좌석 -->
                                        <!-- onAction="#handleBtnSeat0Action" -->
@@ -202,11 +203,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat" mnemonicParsing="false" onAction="#handleMenuChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd1" mnemonicParsing="false" onAction="#handleMenuTimeAdd1Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick1" mnemonicParsing="false" onAction="#handleMenuKick1Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat1" mnemonicParsing="false" onAction="#handleMenu1ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -224,10 +223,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd2" mnemonicParsing="false" onAction="#handleMenuTimeAdd2Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick2" mnemonicParsing="false" onAction="#handleMenuKick2Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat2" mnemonicParsing="false" onAction="#handleMenu2ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -245,10 +243,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd3" mnemonicParsing="false" onAction="#handleMenuTimeAdd3Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick3" mnemonicParsing="false" onAction="#handleMenuKick3Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat3" mnemonicParsing="false" onAction="#handleMenu3ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -266,10 +263,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd4" mnemonicParsing="false" onAction="#handleMenuTimeAdd4Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick4" mnemonicParsing="false" onAction="#handleMenuKick4Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat4" mnemonicParsing="false" onAction="#handleMenu4ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -287,10 +283,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd5" mnemonicParsing="false" onAction="#handleMenuTimeAdd5Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick5" mnemonicParsing="false" onAction="#handleMenuKick5Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat5" mnemonicParsing="false" onAction="#handleMenu5ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -308,10 +303,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd6" mnemonicParsing="false" onAction="#handleMenuTimeAdd6Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick6" mnemonicParsing="false" onAction="#handleMenuKick6Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat6" mnemonicParsing="false" onAction="#handleMenu6ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -329,10 +323,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd7" mnemonicParsing="false" onAction="#handleMenuTimeAdd7Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick7" mnemonicParsing="false" onAction="#handleMenuKick7Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat7" mnemonicParsing="false" onAction="#handleMenu7ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -350,10 +343,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd8" mnemonicParsing="false" onAction="#handleMenuTimeAdd8Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick8" mnemonicParsing="false" onAction="#handleMenuKick8Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat8" mnemonicParsing="false" onAction="#handleMenu8ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -371,10 +363,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd9" mnemonicParsing="false" onAction="#handleMenuTimeAdd9Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick9" mnemonicParsing="false" onAction="#handleMenuKick9Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat9" mnemonicParsing="false" onAction="#handleMenu9ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -392,10 +383,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 추가" />
-                                                      <MenuItem mnemonicParsing="false" text="사용시간 빼기" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 아이디 삭제" />
-                                                      <MenuItem mnemonicParsing="false" text="사용자 추방" />
+                                                      <MenuItem fx:id="miMainTimeAdd10" mnemonicParsing="false" onAction="#handleMenuTimeAdd10Action" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick10" mnemonicParsing="false" onAction="#handleMenuKick10Action" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat10" mnemonicParsing="false" onAction="#handleMenu10ChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -411,7 +401,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="17.0" layoutY="127.0" spacing="10.0">
+                                    <HBox layoutX="17.0" layoutY="127.0" spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="11" textAlignment="CENTER">
                                              <contextMenu>
@@ -625,7 +615,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="22.0" layoutY="226.0" spacing="10.0">
+                                    <HBox layoutX="22.0" layoutY="226.0" spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="21" textAlignment="CENTER">
                                              <contextMenu>
@@ -839,7 +829,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="21.0" layoutY="299.0" spacing="10.0">
+                                    <HBox layoutX="21.0" layoutY="299.0" spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="31" textAlignment="CENTER">
                                              <contextMenu>
@@ -1053,7 +1043,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="31.0" layoutY="309.0" spacing="10.0">
+                                    <HBox layoutX="31.0" layoutY="309.0" spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="41" textAlignment="CENTER">
                                              <contextMenu>
@@ -1267,7 +1257,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="51.0" layoutY="329.0" spacing="10.0">
+                                    <HBox layoutX="51.0" layoutY="329.0" spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="51" textAlignment="CENTER">
                                              <contextMenu>
@@ -1481,7 +1471,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox layoutX="81.0" layoutY="359.0" spacing="10.0">
+                                    <HBox layoutX="81.0" layoutY="359.0" spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="61" textAlignment="CENTER">
                                              <contextMenu>
@@ -1695,7 +1685,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox spacing="10.0">
+                                    <HBox spacing="40.0">
                                        <children>
                                           <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="120.0" text="71" textAlignment="CENTER">
                                              <contextMenu>
@@ -1909,8 +1899,26 @@
                                           </Button>
                                        </children>
                                     </HBox>
+                                    <fx:define>
+                                     <ArrayList fx:id="bottonList">
+                                        <fx:reference source="btnSeat1"/>
+                                        <fx:reference source="btnSeat2"/>
+                                        <fx:reference source="btnSeat3"/>
+                                        <fx:reference source="btnSeat4"/>
+                                        <fx:reference source="btnSeat5"/>
+                                        <fx:reference source="btnSeat6"/>
+                                        <fx:reference source="btnSeat7"/>
+                                        <fx:reference source="btnSeat8"/>
+                                        <fx:reference source="btnSeat9"/>
+                                        <fx:reference source="btnSeat10"/>
+                                    </ArrayList>
+                                 </fx:define>
                                  </children>
+                                 
                               </VBox>
+                              
+                              
+
                            </children>
                         </AnchorPane>
                     </items>
