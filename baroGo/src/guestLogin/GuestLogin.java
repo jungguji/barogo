@@ -12,7 +12,7 @@ public class GuestLogin extends Application {
 	@FXML private Label labelpwch;
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws Exception {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass()
 					.getResource("Glogin.fxml"));
