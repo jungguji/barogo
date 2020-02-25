@@ -199,7 +199,7 @@
                                        <children>
                                        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1번좌석 -->
                                        <!-- onAction="#handleBtnSeat0Action" -->
-                                          <Button id="1" fx:id="btnSeat1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeat1Action" prefHeight="86.0" prefWidth="120.0" text="1" textAlignment="RIGHT">
+                                          <Button id="1" fx:id="btnSeat1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="1" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -219,7 +219,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="2" fx:id="btnSeat2" alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeat2Action" prefHeight="86.0" prefWidth="120.0" text="2" textAlignment="RIGHT">
+                                          <Button id="2" fx:id="btnSeat2" alignment="CENTER" contentDisplay="CENTER" layoutX="148.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="2" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -239,7 +239,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="3" fx:id="btnSeat3" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeat3Action" prefHeight="86.0" prefWidth="120.0" text="3" textAlignment="RIGHT">
+                                          <Button id="3" fx:id="btnSeat3" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="3" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -259,7 +259,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="4" fx:id="btnSeat4" alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeat4Action" prefHeight="86.0" prefWidth="120.0" text="4" textAlignment="RIGHT">
+                                          <Button id="4" fx:id="btnSeat4" alignment="CENTER" contentDisplay="CENTER" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="4" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -279,7 +279,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="5" fx:id="btnSeat5" alignment="CENTER" contentDisplay="CENTER" layoutX="577.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeat5Action" prefHeight="86.0" prefWidth="120.0" text="5" textAlignment="RIGHT">
+                                          <Button id="5" fx:id="btnSeat5" alignment="CENTER" contentDisplay="CENTER" layoutX="577.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="5" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -299,7 +299,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="6" fx:id="btnSeat6" alignment="CENTER" contentDisplay="CENTER" layoutX="712.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeat6Action" prefHeight="86.0" prefWidth="120.0" text="6" textAlignment="RIGHT">
+                                          <Button id="6" fx:id="btnSeat6" alignment="CENTER" contentDisplay="CENTER" layoutX="712.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="6" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -319,7 +319,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="7" fx:id="btnSeat7" alignment="CENTER" contentDisplay="CENTER" layoutX="856.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeat7Action" prefHeight="86.0" prefWidth="120.0" text="7" textAlignment="RIGHT">
+                                          <Button id="7" fx:id="btnSeat7" alignment="CENTER" contentDisplay="CENTER" layoutX="856.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="7" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -339,7 +339,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="8" fx:id="btnSeat8" alignment="CENTER" contentDisplay="CENTER" layoutX="991.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeat8Action" prefHeight="86.0" prefWidth="120.0" text="8" textAlignment="RIGHT">
+                                          <Button id="8" fx:id="btnSeat8" alignment="CENTER" contentDisplay="CENTER" layoutX="991.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="8" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -359,7 +359,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="9" fx:id="btnSeat9" alignment="CENTER" contentDisplay="CENTER" layoutX="1132.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeat9Action" prefHeight="86.0" prefWidth="120.0" text="9" textAlignment="RIGHT">
+                                          <Button id="9" fx:id="btnSeat9" alignment="CENTER" contentDisplay="CENTER" layoutX="1132.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="9" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
@@ -379,7 +379,7 @@
                                                 <Insets top="5.0" />
                                              </padding>
                                           </Button>
-                                          <Button id="10" fx:id="btnSeat10" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBtnSeat10Action" prefHeight="86.0" prefWidth="120.0" text="10" textAlignment="RIGHT">
+                                          <Button id="10" fx:id="btnSeat10" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBtnSeatAction" prefHeight="86.0" prefWidth="120.0" text="10" textAlignment="RIGHT">
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
