@@ -1,0 +1,20 @@
+.root {
+	-fx-base: rgb(155, 186, 216);
+	-fx-background: rgb(155, 186, 216);
+	-fx-control-inner-background: rgb(155, 186, 216);
+}
+
+.button, .Text, .Label{ 
+	-fx-text-fill: black;											
+	-fx-background-color: linear-gradient(to bottom, rgb(255, 236, 66), derive(rgb(255, 236, 66),20%));
+	-fx-font-family: "Haan Baekje M";
+	 }
+	  
+ #talk {
+ 	-fx-font-family: "Haan Baekje M";
+ }
+.button:hover {
+    -fx-background-color : linear-gradient(to bottom, rgb(245, 227, 64), derive(rgb(245, 227, 64),70%));;
+    }
+    
+// 게스트쪽 문의(Talk) CSS 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="210.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guestLogin.LoginController">
+   <children>
+      <Line endX="155.0" layoutX="135.0" layoutY="54.0" startX="-125.0" />
+      <Label layoutX="90.0" layoutY="14.0" prefHeight="26.0" prefWidth="127.0" text="비밀번호 찾기">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <HBox layoutX="11.0" layoutY="77.0" spacing="15.0">
+         <children>
+            <AnchorPane fx:id="PWfindImage">
+               <children>
+                  <ImageView fx:id="PWfindImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="60.0" layoutY="77.0" prefHeight="52.0" prefWidth="214.0" text="회원님의 비밀번호 변경 문의는&#10;카운터로 문의해주세요.">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="btnPwOK" layoutX="104.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleBtnPwOK" prefHeight="26.0" prefWidth="100.0" text="확인">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

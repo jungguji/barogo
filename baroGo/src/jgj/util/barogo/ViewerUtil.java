@@ -30,6 +30,7 @@ public class ViewerUtil {
             Stage stage = new  Stage();
             stage.setScene(anotherScene);
             stage.show();
+            stage.setUserData("test");
         } catch(Exception e) {
             throw e;
         }

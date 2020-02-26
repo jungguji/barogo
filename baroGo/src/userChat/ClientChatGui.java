@@ -14,6 +14,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * @author 지중구
+ *		손님석에서 관리자에게 채팅을 걸 때 실행 되는 GUI를 생성하는 클래스
+ *		pc번호를 파라미터로 받는다.
+ */
 public class ClientChatGui extends Application{
 
 	private String strPCNum;
@@ -88,7 +93,7 @@ public class ClientChatGui extends Application{
 		client.setNickname(a_strPCNum);
 		client.setGui(this);
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("Style3.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
 		Stage stage = new Stage();
 		stage.setScene(scene);
 		stage.show();

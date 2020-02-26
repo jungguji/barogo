@@ -1,0 +1,85 @@
+.split-pane:vertical {
+	-fx-background-color: linear-gradient(to bottom, rgb(206, 219, 240),
+		derive(rgb(206, 219, 240), 10%));
+}
+
+.button {
+	-fx-text-fill: black;
+	-fx-font-family: "Haan Baekje M";
+	-fx-background-color: #f3f3f3;
+	-fx-font-size:30px;
+}
+
+.button:hover {
+	-fx-background-color: rgb(79, 171, 220);
+}
+
+#btnSearch, #btnReturn {
+	-fx-font-family: "Haan Baekje M";
+	-fx-font-size: 20px;
+}
+
+
+#BtnSnack, #Btndrinking, #Btnnoodle, #snack, #drink, #noodle, #btnReturn, #btnInit, #btnSales{
+	-fx-font-family: "Haan Baekje M";
+	-fx-font-size: 37px;
+}
+
+.Label, #Productdivide, #ProductOrder, #OrderList, #total, #Price, #One{
+	-fx-font-family: "Haan Baekje M";
+} 
+
+#product1, #product2, #product3, #product4, #product5, #product6, #product7, #product8, #product9, #product10,
+#product11, #product12, #product13, #product14, #product15, #product16, #product17, #product18, #product19, #product20{
+	-fx-font-family: "Haan Baekje M";
+	-fx-font-size: 14px;
+}
+/*#category {
+  -fx-font-size: 32px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: #818181;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+ }*/
+#Product {
+	-fx-padding: 8 15 15 15;
+	-fx-background-insets: 0, 0 0 5 0, 0 0 6 0, 0 0 7 0;
+	-fx-background-radius: 8;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0, 0, 1);
+	-fx-font-weight: bold;
+	-fx-font-family: "Haan Baekje M";
+}
+
+#category {
+	-fx-background-color: #000000, linear-gradient(#7ebcea, #2f4b8f),
+		linear-gradient(#426ab7, #263e75), linear-gradient(#395cab, #223768);
+	-fx-background-insets: 0, 1, 2, 3;
+	-fx-background-radius: 3, 2, 2, 2;
+	-fx-padding: 12 30 12 30;
+	-fx-text-fill: white;
+	-fx-font-family: "Haan Baekje M";
+}
+
+#Home {
+	-fx-background-color: rgba(0, 0, 0, 0.08),
+		linear-gradient(#9a9a9a, #909090);
+	-fx-background-radius: 5, 5, 4;
+	-fx-background-insets: 0;
+	-fx-font-family: "Haan Baekje M";
+}
+
+#Order, #Calc, #Return, #Clear, #btnSearch, #btnReturn ,#btnSales, #btnInit, #btnReturn {
+	-fx-background-color: rgba(0, 0, 0, 0.08),
+		linear-gradient(#9a9a9a, #909090),
+		linear-gradient(white 0%, #f3f3f3 50%, #ececec 51%, #f2f2f2 100%);
+	-fx-background-insets: 0 0 -1 0, 0, 1;
+	-fx-background-radius: 5, 5, 4;
+	-fx-text-fill: #242d35;
+	-fx-font-family: "Haan Baekje M";
+	
+}
+
+#Image {
+	-fx-background-image : url("../images/smrlavy.png");
+}
+
+//包府磊 惑前(Product) 林巩 CSS

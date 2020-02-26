@@ -32,13 +32,6 @@ import serverChat.ServerBack2;
  */
 public class UseInfoViewController implements Initializable {
 	@FXML private MenuItem 		menuItemUseInfo;
-	@FXML private Button		btnSeat11, btnSeat12, btnSeat13, btnSeat14, btnSeat15, btnSeat16, btnSeat17, btnSeat18, btnSeat19;
-	@FXML private Button		btnSeat20, btnSeat21, btnSeat22, btnSeat23, btnSeat24, btnSeat25, btnSeat26, btnSeat27, btnSeat28, btnSeat29;
-	@FXML private Button		btnSeat30, btnSeat31, btnSeat32, btnSeat33, btnSeat34, btnSeat35, btnSeat36, btnSeat37, btnSeat38, btnSeat39;
-	@FXML private Button		btnSeat40, btnSeat41, btnSeat42, btnSeat43, btnSeat44, btnSeat45, btnSeat46, btnSeat47, btnSeat48, btnSeat49;
-	@FXML private Button		btnSeat50, btnSeat51, btnSeat52, btnSeat53, btnSeat54, btnSeat55, btnSeat56, btnSeat57, btnSeat58, btnSeat59;
-	@FXML private Button		btnSeat60, btnSeat61, btnSeat62, btnSeat63, btnSeat64, btnSeat65, btnSeat66, btnSeat67, btnSeat68, btnSeat69;
-	@FXML private Button		btnSeat70, btnSeat71, btnSeat72, btnSeat73, btnSeat74, btnSeat75, btnSeat76, btnSeat77, btnSeat78, btnSeat79, btnSeat80;
 	@FXML private Button		btnReset ;
 	@FXML private Text			txtPcNum, txtName, txtPaymentPlan, txtStartTime, txtUseTime, txtMoney;
 	@FXML private Label			lblRemainSeat;
@@ -129,7 +122,9 @@ public class UseInfoViewController implements Initializable {
 	{
 		
 		btnReset.setOnAction(event-> {
-			handleBtnSeatAction(event);
+			for (Button botton : bottonList) {
+			    botton.setText("");
+			}
 			txtPcNum.setText("");
 			resetButtonText();
 		});

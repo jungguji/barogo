@@ -1,0 +1,49 @@
+
+.root {
+/*	-fx-base: rgb(186, 220, 220);
+	-fx-background: rgb(186, 220, 220);bold
+	-fx-control-inner-background: rgb(186, 220, 220);
+*/
+-fx-background-color: 
+        #c0c0c0,
+        linear-gradient(#fafdfe, #e8f5fc);
+}
+
+.button, .text, .label{
+    -fx-font-family: "Haan Baekje M";	
+}
+
+#btnproduct, #btntalk, #btnExit{
+	-fx-background-color: 
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-font-family: "Haan Baekje M";	
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+}
+
+#btnSeat{
+	-fx-background-color: 
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-font-family: "Haan Baekje M";	
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+#IUImage{
+	-fx-background-image: url("../images/IU.jpg");
+}
+
+#baroImage{
+	-fx-background-image: url("../images/logo/baro.png");
+}
+
+#logoImage{
+	-fx-background-image: url("../images/logo/logo3.png");
+}
+//게스트쪽 회원정보 (Action) CSS

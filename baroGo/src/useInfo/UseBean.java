@@ -15,7 +15,6 @@ public class UseBean {
 	private int		iBirth2;
 	private int		iBirth3;
 	
-	
 	public int getiPCNumber() {
 		return iPCNumber;
 	}

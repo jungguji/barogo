@@ -16,6 +16,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author 지중구
+ *		손님이 채팅을 걸 때 사용하는 GUI를 그려주는 클래스
+ *
+ */
 public class ServerChatGui  extends Application {
 	
 	private AnchorPane root = new AnchorPane();
@@ -94,7 +100,7 @@ public class ServerChatGui  extends Application {
 		// TODO Auto-generated method stub
 		Platform.runLater(()-> {
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("Style3.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("../userInfoView/talk.css").toExternalForm());
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.show();

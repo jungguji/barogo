@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
+/**
+ * 
+ * @author 지중구
+ *		손님에서 넘어오는 데이터를 받는 클래슷
+ */
 public class ServerBackground implements Runnable {
 	private ServerSocket serverSocket;
 	private static Socket socket;

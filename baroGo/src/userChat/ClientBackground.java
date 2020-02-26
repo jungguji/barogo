@@ -5,6 +5,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * @author 지중구
+ *		손님석에서 관리자에게 채팅을 걸기 위한 bg 클래스
+ */
 public class ClientBackground {
 	
 	private Socket socket;
@@ -25,7 +29,6 @@ public class ClientBackground {
 			System.out.println("서버 연결됨.");
 			
 			out = new DataOutputStream(socket.getOutputStream());
-			//in = new DataInputStream(socket.getInputStream());
 			
 			out.writeUTF(strPCNum);
 			out.flush();
@@ -74,11 +77,15 @@ public class ClientBackground {
 			{
 				try {
 					msg = in.readUTF();
-					System.out.println("클라 리시버 : " + msg);
 					gui.appendMsg(msg);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					try {
+						socket.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 			}

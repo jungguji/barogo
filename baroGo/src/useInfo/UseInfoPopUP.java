@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
 
 public class UseInfoPopUP extends Application implements Initializable {
@@ -40,35 +41,37 @@ public class UseInfoPopUP extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            String userId = DBManager.temp_id_print(); 
+            String userId = db.getTempId(); 
             
-            UserDAO db = new UserDAO();
-            if(userId != null) {
-                UseBean useBean = new UseBean(); 
-                useBean = db.user_search(userId);
-                
-                tfPCNumber.setText(Integer.toString(useBean.getiPCNumber()));
-                tfUseName.setText(useBean.getStrName());
-                tfUseID.setText(useBean.getStrID());
-                tfUseEmail.setText(useBean.getStrEmail());
-                
-                if(useBean.isbPaymentplan()) {
-                    rdoLaterPay.setSelected(true);
-                } else {
-                    rdoFirstPay.setSelected(true);
-                }
-                
-                if(useBean.isbSex()) {
-                    rdoWoman.setSelected(true);
-                } else {
-                    rdoMan.setSelected(true);
-                }
-                
-                tfUseTime.setText(useBean.getStrUsetime());
-                tfRemainTime.setText(useBean.getStrRemaintime());
-                tfAccrueMoney.setText(Integer.toString(useBean.getiAccruemoney()));
-                tfAccrueTime.setText(useBean.getStrAccruetime());
+            UserDAO dao = new UserDAO();
+            
+            if (StringUtil.isEmpty(userId)) {
+                return;
             }
+            
+            UseBean useBean = dao.userSearch(userId);
+            
+            tfPCNumber.setText(Integer.toString(useBean.getiPCNumber()));
+            tfUseName.setText(useBean.getStrName());
+            tfUseID.setText(useBean.getStrID());
+            tfUseEmail.setText(useBean.getStrEmail());
+            
+            if(useBean.isbPaymentplan()) {
+                rdoLaterPay.setSelected(true);
+            } else {
+                rdoFirstPay.setSelected(true);
+            }
+            
+            if(useBean.isbSex()) {
+                rdoWoman.setSelected(true);
+            } else {
+                rdoMan.setSelected(true);
+            }
+            
+            tfUseTime.setText(useBean.getStrUsetime());
+            tfRemainTime.setText(useBean.getStrRemaintime());
+            tfAccrueMoney.setText(Integer.toString(useBean.getiAccruemoney()));
+            tfAccrueTime.setText(useBean.getStrAccruetime());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,11 +79,15 @@ public class UseInfoPopUP extends Application implements Initializable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("useInfoPopUP.fxml"));
-        Scene scene = new Scene(root);     
-        primaryStage.setTitle("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");  
-        primaryStage.setScene(scene);      
-        primaryStage.show();               
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("useInfoPopUP.fxml"));
+            Scene scene = new Scene(root);     
+            primaryStage.setTitle("È¸¿øÁ¤º¸");  
+            primaryStage.setScene(scene);      
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleBtnExitAction(ActionEvent action)

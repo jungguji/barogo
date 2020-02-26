@@ -11,7 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+/**
+ * @author ÁöÁß±¸
+ *		È¸¿øÁ¤º¸¿¡¼­ Ãâ·ÂµÈ È¸¿øÀÇ ºñ¹Ð¹öÈ£¸¦ ¹Ù²ãÁÖ´Â Å¬·¡½º
+ */
 public class UsePasswordChange extends Application {
 	@FXML private AnchorPane	panePasswd;
 	@FXML private Button		btnOK;
@@ -24,10 +29,12 @@ public class UsePasswordChange extends Application {
 	public void start(Stage primaryStage) throws Exception{
 		
 		Parent root = FXMLLoader.load(getClass().getResource("password.fxml"));
-		Scene scene = new Scene(root);	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		primaryStage.setTitle("ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½");	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½
-		primaryStage.setScene(scene);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		primaryStage.show();				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
+		Scene scene = new Scene(root);	//Àå¸é »ý¼º
+		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
+		primaryStage.initStyle(StageStyle.UTILITY);	// Å×µÎ¸® Á¦°Å
+		primaryStage.setTitle("ºñ¹Ð¹øÈ£ º¯°æ");	//À©µµ¿ì Ã¢ Á¦¸ñ
+		primaryStage.setScene(scene);		//À©µµ¿ìÃ¢¿¡ Àå¸é ¼³Á¤
+		primaryStage.show();				//À©µµ¿ì º¸¿©ÁÖ±â
 	}
 	
 	public void handleBtnOkAction(ActionEvent action)
@@ -35,21 +42,21 @@ public class UsePasswordChange extends Application {
 		String strPw		= pwfNewPW.getText();
 		String strPwChk		= pwfNewPWChk.getText();
 		
-		System.out.println("ï¿½ï¿½ï¿½ï¿½ : "+strPw);
-		System.out.println("ï¿½ï¿½ï¿½ï¿½2 : "+strPwChk);
+		System.out.println("À¸¾Ç : "+strPw);
+		System.out.println("À¸¾Ç2 : "+strPwChk);
 		
 		if(strPw.equals("") || strPwChk.equals(""))
 		{
-			System.out.println("ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.");
+			System.out.println("ºóÄ­ÀÌ ÀÖ½À´Ï´Ù.");
 			pwfNewPW.setText("");
 			pwfNewPWChk.setText("");
 		} else if(strPw.length() < 4) {
-			System.out.println("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ö¼ï¿½ 4ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.");
+			System.out.println("ºñ¹Ð¹øÈ£´Â ÃÖ¼Ò 4ÀÚ ÀÔ´Ï´Ù.");
 		}else if(!strPw.equals(strPwChk)) {
-			System.out.println("ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½Ï´ï¿½");
+			System.out.println("ÀÔ·ÂÇÑ µÎ ºñ¹Ð¹øÈ£°¡ ´Ù¸¨´Ï´Ù");
 		} else {
 			db.user_passwd_change(strPw);
-			System.out.println("ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
+			System.out.println("ºñ¹Ð¹øÈ£ º¯°æ ¿Ï·á");
 			pwfNewPW.setText("");
 			pwfNewPWChk.setText("");
 			Stage primaryStage = (Stage)panePasswd.getScene().getWindow();
@@ -64,6 +71,6 @@ public class UsePasswordChange extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);	//main ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		launch(args);	//main °´Ã¼ »ý¼º ¹× ¸ÞÀÎ À©µµ¿ì »ý¼º
 	}
 }

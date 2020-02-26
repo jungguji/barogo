@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="StatsCheck" prefHeight="137.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminStats.StatsCheck">
+	<children>
+		<HBox layoutX="42.0" layoutY="31.0" spacing="10.0">
+			<children>
+				<ImageView fx:id="Image" fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../../../Desktop/image/smrlavy.png" />
+					</image>
+				</ImageView>
+				<Label layoutX="67.0" layoutY="34.0" text="해당 날짜의 데이터가 없습니다. &#10;날짜를 다시 선택해 주세요.">
+					<font>
+						<Font name="Arial Bold" size="15.0" />
+					</font>
+				</Label>
+			</children>
+		</HBox>
+		<Button fx:id="btnOK" layoutX="131.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleBtnOKAction" prefHeight="26.0" prefWidth="88.0" text="확인">
+			<font>
+				<Font name="Arial" size="13.0" />
+			</font>
+		</Button>
+	</children>
+</AnchorPane>
