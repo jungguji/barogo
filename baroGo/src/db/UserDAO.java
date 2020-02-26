@@ -7,10 +7,11 @@ import useInfo.UseBean;
 
 public class UserDAO extends DBManager {
     
-    public static ArrayList<UseBean> user_search(String a_strUserName, SearchBean bean) throws Exception {
+    public ArrayList<UseBean> userSearch(String a_strUserName, SearchBean bean) throws Exception {
         mysqlConnection();
         makeStatement();
-        ArrayList<UseBean> arUseBean = new ArrayList<UseBean>();
+        ArrayList<UseBean> userList = new ArrayList<UseBean>();
+        
         try{
             String strQuery = "select * from user where name = '" + a_strUserName +"';";
             result = stmt.executeQuery(strQuery);
@@ -23,7 +24,6 @@ public class UserDAO extends DBManager {
                 bean.setStrID(result.getString("id"));
                 bean.setBirth(strBirth.toString());
 
-                // 정보 창에 나올 정보들 계속 새로 생성해야?
                 UseBean useBean = new UseBean();
                 useBean.setiPCNumber(result.getInt(1));
                 useBean.setStrName(result.getString(2));
@@ -38,53 +38,65 @@ public class UserDAO extends DBManager {
                 useBean.setiBirth1(result.getInt(13));
                 useBean.setiBirth2(result.getInt(14));
                 useBean.setiBirth3(result.getInt(15));
-                arUseBean.add(useBean);
+                userList.add(useBean);
             }
         } catch(Exception e) {
             throw e;
         }
-        return arUseBean;
+        
+        return userList;
     }
     
-    public UseBean user_search(String a_strUserID) throws Exception {
-        mysqlConnection();
-        makeStatement();
+    public UseBean userSearch(String a_strUserID) {
+//      mysqlConnection();
+//      makeStatement();
+//      try{
+//          String query = "select * from user where id = '" + a_strUserID +"';";
+//          result = stmt.executeQuery(query);
+//          
+//          if (result.next()) {
+//              useBean.setiPCNumber(result.getInt(1));
+//              useBean.setStrName(result.getString(2));
+//              useBean.setStrID(result.getString(3));
+//              useBean.setbSex(result.getBoolean(5));
+//              useBean.setStrEmail(result.getString(6));
+//              useBean.setbPaymentplan(result.getBoolean(8));
+//              useBean.setStrRemaintime(result.getString(9));
+//              useBean.setStrUsetime(result.getString(10));
+//              useBean.setiAccruemoney(result.getInt(11));
+//              useBean.setStrAccruetime(result.getString(12));
+//              useBean.setiBirth1(result.getInt(13));
+//              useBean.setiBirth2(result.getInt(14));
+//              useBean.setiBirth3(result.getInt(15));
+//          }
+//      } catch(Exception e) {
+//          e.printStackTrace();
+//      }
         
-        UseBean useBean = new UseBean();
-        try{
-            String strQuery = "select * from user where id = '" + a_strUserID +"';";
-            result = stmt.executeQuery(strQuery);
-            
-            while(result.next()) 
-            {
-                useBean.setiPCNumber(result.getInt(1));
-                useBean.setStrName(result.getString(2));
-                useBean.setStrID(result.getString(3));
-                useBean.setbSex(result.getBoolean(5));
-                useBean.setStrEmail(result.getString(6));
-                useBean.setbPaymentplan(result.getBoolean(8));
-                useBean.setStrRemaintime(result.getString(9));
-                useBean.setStrUsetime(result.getString(10));
-                useBean.setiAccruemoney(result.getInt(11));
-                useBean.setStrAccruetime(result.getString(12));
-                useBean.setiBirth1(result.getInt(13));
-                useBean.setiBirth2(result.getInt(14));
-                useBean.setiBirth3(result.getInt(15));
-            }
-        } catch(Exception e) {
-            throw e;
-        }
+        useBean.setiPCNumber(1);
+        useBean.setStrName("중구");
+        useBean.setStrID("jgji");
+        useBean.setbSex(true);
+        useBean.setStrEmail("");
+        useBean.setbPaymentplan(true);
+        useBean.setStrRemaintime("");
+        useBean.setStrUsetime("");
+        useBean.setiAccruemoney(11000);
+        useBean.setStrAccruetime("");
+        useBean.setiBirth1(93);
+        useBean.setiBirth2(12);
+        useBean.setiBirth3(13);
         
         return useBean;
     }
     
-    public static void select_user(String id) {
+    public void selectUser(String id) {
         mysqlConnection();
         makeStatement();
         try {
             String strUpdate = "update timetemp set id='"+id+"';";
             String strInsert = "insert into timetemp value('" + id + "',0);";
-            String strResult = temp_id_print();
+            String strResult = getTempId();
             
             if(strResult == null)
             {
@@ -93,7 +105,7 @@ public class UserDAO extends DBManager {
                 stmt.executeUpdate(strUpdate);
             }
         }catch(Exception e) {
-            System.out.println("DBManagerŬ���� test() ����");
+            System.out.println("DBManager클占쏙옙占쏙옙 test() 占쏙옙占쏙옙");
             e.printStackTrace();
         }
     }

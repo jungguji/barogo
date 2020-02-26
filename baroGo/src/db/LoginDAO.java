@@ -2,7 +2,7 @@ package db;
 
 public class LoginDAO extends DBManager {
     
-    public static boolean guestLogin(String id,String pw)
+    public boolean guestLogin(String id,String pw)
     {
         mysqlConnection();
         makeStatement();
@@ -34,7 +34,7 @@ public class LoginDAO extends DBManager {
         return false;
     }
     
-    public static boolean adminLogin(String id,String pw)
+    public boolean adminLogin(String id,String pw)
     {
         mysqlConnection();
         makeStatement();
