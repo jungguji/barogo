@@ -1,0 +1,65 @@
+.root {
+/*	-fx-base: rgb(186, 220, 220);
+	-fx-background: rgb(186, 220, 220);bold
+	-fx-control-inner-background: rgb(186, 220, 220);
+*/
+-fx-background-color: 
+        #c0c0c0,
+        linear-gradient(#fafdfe, #e8f5fc);
+}
+
+.button, .text, .label{
+    -fx-font-family: "Haan Baekje M";	
+}
+
+#btnOverlap, #btnPwOK{
+	-fx-font-family: "Haan Baekje M";	
+	-fx-font-size: 13px;
+}
+
+#btnSearch, #btnReturn{
+	-fx-font-family: "Haan Baekje M";	
+	-fx-font-size: 20px;
+}
+
+#btnJoin, #btnOK, #btnClose{
+	-fx-font-family: "Haan Baekje M";	
+	-fx-font-size: 17px;
+}
+
+#btnproduct, #btntalk, #btnSeat {
+	-fx-background-color: 
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+}
+
+#PlanChkImage {
+	-fx-background-image : url("../images/smrlavy.png");
+}
+
+#PaycheckImage {
+	-fx-background-image : url("../images/smrlavy.png");
+}
+
+#PWfindImage {
+	-fx-background-image : url("../images/smrlavy.png");
+}
+
+#ConfirlImage{
+	-fx-background-image : url("../images/confirm.png");
+}
+
+#NoConfirmImage{
+	-fx-background-image : url("../images/noconfirm.png");
+}
+#JoinOKImage {
+	-fx-background-image : url("../images/Oklogo.png");
+}
+
+#Image {
+	-fx-background-image : url("../images/smrlavy.png");
+}
+//¿‚¡æ CSS

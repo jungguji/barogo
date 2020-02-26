@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="159.0" fitWidth="188.0" layoutX="391.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" rotate="-15.0">
+         <image>
+            <Image url="@../../../../Desktop/image/로고/logo.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="21.0" layoutY="14.0" spacing="25.0">
+         <children>
+            <Text fill="#5b5757" layoutX="21.0" layoutY="27.5791015625" strokeType="OUTSIDE" strokeWidth="0.0" text="'바로go pc방'에 항상 따뜻한 애정과 관심을 보여주시는 독자와 관계자 여러분께 진심으로 감사드립니다.&#10;" wrappingWidth="365.091796875">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#5b5757" layoutX="21.0" layoutY="104.5791015625" strokeType="OUTSIDE" strokeWidth="0.0" text="'바로go pc방'은 2016년 3월 온라인시대를 여는 태동기에 &#10;창립하여 국내 네트웍의 중심에 서 있는 pc방과 함께 변화의 길을 걸어 왔습니다." wrappingWidth="405.091796875">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Text>
+            <VBox layoutX="21.0" layoutY="168.0">
+               <children>
+                  <Text fill="#5b5757" layoutX="21.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="변화의 시기에 오프라인을 경험한 노하우와 임직원의 열정과 노력을 " wrappingWidth="456.091796875">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" layoutX="31.0" layoutY="186.0">
+                     <children>
+                        <Text fill="#5b5757" layoutX="31.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="바탕으로 전국을 통합한" wrappingWidth="161.091796875">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#b3925b" layoutX="260.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC방 '바로go pc방'을 탄생시켰습니다." wrappingWidth="358.091796875">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Text fill="#5b5757" layoutX="21.0" layoutY="241.5791015625" strokeType="OUTSIDE" strokeWidth="0.0" text="또한, 바로go pc방의 매체를 중심으로 'PCBACG 유통'과 '바로go pc방' 가맹사업을 시작하여유통매출 전국 1위 등 탄탄한 pc방 인프라를 확보하기에 이르렀습니다." wrappingWidth="512.091796875">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#5b5757" layoutX="21.0" layoutY="318.5791015625" strokeType="OUTSIDE" strokeWidth="0.0" text="'바로go pc방'은 2016년을 한번 더 힘차에 뛰어오르는 도약의 해로 삼고,사내 모든 역량을 총동원하고 최고의 비즈니스를 펼쳐갈 꿈을 위해 노력하고 있습니다.저희 '바로go pc방'에 아낌없는 격려와 성원, 신뢰를 보내주신 분들께 깊은 감사의 말씀을 올리며,신뢰이상의 기업의리로 반드시 보답할것을 약속드립니다." wrappingWidth="512.091796875">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#5b5757" layoutX="21.0" layoutY="429.5791015625" strokeType="OUTSIDE" strokeWidth="0.0" text="저희 바로go! pc방은 귀하의 계정 및 정보를 지키면서 게임을 할수 있도록 도와드리겠습니다.신뢰를 저버리지 않는 정직한 바로go! pc방이 되겠습니다.다시한번 감사드립니다." wrappingWidth="512.091796875">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <Button fx:id="btnOK" layoutX="260.0" layoutY="491.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="확인">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

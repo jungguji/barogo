@@ -1,0 +1,37 @@
+.split-pane:vertical {
+	-fx-background-color: 
+        #c0c0c0,
+        linear-gradient(#fafdfe, #e8f5fc);
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+	-fx-font-family: "Haan Baekje M";
+    
+}
+
+.button{ 
+	-fx-background-color: 
+        linear-gradient(#f5f5f5 0%, #dbdbdb 20%, #cacaca 51%, #d7d7d7 60%);
+	-fx-font-family: "Haan Baekje M";
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( two-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+	 } 
+
+#Home {
+	-fx-background-color: rgba(0, 0, 0, 0.08),
+		linear-gradient(#9a9a9a, #909090);
+	-fx-background-radius: 5, 5, 4;
+	-fx-background-insets: 0;
+	-fx-font-family: "Haan Baekje M";
+	
+}
+
+#rdoMan, #rdoWoman, #rdoFirstPay, #rdoLaterPay, #btnSearch, #btnPwChange, #btnClose{
+	-fx-font-family: "Haan Baekje M";
+	-fx-font-size: 13px;
+	
+}
+
+// 카운터 회원검색 정보창(Member) CSS

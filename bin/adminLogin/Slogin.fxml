@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" 
+			maxWidth="-Infinity" 
+			minHeight="-Infinity" 
+			minWidth="-Infinity" 
+			prefHeight="300.0" 
+			prefWidth="500.0" 
+			xmlns="http://javafx.com/javafx/8" 
+			xmlns:fx="http://javafx.com/fxml/1"
+			fx:controller="adminLogin.LoginController">
+   <children>
+      <TextField fx:id="id" alignment="CENTER" layoutX="176.0" layoutY="126.0" promptText="User ID" />
+      <PasswordField fx:id="pw" alignment="CENTER" layoutX="176.0" layoutY="179.0" promptText="Password" />
+      <Label layoutX="110.0" layoutY="129.0" prefHeight="17.0" prefWidth="46.0" text="아이디" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="93.0" layoutY="182.0" prefHeight="17.0" prefWidth="63.0" text="비밀번호" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <Text layoutX="18.0" layoutY="93.0" rotate="-15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="바로 go">
+         <font>
+            <Font name="HYwulB" size="63.0" />
+         </font>
+         <fill>
+            <LinearGradient endX="0.9571428571428572" endY="0.8809523809523809" startX="0.9619047619047619" startY="0.08095238095238096">
+               <stops>
+                  <Stop color="#43daa3" />
+                  <Stop color="#0b65c6ab" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Text>
+      <Button 
+      		fx:id="btnLogin" 
+      		layoutX="327.0" 
+      		layoutY="128.0" 
+      		mnemonicParsing="false" 
+      		prefHeight="73.0" 
+      		prefWidth="82.0" 
+      		text="로그인"
+      		onAction="#handleBtnLoginAction">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Button>
+      <Text fill="RED" layoutX="233.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in button pressed" wrappingWidth="148.583984375">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

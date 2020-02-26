@@ -1,0 +1,40 @@
+.split-pane:horizontal {
+		-fx-base: #c0c0c0, linear-gradient(#fafdfe, #e8f5fc);
+	-fx-background-color: #c0c0c0, linear-gradient(#fafdfe, #e8f5fc);}
+
+.split-pane:vertical {
+		-fx-base: #c0c0c0, linear-gradient(#fafdfe, #e8f5fc);
+	-fx-background-color: #c0c0c0, linear-gradient(#fafdfe, #e8f5fc);
+}
+
+
+#Top {
+	-fx-background-color: 
+        #c0c0c0,
+        linear-gradient(#fafdfe, #e8f5fc);
+}
+
+#Grid, .label, #TxtGrid {
+	-fx-font-family: "Haan Baekje M";
+	
+}
+.button {
+	-fx-background-color: #a6b5c9,
+		linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+		linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%,
+		#4a6c9b 100%);
+	-fx-background-insets: 0 0 -1 0, 0, 1;
+	-fx-background-radius: 5, 5, 4;
+	-fx-font-family: "Haan Baekje M";
+	-fx-text-fill: white;
+	-fx-font-size: 40px;
+}
+
+.button:hover {
+	-fx-background-color: #01579B;
+}
+
+#Image{
+	-fx-background-image: url("../images/logo/logo.png");
+}
+//카운터쪽 메인카운터(main) CSS

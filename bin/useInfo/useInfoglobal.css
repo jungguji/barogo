@@ -1,0 +1,26 @@
+.root {
+/*	-fx-base: rgb(186, 220, 220);
+	-fx-background: rgb(186, 220, 220);bold
+	-fx-control-inner-background: rgb(186, 220, 220);
+*/
+-fx-background-color: 
+        #c0c0c0,
+        linear-gradient(#fafdfe, #e8f5fc);
+}
+
+.button, .text, .label{
+    -fx-font-family: "Haan Baekje M";	
+}
+
+#JoinOKImage {
+	-fx-background-image : url("../images/Oklogo.png");
+}
+
+#TimeAddPeopleImage{
+	-fx-background-image : url("../images/question.png");
+}
+
+#TimeChkImage{
+	-fx-background-image : url("../images/question.png");
+}
+//¿‚¡æ CSS

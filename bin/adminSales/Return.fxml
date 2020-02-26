@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="350.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminSales.ReturnController">
+	<children>
+		<Label layoutX="139.0" layoutY="14.0" prefHeight="36.0" prefWidth="61.0" text="반품">
+			<font>
+				<Font name="Arial Bold" size="30.0" />
+			</font>
+		</Label>
+		<Line endX="200.0" layoutX="130.0" layoutY="64.0" startX="-125.0" />
+		<VBox layoutX="38.0" layoutY="132.0" spacing="15.0">
+			<children>
+				<HBox alignment="CENTER" layoutX="34.0" layoutY="164.0" spacing="70.0">
+					<children>
+						<Text layoutX="35.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="영수증번호">
+							<font>
+								<Font name="Arial Bold" size="17.0" />
+							</font>
+						</Text>
+						<TextField fx:id="tfReceiptNo" alignment="CENTER" layoutX="164.0" layoutY="111.0" prefHeight="23.0" prefWidth="108.0" />
+					</children>
+				</HBox>
+				<HBox alignment="CENTER_LEFT" layoutX="34.0" layoutY="194.0" spacing="87.0">
+					<children>
+						<Text layoutX="35.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="결제방식">
+							<font>
+								<Font name="Arial Bold" size="17.0" />
+							</font>
+						</Text>
+						<TextField alignment="CENTER" disable="true" layoutX="164.0" layoutY="111.0" prefHeight="23.0" prefWidth="74.0" text="현금결제">
+							<font>
+								<Font name="Arial Bold" size="12.0" />
+							</font>
+						</TextField>
+					</children>
+				</HBox>
+				<HBox prefHeight="0.0" prefWidth="246.0" spacing="120.0">
+					<children>
+						<Text strokeType="OUTSIDE" strokeWidth="0.0" text="날짜">
+							<font>
+								<Font name="Arial Bold" size="17.0" />
+							</font>
+						</Text>
+						<DatePicker fx:id="dpDate" prefHeight="23.0" prefWidth="107.0" />
+					</children>
+				</HBox>
+			</children>
+		</VBox>
+		<HBox layoutX="14.0" layoutY="287.0" spacing="5.0">
+			<children>
+				<Button fx:id="btnSearch" layoutY="350.0" mnemonicParsing="false" onAction="#handleBtnSearchAction" prefHeight="50.0" prefWidth="149.0" text="조회">
+					<font>
+						<Font name="Arial Bold" size="20.0" />
+					</font>
+				</Button>
+				<Button fx:id="btnReturn" layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleBtnReturnAction" prefHeight="50.0" prefWidth="149.0" text="반품">
+					<font>
+						<Font name="Arial Bold" size="20.0" />
+					</font>
+				</Button>
+			</children>
+		</HBox>
+		<TableView fx:id="ReturnTableView" layoutX="361.0" layoutY="25.0" prefHeight="300.0" prefWidth="250.0">
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+			</columnResizePolicy>
+			<columns>
+				<TableColumn minWidth="30.0" prefWidth="107.3333740234375" text="상품명" />
+				<TableColumn prefWidth="65.6666259765625" text="가격" />
+				<TableColumn prefWidth="59.0" text="수량" />
+			</columns>
+		</TableView>
+		<Line endX="100.0" layoutX="331.0" layoutY="175.0" rotate="90.0" scaleX="1.75" startX="-100.0" translateX="1.0" />
+	</children>
+</AnchorPane>

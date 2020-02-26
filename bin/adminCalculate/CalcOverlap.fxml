@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="150.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+			fx:id="paneAddPeople" fx:controller="adminCalculate.CalcPopup">
+   <children>
+      <SplitPane orientation="VERTICAL" prefHeight="100.0" prefWidth="400.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="300.0">
+               <children>
+                  <HBox alignment="CENTER" layoutX="78.0" layoutY="24.0" spacing="15.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../Desktop/image/anf.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblText" layoutX="105.0" layoutY="67.0" text="이미 정산 완료된 날짜 입니다.">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Button fx:id="btnOk" layoutX="160.0" layoutY="114.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="확인"
+      			onAction="#handleBtnOKAction">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

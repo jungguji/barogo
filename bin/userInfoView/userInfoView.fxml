@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="290.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInfoView.UserInfoController">
+   <children>
+      <AnchorPane prefHeight="30.0" prefWidth="500.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/image/barogo1.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="361.0" layoutY="23.0" rotate="-5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="바로go pc방">
+               <fill>
+                  <LinearGradient endX="0.9571428571428572" endY="0.8809523809523809" startX="0.9619047619047619" startY="0.08095238095238096">
+                     <stops>
+                        <Stop color="#43daa3" />
+                        <Stop color="#0b65c6ab" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <font>
+                  <Font name="HYwulB" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="30.0" prefHeight="220.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="220.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/image/KakaoTalk_20160427_175105497.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="200.0" layoutY="30.0" prefHeight="30.0" prefWidth="300.0">
+         <children>
+            <Text fx:id="tfPCNum" layoutX="42.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+               <fill>
+                  <LinearGradient endX="0.9571428571428572" endY="0.8809523809523809" startX="0.9619047619047619" startY="0.08095238095238096">
+                     <stops>
+                        <Stop color="#43daa3" />
+                        <Stop color="#0b65c6ab" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <font>
+                  <Font name="HYwulB" size="20.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="179.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/images/background3.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnSeat" layoutX="210.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnSeat" text="자리 이동">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="salesType" layoutX="92.0" layoutY="8.0" text="결제방식">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Text fx:id="tfPCNum1" layoutX="4.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NO.">
+               <fill>
+                  <LinearGradient endX="0.9571428571428572" endY="0.8809523809523809" startX="0.9619047619047619" startY="0.08095238095238096">
+                     <stops>
+                        <Stop color="#43daa3" />
+                        <Stop color="#0b65c6ab" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <font>
+                  <Font name="HYwulB" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Line endX="165.0" layoutX="330.0" layoutY="30.0" startX="-330.0" />
+      <Line endX="165.0" layoutX="330.0" layoutY="65.0" startX="-125.0" />
+      <Line endX="165.0" layoutX="330.0" layoutY="250.0" startX="-330.0" />
+      <VBox alignment="CENTER" layoutX="235.0" layoutY="82.0" spacing="15.0">
+         <children>
+            <Label prefHeight="16.0" prefWidth="62.0" text="아이디 :" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="217.0" layoutY="82.0" prefHeight="16.0" prefWidth="62.0" text="사용시간 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="219.0" layoutY="109.0" prefHeight="16.0" prefWidth="62.0" text="남은시간 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="217.0" layoutY="165.0" prefHeight="16.0" prefWidth="62.0" text="선불요금 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label prefHeight="16.0" prefWidth="62.0" text="후불요금 :">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="370.0" layoutY="82.0" spacing="15.0">
+         <children>
+            <Label fx:id="lblid" layoutX="350.0" layoutY="82.0" text="">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblusetime" layoutX="360.0" layoutY="92.0" text="">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblremaintime" layoutX="350.0" layoutY="117.0" text="">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblfirstmoney" layoutX="350.0" layoutY="144.0" text="">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLatermoney" layoutX="360.0" layoutY="154.0" text="">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="btnproduct" layoutY="250.0" mnemonicParsing="false" onAction="#handleBtnproduct" prefHeight="40.0" prefWidth="189.0" text="상품(먹거리)주문">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btntalk" layoutX="188.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleBtnTalk" prefHeight="40.0" prefWidth="149.0" text="문의">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExit" layoutX="338.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleBtnExitAction" prefHeight="40.0" prefWidth="162.0" text="사용종료">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane
+        fx:id="paneTime"
+        maxHeight="-Infinity" 
+        maxWidth="-Infinity" 
+        minHeight="-Infinity" 
+        minWidth="-Infinity" 
+        prefHeight="147.0" 
+        prefWidth="552.0" 
+        xmlns="http://javafx.com/javafx/8" 
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="useInfo.TimeAdd1"
+        >
+   <children>
+      <Button 
+        fx:id="btnOK" 
+        layoutX="105.0" 
+        layoutY="90.0" 
+        mnemonicParsing="false" 
+        prefHeight="23.0" 
+        prefWidth="78.0" 
+        text="예" 
+        textAlignment="CENTER"
+        onAction="#handleBtnOkAction"
+        />
+      <Button fx:id="btnNo" 
+            layoutX="383.0" 
+            layoutY="90.0" 
+            mnemonicParsing="false" 
+            prefHeight="23.0" 
+            prefWidth="78.0" 
+            text="아니오" 
+            textAlignment="CENTER" 
+            onAction="#handleBtnNoAction"
+      />
+      <Label fx:id="lblAlert" 
+      layoutX="105.0" 
+      layoutY="14.0" 
+      prefHeight="37.0" 
+      prefWidth="335.0" 
+      text="" 
+      textAlignment="CENTER" />
+   </children>
+</AnchorPane>

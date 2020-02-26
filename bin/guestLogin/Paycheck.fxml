@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="panePlanChk" prefHeight="137.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guestLogin.Paycheck">
+   <children>
+      <HBox layoutX="20.0" layoutY="34.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/image/smrlavy.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="67.0" layoutY="34.0" text="사용가능한 선불 요금이 없습니다.&#10;사용을 원하시면 선불 충전 후 사용해주시기 바랍니다.">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="btnOK" layoutX="181.0" layoutY="101.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="확인"
+      onAction="#handleBtnOKAction">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

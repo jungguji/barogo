@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tvSendProduct" layoutX="13.0" layoutY="57.0" prefHeight="334.0" prefWidth="254.0">
+        <columns>
+          <TableColumn prefWidth="124.0" text="상품명" />
+          <TableColumn prefWidth="129.0" text="갯수" />
+        </columns>
+      </TableView>
+      <Label layoutX="74.0" layoutY="14.0" prefHeight="34.0" prefWidth="132.0" text="주문 요청">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPCNum" layoutX="108.0" layoutY="403.0" text="Label">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
