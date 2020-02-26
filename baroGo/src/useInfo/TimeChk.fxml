@@ -7,22 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="paneTime" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" 
-		xmlns:fx="http://javafx.com/fxml/1"
-		fx:controller="useInfo.TimeAdd1"
-		>
+<AnchorPane fx:id="paneTime" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane orientation="VERTICAL" prefHeight="150.0" prefWidth="400.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="400.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="32.0" layoutY="49.0" spacing="15.0">
+                  <HBox fx:id="Image" alignment="CENTER" layoutX="32.0" layoutY="49.0" spacing="15.0">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../Desktop/image/anf.png" />
-                           </image>
-                        </ImageView>
+                        <AnchorPane fx:id="Imgae">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../Desktop/image/anf.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
                         <Label fx:id="lblAlert" layoutX="105.0" layoutY="67.0" text="">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
@@ -36,20 +37,12 @@
       </SplitPane>
       <HBox alignment="CENTER" layoutX="189.0" layoutY="162.5" spacing="30.0">
          <children>
-            <Button fx:id="btnOK"  layoutX="235.0" layoutY="163.0" 
-            			mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" 
-            			text="í™•ì¸"
-            			onAction="#handleBtnOkAction"
-            			>
+            <Button fx:id="btnOK" layoutX="235.0" layoutY="163.0" mnemonicParsing="false" onAction="#handleBtnOkAction" prefHeight="20.0" prefWidth="80.0" text="È®ÀÎ">
                <font>
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnNo" layoutX="318.0" layoutY="163.0" mnemonicParsing="false" 
-            			prefHeight="20.0" prefWidth="80.0" 
-            			text="ì·¨ì†Œ"
-            			onAction="#handleBtnNoAction"
-            			>
+            <Button fx:id="btnNo" layoutX="318.0" layoutY="163.0" mnemonicParsing="false" onAction="#handleBtnNoAction" prefHeight="20.0" prefWidth="80.0" text="Ãë¼Ò">
                <font>
                   <Font name="Arial" size="13.0" />
                </font>

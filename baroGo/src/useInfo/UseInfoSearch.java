@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
 
 public class UseInfoSearch implements Initializable {
@@ -34,14 +35,12 @@ public class UseInfoSearch implements Initializable {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-        String strSearchName = null;
         ArrayList<UseBean>  arUseBean;
         
         try {
-            DBManager db = new DBManager();
-            strSearchName = db.search_temp_print();
-            arUseBean = UserDAO.user_search(strSearchName, searchBean);
+            UserDAO dao = new UserDAO();
+            String searchName = dao.search_temp_print();
+            arUseBean = dao.userSearch(searchName, searchBean);
             
             printUserInfoToTableView(arUseBean);
             
@@ -50,7 +49,7 @@ public class UseInfoSearch implements Initializable {
                 @Override
                 public void changed(ObservableValue<? extends SearchBean> observable, SearchBean oldValue, SearchBean newValue) {
                     // TODO Auto-generated method stub
-                    UserDAO.select_user(newValue.getStrID());
+                    dao.selectUser(newValue.getStrID());
                 }
             });
             
@@ -71,80 +70,60 @@ public class UseInfoSearch implements Initializable {
         }
     }
 
-    public void handleBtn1Action(ActionEvent event)
+    public void handlebuttonAction(ActionEvent event)
     {
-        String strID = DBManager.temp_id_print();
-        if(strID == null)
-        {
+        UserDAO dao = new UserDAO();
+        String userId = dao.getTempId();
+        
+        if (StringUtil.isEmpty(userId)) {
             TimeAddPeoplePopUp();
-        } else {
-            TimeAddPopUp(1);
+            
+            return;
         }
+        
+        Button botton = (Button) event.getSource();
+        int addTime = getAddTime(botton.getId());
+        
+        TimeAddPopUp(userId, addTime);
     }
     
-    public void handleBtn2Action(ActionEvent event)
-    {
-        String strID = DBManager.temp_id_print();
-        if(strID == null)
-        {
-            TimeAddPeoplePopUp();
-        } else {
-            TimeAddPopUp(2);
+    private int getAddTime(String buttonId) {
+        int id = Integer.parseInt(buttonId);
+        
+        int result = 1;
+        switch (id) {
+            case 1:
+                result = 1;
+                break;
+            case 2:
+                result = 2;
+                break;
+            case 3:
+                result = 3;
+                break;
+            case 4:
+                result = 6;
+                break;
+            case 5:
+                result = 9;
+                break;
+            case 6:
+                result = 13;
+                break;
         }
-    }
-    
-    public void handleBtn3Action(ActionEvent event)
-    {
-        String strID = DBManager.temp_id_print();
-        if(strID == null)
-        {
-            TimeAddPeoplePopUp();
-        } else {
-            TimeAddPopUp(3);
-        }
-    }
-    
-    public void handleBtn6Action(ActionEvent event)
-    {
-        String strID = DBManager.temp_id_print();
-        if(strID == null)
-        {
-            TimeAddPeoplePopUp();
-        } else {
-            TimeAddPopUp(6);
-        }
-    }
-    
-    public void handleBtn9Action(ActionEvent event)
-    {
-        String strID = DBManager.temp_id_print();
-        if(strID == null)
-        {
-            TimeAddPeoplePopUp();
-        } else {
-            TimeAddPopUp(9);
-        }
-    }
-    
-    public void handleBtn13Action(ActionEvent event)
-    {
-        String strID = DBManager.temp_id_print();
-        if(strID == null)
-        {
-            TimeAddPeoplePopUp();
-        } else {
-            TimeAddPopUp(13);
-        }
+        
+        return result;
     }
     
     // 서치버튼 클릭 핸들러
-    // 클릭시 텍스트 필드의 값으로 검색된 내용이 tableview에 출력?
+    // 클릭시 텍스트 필드의 값으로 검색된 내용이 tableview에 출력
     public void handleBtnUseSearchAction(ActionEvent event) {
         ArrayList<UseBean>  arUseBean;
         
         tables.getItems().clear();
         try {
-            arUseBean = UserDAO.user_search(textSearch.getText(), searchBean);
+            UserDAO dao = new UserDAO();
+            arUseBean = dao.userSearch(textSearch.getText(), searchBean);
             
             printUserInfoToTableView(arUseBean);
         } catch (Exception e) {
@@ -174,19 +153,17 @@ public class UseInfoSearch implements Initializable {
             FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
             try {
                AnchorPane anotherPage = (AnchorPane) another.load();
-               // 다른창 띄우는 작업 .... 2
                Scene anotherScene = new Scene(anotherPage);
                Stage stage = new  Stage();
                stage.setScene(anotherScene);
                stage.show();
-               // 다른창 띄우는 작업 .... 2 끝.
             } catch (IOException e) {
-               // TODO Auto-generated catch block
                e.printStackTrace();
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
+        
         Stage primaryStage = (Stage)searchPane.getScene().getWindow();
         primaryStage.close();
     }
@@ -197,13 +174,11 @@ public class UseInfoSearch implements Initializable {
             FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/TimeAddPeople.fxml" ));
             try {
                AnchorPane anotherPage = (AnchorPane) another.load();
-               // 다른창 띄우는 작업 .... 2
                Scene anotherScene = new Scene(anotherPage);
                Stage stage = new  Stage();
-               stage.setTitle("경고");
+               stage.setTitle("寃쎄퀬");
                stage.setScene(anotherScene);
                stage.show();
-               // 다른창 띄우는 작업 .... 2 끝.
             } catch (IOException e) {
                // TODO Auto-generated catch block
                e.printStackTrace();
@@ -213,14 +188,29 @@ public class UseInfoSearch implements Initializable {
         }
     }
     
-    public void TimeAddPopUp(int a_iAddTime) {
+    public void TimeAddPopUp(String userName, int addTime) {
         try {
-            DBManager db = new DBManager();
-            db.time_temp_insert(a_iAddTime);
-            
-            ViewerUtil.showStageNotCss(this, "../useInfo/TimeChk.fxml");
+            showStageNotCss(this, "../useInfo/TimeChk.fxml", userName, addTime);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void showStageNotCss(Object object, String resourceDirectory, String userName, int addTime) throws Exception {
+        try{
+            FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
+            
+            TimeAdd1 timeadd1 = new TimeAdd1(userName, addTime);
+            another.setController(timeadd1);
+            AnchorPane anotherPage = (AnchorPane) another.load();
+            Scene anotherScene = new Scene(anotherPage);
+            
+            Stage stage = new  Stage();
+            stage.setScene(anotherScene);
+            stage.show();
+            stage.setUserData("test");
+        } catch(Exception e) {
+            throw e;
         }
     }
 }
