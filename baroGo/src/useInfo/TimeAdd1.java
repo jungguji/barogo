@@ -3,31 +3,26 @@
  */
 package useInfo;
 
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import adminChat.ServerClientTimeAddBg;
 import db.DBManager;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jgj.util.barogo.StringUtil;
 
 /**
- * @author ÁöÁß±¸
- *      ½Ã°£À» Ãß°¡ÇÏ´Â Å¬·¡½º
+ * @author ì§€ì¤‘êµ¬
+ *      ì‹œê°„ì„ ì¶”ê°€í•˜ëŠ” í´ë˜ìŠ¤
  *
  */
 public class TimeAdd1 implements Initializable {
     @FXML private AnchorPane    paneTime;
-    @FXML private Button        btnOK;
     @FXML private Label         lblAlert;
     
     private DBManager   db          = new DBManager();
@@ -41,23 +36,42 @@ public class TimeAdd1 implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblAlert.setText("'"+ userName + "' ´Ô¿¡°Ô "+ addTime +"½Ã°£À» Ãß°¡ÇÏ½Ã°Ú½À´Ï±î?");
+        lblAlert.setText("'"+ userName + "' ë‹˜ì—ê²Œ "+ addTime +"ì‹œê°„ì„ ì¶”ê°€í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
     }
     
-    public void handleBtnOkAction(ActionEvent action)
-    {
-        db.user_add_time(userName, addTime);
+    public void handleBtnOkAction(ActionEvent action) {
+        String remainTime = db.findRemainTime(userName);
+        String updateTime = getUpdateTime(remainTime, addTime);
+        
+        db.updateUserRemaintimeById(updateTime, userName);
         ServerClientTimeAddBg timeAdd = new ServerClientTimeAddBg();
-        //timeAdd.connet(iAddTime);
-        window_close();
+        
+        timeAdd.connet(addTime);
+        
+        close();
     }
+    
+    private String getUpdateTime(String remainTime, int addTime) {
+        String updateTime = "";
+        if(StringUtil.isEmpty(remainTime)) {
+            updateTime = String.valueOf(addTime) + ":" + "00";
+        } else {
+            String[] subMsg = remainTime.split(":");
+            
+            String hour = String.valueOf((Integer.parseInt(subMsg[0]) + addTime));
+            
+            updateTime = hour + ":" + subMsg[1];
+        }
+        
+        return updateTime;
+    }
+    
     public void handleBtnNoAction(ActionEvent action)
     {
-        window_close();
+        close();
     }
     
-    public void window_close()
-    {
+    private void close() {
         Stage primaryStage = (Stage)paneTime.getScene().getWindow();
         primaryStage.close();
     }

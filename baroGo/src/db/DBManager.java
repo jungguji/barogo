@@ -116,50 +116,6 @@ public class DBManager {
 		return "jgji";
 	}
 	
-	/*
-	 *  테이블 뷰에서 선택한 대상의 남은 시간(remiantime)을 추가하는 메소드
-	 */
-	public void user_add_time(String a_strID, int a_iAddTime)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strQuery = "select remaintime from user where id = '" + a_strID +"';";
-			result = stmt.executeQuery(strQuery);
-			
-			if(result.next()) 
-			{
-				// 남은 시간을 가져옴
-				String strRemainTime = result.getString(1);
-				String strUpdate = null;
-				if(strRemainTime == null || strRemainTime.length() == 0)
-				{
-					strUpdate = String.valueOf(a_iAddTime) + ":" + "00";
-				} 
-				else 
-				{
-					StringTokenizer strToken = new StringTokenizer(strRemainTime, ":");
-					String[] strSubMsg = new String[5];
-					
-					int i = 0;
-					while(strToken.hasMoreElements())
-					{
-						strSubMsg[i] = strToken.nextToken();
-						i++;
-					}
-					
-					int iTempHour = Integer.parseInt(strSubMsg[0]) + a_iAddTime;
-					String strHour = String.valueOf(iTempHour);
-					strUpdate = strHour + ":" + strSubMsg[1];
-				}
-				user_remaintime_update(strUpdate,a_strID);
-				
-			}
-		} catch (Exception e) {
-			System.out.println("DBManager클래스 user_add_time() 에러");
-			e.printStackTrace();
-		}
-	}
 	
 	// 테이블뷰에서 선택한 애가 누구인지
 	public void select_user(String id)
@@ -251,12 +207,12 @@ public class DBManager {
 	}
 	
 	// 남은시간 업데이트
-	public void user_remaintime_update(String a_strUpdate, String a_strID)
+	public void updateUserRemaintimeById(String time, String userId)
 	{
 		mysqlConnection();
 		makeStatement();
 		try {
-			String strQuery = "update user set remaintime='" + a_strUpdate + "' where id='" + a_strID +"';";
+			String strQuery = "update user set remaintime='" + time + "' where id='" + userId +"';";
 			stmt.executeUpdate(strQuery);
 		}catch(Exception e) {
 			System.out.println("DBManager클래스 user_remaintime_update() 에러");
@@ -423,27 +379,22 @@ public class DBManager {
 		}
 		return isResult;
 	}
-	public boolean paycheck_query(String strID, String strPW) {
+	public String findRemainTime(String strID) {
+	    String remainTime = "";
 		mysqlConnection();
 		makeStatement();
-		String p = null;
 		try {
-			String strQuery = "select remaintime from user where id='" + strID + "' and pw='" + strPW + "';";
+			String strQuery = "select remaintime from user where id='" + strID + "';";
 			result = stmt.executeQuery(strQuery);
 
-			while (result.next()) {
-				p = result.getString("remaintime");
-			}
-
-			if (p == null || p.length() == 0) {
-				return false;
-			} else {
-				return true;
+			if (result.next()) {
+			    remainTime = result.getString(0);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		
+		return remainTime;
 	}
 
 	public ArrayList<SaleInfoBean> sale_query(String category) {

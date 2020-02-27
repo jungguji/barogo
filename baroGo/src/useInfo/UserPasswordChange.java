@@ -12,12 +12,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import jgj.util.barogo.StringUtil;
 
 /**
  * @author 지중구
  *		회원정보에서 출력된 회원의 비밀버호를 바꿔주는 클래스
  */
-public class UsePasswordChange extends Application {
+public class UserPasswordChange extends Application {
 	@FXML private AnchorPane	panePasswd;
 	@FXML private Button		btnOK;
 	@FXML private Button		btnClose;
@@ -39,26 +40,25 @@ public class UsePasswordChange extends Application {
 	
 	public void handleBtnOkAction(ActionEvent action)
 	{
-		String strPw		= pwfNewPW.getText();
-		String strPwChk		= pwfNewPWChk.getText();
+		String password		= pwfNewPW.getText();
+		String passwordConfirm		= pwfNewPWChk.getText();
 		
-		System.out.println("으악 : "+strPw);
-		System.out.println("으악2 : "+strPwChk);
-		
-		if(strPw.equals("") || strPwChk.equals(""))
-		{
+		if(StringUtil.isEmpty(password) || StringUtil.isEmpty(passwordConfirm)) {
 			System.out.println("빈칸이 있습니다.");
+			
 			pwfNewPW.setText("");
 			pwfNewPWChk.setText("");
-		} else if(strPw.length() < 4) {
+			
+		} else if(password.length() < 4) {
 			System.out.println("비밀번호는 최소 4자 입니다.");
-		}else if(!strPw.equals(strPwChk)) {
+		}else if(!password.equals(passwordConfirm)) {
 			System.out.println("입력한 두 비밀번호가 다릅니다");
 		} else {
-			db.user_passwd_change(strPw);
+			db.user_passwd_change(password);
 			System.out.println("비밀번호 변경 완료");
 			pwfNewPW.setText("");
 			pwfNewPWChk.setText("");
+			
 			Stage primaryStage = (Stage)panePasswd.getScene().getWindow();
 			primaryStage.close();
 		}
