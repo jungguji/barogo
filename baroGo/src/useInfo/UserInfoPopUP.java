@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
 
-public class UseInfoPopUP extends Application implements Initializable {
+public class UserInfoPopUP extends Application implements Initializable {
     @FXML private Button         btnClose;
     @FXML private Button         btnSearch;
     @FXML private TextField        tfPCNumber;
@@ -80,7 +80,12 @@ public class UseInfoPopUP extends Application implements Initializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("useInfoPopUP.fxml"));
+            FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
+            Object obj = new UserInfoPopUP();
+            another.setController(obj);
+            
+            Parent root = another.load();
+            
             Scene scene = new Scene(root);     
             primaryStage.setTitle("회원정보");  
             primaryStage.setScene(scene);      
@@ -100,14 +105,15 @@ public class UseInfoPopUP extends Application implements Initializable {
     public void handleBtnUseSearchAction(ActionEvent action) throws Exception {
         db.temp_delete();
         db.search_temp(tfName.getText());
-        ViewerUtil.showStageNotCss(this, "../useInfo/useSearch.fxml");
+        
+        Object search = new UserInfoSearch(tfName.getText());
+        
+        ViewerUtil.showStageNotCss(this, "../useInfo/useSearch.fxml", search);
     }
     
     public void handleBtnPwChangeAction(ActionEvent action) throws Exception {
-        ViewerUtil.showStageNotCss(this, "../useInfo/password.fxml");
-    }
-    
-    public static void main(String[] args) {
-        launch(args);
+        
+        Object obj = new UserPasswordChange();
+        ViewerUtil.showStageNotCss(this, "../useInfo/password.fxml", obj);
     }
 }

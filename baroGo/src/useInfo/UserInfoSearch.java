@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import db.DBManager;
 import db.UserDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,13 +23,20 @@ import javafx.stage.Stage;
 import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
 
-public class UseInfoSearch implements Initializable {
+public class UserInfoSearch implements Initializable {
     @FXML private TextField         textSearch;
     @FXML private Button            btnSearch;
     @FXML private TableView<SearchBean>     tables;
     @FXML private AnchorPane        searchPane;
     
+    private UserDAO dao = new UserDAO();
     private SearchBean                  searchBean  = new SearchBean();
+    
+    String userName;
+    
+    public UserInfoSearch(String userName) {
+        this.userName = userName;
+    }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
@@ -38,9 +44,7 @@ public class UseInfoSearch implements Initializable {
         ArrayList<UseBean>  arUseBean;
         
         try {
-            UserDAO dao = new UserDAO();
-            String searchName = dao.search_temp_print();
-            arUseBean = dao.userSearch(searchName, searchBean);
+            arUseBean = dao.userSearch(userName, searchBean);
             
             printUserInfoToTableView(arUseBean);
             
@@ -72,10 +76,7 @@ public class UseInfoSearch implements Initializable {
 
     public void handlebuttonAction(ActionEvent event)
     {
-        UserDAO dao = new UserDAO();
-        String userId = dao.getTempId();
-        
-        if (StringUtil.isEmpty(userId)) {
+        if (StringUtil.isEmpty(userName)) {
             TimeAddPeoplePopUp();
             
             return;
@@ -84,7 +85,7 @@ public class UseInfoSearch implements Initializable {
         Button botton = (Button) event.getSource();
         int addTime = getAddTime(botton.getId());
         
-        TimeAddPopUp(userId, addTime);
+        TimeAddPopUp(userName, addTime);
     }
     
     private int getAddTime(String buttonId) {
@@ -151,6 +152,8 @@ public class UseInfoSearch implements Initializable {
     {
         try{
             FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
+            Object obj = new UserInfoPopUP();
+            another.setController(obj);
             try {
                AnchorPane anotherPage = (AnchorPane) another.load();
                Scene anotherScene = new Scene(anotherPage);
@@ -176,7 +179,7 @@ public class UseInfoSearch implements Initializable {
                AnchorPane anotherPage = (AnchorPane) another.load();
                Scene anotherScene = new Scene(anotherPage);
                Stage stage = new  Stage();
-               stage.setTitle("寃쎄퀬");
+               stage.setTitle("시간 충전");
                stage.setScene(anotherScene);
                stage.show();
             } catch (IOException e) {
@@ -190,27 +193,10 @@ public class UseInfoSearch implements Initializable {
     
     public void TimeAddPopUp(String userName, int addTime) {
         try {
-            showStageNotCss(this, "../useInfo/TimeChk.fxml", userName, addTime);
+            Object timeadd1 = new TimeAdd1(userName, addTime);
+            ViewerUtil.showStageNotCss(this, "../useInfo/TimeChk.fxml", timeadd1);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-    
-    public void showStageNotCss(Object object, String resourceDirectory, String userName, int addTime) throws Exception {
-        try{
-            FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
-            
-            TimeAdd1 timeadd1 = new TimeAdd1(userName, addTime);
-            another.setController(timeadd1);
-            AnchorPane anotherPage = (AnchorPane) another.load();
-            Scene anotherScene = new Scene(anotherPage);
-            
-            Stage stage = new  Stage();
-            stage.setScene(anotherScene);
-            stage.show();
-            stage.setUserData("test");
-        } catch(Exception e) {
-            throw e;
         }
     }
 }

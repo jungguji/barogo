@@ -18,13 +18,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import jgj.util.barogo.StringUtil;
 import serverChat.ServerBack2;
+import useInfo.UserInfoPopUP;
 /**
  * 
  * @author 지중구
@@ -44,39 +44,20 @@ public class UseInfoViewController implements Initializable {
 	private static boolean[]	aisFlag			= new boolean[81];
 	private static int			iRemainSeat		= 80;
 	
-	private db.DBManager db = new db.DBManager();
-	
 	public void handleBtnUseInfoViewAction(ActionEvent action)
-	{ 
-		try{
-			FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
-			try {
-			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // 다른창 띄우는 작업 .... 2
-			   Scene anotherScene = new Scene(anotherPage);
-			   anotherScene.getStylesheets().add(getClass().getResource("../useInfo/useInfo.css").toExternalForm());
-			   Stage stage = new  Stage();
-			   stage.initStyle(StageStyle.TRANSPARENT);	// 테두리 제거
-			   stage.setScene(anotherScene);
-			   stage.show();
-			   // 다른창 띄우는 작업 .... 2 끝.
-			} catch (IOException e) {
-			   e.printStackTrace();
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		//popup("useInfo", "useInfoPopUP","useInfo");
+	{
+	    Object obj = new UserInfoPopUP();
+		popup("useInfo", "useInfoPopUP","useInfo", obj);
 	}
 
 	public void handleBtnCalculateAction(ActionEvent action)
 	{
-		popup("adminCalculate", "Calculate","adminCalculate");
+		popup("adminCalculate", "Calculate","adminCalculate", null);
 	}
 	
 	public void handleBtnSalesAction(ActionEvent action)
 	{
-		popup("adminSales", "product","product");
+		popup("adminSales", "product","product", null);
 	}
 	
 	public void handleBtnExitAction(ActionEvent action)
@@ -86,30 +67,12 @@ public class UseInfoViewController implements Initializable {
 	
 	public void handleBtnStatsAction(ActionEvent action)
 	{
-		try{
-			FXMLLoader another = new FXMLLoader( getClass().getResource( "../adminStats/MonthStats.fxml" ));
-			try {
-				TabPane anotherPage = (TabPane) another.load();
-			   // 다른창 띄우는 작업 .... 2
-			   Scene anotherScene = new Scene(anotherPage);
-			   anotherScene.getStylesheets().add(getClass().getResource("../adminStats/stats.css").toExternalForm());
-			   Stage stage = new  Stage();
-			   stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
-			   stage.setScene(anotherScene);
-			   stage.show();
-			   // 다른창 띄우는 작업 .... 2 끝.
-			} catch (IOException e) {
-			   e.printStackTrace();
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-
+		popup("adminStats", "MonthStats","stats", null);
 	}
 	
 	public void handleBtnInfoAction(ActionEvent action)
 	{
-		popup("adminView","Infomation","Information");
+		popup("adminView","Infomation","Information", null);
 	}
 	
 	public void handleBtnInfo(ActionEvent action)
@@ -1452,10 +1415,11 @@ public class UseInfoViewController implements Initializable {
         txtStartTime.setText(astrStartTime[1]);
 	}
 
-	private void popup(String a_strPackage, String a_strAction,String a_strCss)
+	private void popup(String a_strPackage, String a_strAction,String a_strCss, Object controller)
 	{
 		try{
 			FXMLLoader another = new FXMLLoader( getClass().getResource( "../" + a_strPackage + "/" + a_strAction + ".fxml" ));
+			another.setController(controller);
 			try {
 			   AnchorPane anotherPage = (AnchorPane) another.load();
 			   // 다른창 띄우는 작업 .... 2

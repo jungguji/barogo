@@ -21,16 +21,17 @@ public class ViewerUtil {
         }
     }
     
-    public static void showStageNotCss(Object object, String resourceDirectory) throws Exception {
+    public static void showStageNotCss(Object object, String resourceDirectory, Object Controller) throws Exception {
         try{
             FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
+            another.setController(Controller);
+            
             AnchorPane anotherPage = (AnchorPane) another.load();
             Scene anotherScene = new Scene(anotherPage);
             
             Stage stage = new  Stage();
             stage.setScene(anotherScene);
             stage.show();
-            stage.setUserData("test");
         } catch(Exception e) {
             throw e;
         }
