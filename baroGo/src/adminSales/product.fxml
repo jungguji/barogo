@@ -5,6 +5,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import java.util.ArrayList?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -62,17 +63,17 @@
 						</HBox>
 						<VBox layoutX="34.0" layoutY="63.0" spacing="15.0">
 							<children>
-								<Button fx:id="snack" layoutX="63.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleBtnSnackAction" prefHeight="90.0" prefWidth="170.0" text="과자">
+								<Button fx:id="snack" layoutX="63.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleCategoryButtonAction" prefHeight="90.0" prefWidth="170.0" text="과자">
 									<font>
 										<Font name="Arial Bold" size="37.0" />
 									</font>
 								</Button>
-								<Button fx:id="drink" layoutX="63.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleBtnDrinkAction" prefHeight="90.0" prefWidth="170.0" text="음료">
+								<Button fx:id="drink" layoutX="63.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleCategoryButtonAction" prefHeight="90.0" prefWidth="170.0" text="음료">
 									<font>
 										<Font name="Arial Bold" size="37.0" />
 									</font>
 								</Button>
-								<Button fx:id="noodle" layoutX="63.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleBtnNoodleAction" prefHeight="90.0" prefWidth="170.0" text="라면">
+								<Button fx:id="noodle" layoutX="63.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleCategoryButtonAction" prefHeight="90.0" prefWidth="170.0" text="라면">
 									<font>
 										<Font name="Arial Bold" size="37.0" />
 									</font>
@@ -98,22 +99,22 @@
 							<children>
 								<HBox layoutX="243.0" layoutY="65.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
 									<children>
-										<Button fx:id="product1" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleBtnProduct1Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product1" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product2" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleBtnProduct2Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product2" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product3" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleBtnProduct3Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product3" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product4" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleBtnProduct4Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product4" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
@@ -122,22 +123,22 @@
 								</HBox>
 								<HBox layoutX="238.0" layoutY="143.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
 									<children>
-										<Button fx:id="product5" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleBtnProduct5Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product5" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product6" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleBtnProduct6Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product6" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product7" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleBtnProduct7Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product7" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product8" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleBtnProduct8Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product8" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
@@ -146,22 +147,22 @@
 								</HBox>
 								<HBox layoutX="250.0" layoutY="236.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
 									<children>
-										<Button fx:id="product9" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleBtnProduct9Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product9" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product10" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleBtnProduct10Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product10" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product11" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleBtnProduct11Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product11" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product12" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleBtnProduct12Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product12" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
@@ -170,22 +171,22 @@
 								</HBox>
 								<HBox layoutX="251.0" layoutY="311.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
 									<children>
-										<Button fx:id="product13" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleBtnProduct13Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product13" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product14" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleBtnProduct14Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product14" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product15" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleBtnProduct15Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product15" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product16" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleBtnProduct16Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product16" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
@@ -194,28 +195,52 @@
 								</HBox>
 								<HBox layoutX="228.0" layoutY="401.0" prefHeight="68.0" prefWidth="548.0" spacing="1.0">
 									<children>
-										<Button fx:id="product17" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleBtnProduct17Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product17" layoutX="241.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product18" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleBtnProduct18Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product18" layoutX="383.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product19" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleBtnProduct19Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product19" layoutX="530.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
-										<Button fx:id="product20" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleBtnProduct20Action" prefHeight="68.0" prefWidth="155.0" text="">
+										<Button fx:id="product20" layoutX="659.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleProductButtonAction" prefHeight="68.0" prefWidth="155.0" text="">
 											<font>
 												<Font name="Arial Bold" size="14.0" />
 											</font>
 										</Button>
 									</children>
 								</HBox>
+								<fx:define>
+                                     <ArrayList fx:id="productButtonList">
+                                        <fx:reference source="product1"/>
+                                        <fx:reference source="product2"/>
+                                        <fx:reference source="product3"/>
+                                        <fx:reference source="product4"/>
+                                        <fx:reference source="product5"/>
+                                        <fx:reference source="product6"/>
+                                        <fx:reference source="product7"/>
+                                        <fx:reference source="product8"/>
+                                        <fx:reference source="product9"/>
+                                        <fx:reference source="product10"/>
+                                        <fx:reference source="product11"/>
+                                        <fx:reference source="product12"/>
+                                        <fx:reference source="product13"/>
+                                        <fx:reference source="product14"/>
+                                        <fx:reference source="product15"/>
+                                        <fx:reference source="product16"/>
+                                        <fx:reference source="product17"/>
+                                        <fx:reference source="product18"/>
+                                        <fx:reference source="product19"/>
+                                        <fx:reference source="product20"/>
+                                    </ArrayList>
+                                 </fx:define>
 							</children>
 						</VBox>
 					</children>
