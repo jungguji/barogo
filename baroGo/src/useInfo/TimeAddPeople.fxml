@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="paneAddPeople" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="useInfo.TimeAddPeople">
+<AnchorPane fx:id="paneAddPeople" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane orientation="VERTICAL" prefHeight="150.0" prefWidth="400.0">
          <items>
@@ -24,7 +24,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="105.0" layoutY="67.0" text="½Ã°£À» Ãß°¡ÇÒ »ç¶÷À» ¼±ÅÃÇÏ½Ã¿À.">
+                        <Label layoutX="105.0" layoutY="67.0" text="ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -35,7 +35,7 @@
             </AnchorPane>
          </items>
       </SplitPane>
-      <Button fx:id="btnOK" layoutX="160.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleBtnOKAction" prefHeight="20.0" prefWidth="80.0" text="È®ÀÎ">
+      <Button fx:id="btnOK" layoutX="160.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleBtnOKAction" prefHeight="20.0" prefWidth="80.0" text="È®ï¿½ï¿½">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
