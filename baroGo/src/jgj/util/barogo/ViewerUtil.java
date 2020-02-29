@@ -21,10 +21,10 @@ public class ViewerUtil {
         }
     }
     
-    public static void showStageNotCss(Object object, String resourceDirectory, Object Controller) throws Exception {
+    public static void showStageNotCss(Object object, String resourceDirectory, Object controller) throws Exception {
         try{
             FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
-            another.setController(Controller);
+            another.setController(controller);
             
             AnchorPane anotherPage = (AnchorPane) another.load();
             Scene anotherScene = new Scene(anotherPage);
