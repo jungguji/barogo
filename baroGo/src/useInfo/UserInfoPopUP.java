@@ -87,7 +87,7 @@ public class UserInfoPopUP extends Application implements Initializable {
             Parent root = another.load();
             
             Scene scene = new Scene(root);     
-            primaryStage.setTitle("È¸¿øÁ¤º¸");  
+            primaryStage.setTitle("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");  
             primaryStage.setScene(scene);      
             primaryStage.show();
         } catch (Exception e) {
@@ -95,17 +95,12 @@ public class UserInfoPopUP extends Application implements Initializable {
         }
     }
 
-    public void handleBtnExitAction(ActionEvent action)
-    {
+    public void handleBtnExitAction(ActionEvent action) {
         Stage primaryStage = (Stage)btnClose.getScene().getWindow();
-        db.temp_delete();
         primaryStage.close();
     }
     
     public void handleBtnUseSearchAction(ActionEvent action) throws Exception {
-        db.temp_delete();
-        db.search_temp(tfName.getText());
-        
         Object search = new UserInfoSearch(tfName.getText());
         
         ViewerUtil.showStageNotCss(this, "../useInfo/useSearch.fxml", search);
