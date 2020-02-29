@@ -397,26 +397,42 @@ public class DBManager {
 		return remainTime;
 	}
 
-	public ArrayList<SaleInfoBean> sale_query(String category) {
-		SaleInfoBean SaleInfoBean;
-		ArrayList<SaleInfoBean> Bean = new ArrayList<SaleInfoBean>();
-		String strQuery = "select name,price from product where category='" + category + "';";
-		try {
-			mysqlConnection();
-			makeStatement();
-			result = stmt.executeQuery(strQuery);
-
-			while (result.next()) {
-				SaleInfoBean = new SaleInfoBean();
-				SaleInfoBean.setProductName(result.getString("name"));
-				SaleInfoBean.setPrice(result.getInt("price"));
-				Bean.add(SaleInfoBean);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return Bean;
+	public ArrayList<SaleInfoBean> findNameAndPriceByCategory(String category) {
+		
+//		String strQuery = "select name,price from product where category='" + category + "';";
+//		try {
+//			mysqlConnection();
+//			makeStatement();
+//			result = stmt.executeQuery(strQuery);
+//
+//			while (result.next()) {
+//			    SaleInfoBean SaleInfoBean = new SaleInfoBean();
+//				SaleInfoBean.setProductName(result.getString("name"));
+//				SaleInfoBean.setPrice(result.getInt("price"));
+//				list.add(SaleInfoBean);
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		ArrayList<SaleInfoBean> list = new ArrayList<SaleInfoBean>();
+		
+        SaleInfoBean SaleInfoBean = new SaleInfoBean();
+        SaleInfoBean.setProductName("치토스");
+        SaleInfoBean.setPrice(2555);
+        SaleInfoBean SaleInfoBean1 = new SaleInfoBean();
+        SaleInfoBean1.setProductName("시발");
+        SaleInfoBean1.setPrice(33333);
+        SaleInfoBean SaleInfoBean2 = new SaleInfoBean();
+        SaleInfoBean2.setProductName("미친");
+        SaleInfoBean2.setPrice(77775);
+        
+        list.add(SaleInfoBean);
+        list.add(SaleInfoBean1);
+        list.add(SaleInfoBean2);
+		
+		return list;
 	}
 
 	public void paymentPlanInsert_query(int paymentPlan, String strID, String strPW) {
@@ -949,7 +965,7 @@ public class DBManager {
 		}
 	}
 	
-	public void Sales_query(int receiptNo, String date, String time, int salesType, int snack, int noodle, int drink, int salesPrice)
+	public void insertReceipt(int receiptNo, String date, String time, int salesType, int snack, int noodle, int drink, int salesPrice)
 	{
 		mysqlConnection();
 		makeStatement();
