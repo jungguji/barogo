@@ -74,8 +74,7 @@ public class UserInfoSearch implements Initializable {
         }
     }
 
-    public void handlebuttonAction(ActionEvent event)
-    {
+    public void handlebuttonAction(ActionEvent event) throws Exception {
         if (StringUtil.isEmpty(userName)) {
             TimeAddPeoplePopUp();
             
@@ -119,14 +118,11 @@ public class UserInfoSearch implements Initializable {
     // 서치버튼 클릭 핸들러
     // 클릭시 텍스트 필드의 값으로 검색된 내용이 tableview에 출력
     public void handleBtnUseSearchAction(ActionEvent event) {
-        ArrayList<UseBean>  arUseBean;
-        
         tables.getItems().clear();
         try {
-            UserDAO dao = new UserDAO();
-            arUseBean = dao.userSearch(textSearch.getText(), searchBean);
+            ArrayList<UseBean> userList = dao.userSearch(textSearch.getText(), searchBean);
             
-            printUserInfoToTableView(arUseBean);
+            printUserInfoToTableView(userList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,47 +144,16 @@ public class UserInfoSearch implements Initializable {
         }
     }
     
-    public void handleBtnHomeAction(ActionEvent event)
-    {
-        try{
-            FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
-            Object obj = new UserInfoPopUP();
-            another.setController(obj);
-            try {
-               AnchorPane anotherPage = (AnchorPane) another.load();
-               Scene anotherScene = new Scene(anotherPage);
-               Stage stage = new  Stage();
-               stage.setScene(anotherScene);
-               stage.show();
-            } catch (IOException e) {
-               e.printStackTrace();
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public void handleBtnHomeAction(ActionEvent event) throws Exception {
+        
+        ViewerUtil.showStageNotCss(this, "../useInfo/useInfoPopUP.fxml", new UserInfoPopUP());
         
         Stage primaryStage = (Stage)searchPane.getScene().getWindow();
         primaryStage.close();
     }
     
-    public void TimeAddPeoplePopUp()
-    {
-        try{
-            FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/TimeAddPeople.fxml" ));
-            try {
-               AnchorPane anotherPage = (AnchorPane) another.load();
-               Scene anotherScene = new Scene(anotherPage);
-               Stage stage = new  Stage();
-               stage.setTitle("시간 충전");
-               stage.setScene(anotherScene);
-               stage.show();
-            } catch (IOException e) {
-               // TODO Auto-generated catch block
-               e.printStackTrace();
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public void TimeAddPeoplePopUp() throws Exception {
+        ViewerUtil.showStageNotCss(this, "../useInfo/TimeAddPeople.fxml", new TimeAddPeople());
     }
     
     public void TimeAddPopUp(String userName, int addTime) {
