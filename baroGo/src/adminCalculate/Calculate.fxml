@@ -4,6 +4,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.util.ArrayList?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -109,6 +110,32 @@
                   <Font name="Arial Bold" size="27.0" />
                </font>
             </Text>
+            
+             <fx:define>
+                 <ArrayList fx:id="countTextFieldList">
+                    <fx:reference source="tfCount1"/>
+                    <fx:reference source="tfCount2"/>
+                    <fx:reference source="tfCount3"/>
+                    <fx:reference source="tfCount4"/>
+                    <fx:reference source="tfCount5"/>
+                    <fx:reference source="tfCount6"/>
+                    <fx:reference source="tfCount7"/>
+                    <fx:reference source="tfCount8"/>
+                </ArrayList>
+             </fx:define>
+             
+             <fx:define>
+                 <ArrayList fx:id="priceTextFieldList">
+                    <fx:reference source="tfPrice1"/>
+                    <fx:reference source="tfPrice2"/>
+                    <fx:reference source="tfPrice3"/>
+                    <fx:reference source="tfPrice4"/>
+                    <fx:reference source="tfPrice5"/>
+                    <fx:reference source="tfPrice6"/>
+                    <fx:reference source="tfPrice7"/>
+                    <fx:reference source="tfPrice8"/>
+                </ArrayList>
+             </fx:define>
          </children>
       </GridPane>
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="363.0" layoutY="61.0" prefHeight="124.0" prefWidth="704.0">

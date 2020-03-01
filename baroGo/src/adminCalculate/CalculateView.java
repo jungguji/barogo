@@ -27,14 +27,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jgj.util.barogo.StringUtil;
 
 /**
  * @author ���߱�
  *
  */
 public class CalculateView implements Initializable {
-	@FXML private TextField			tfCount1, tfCount2, tfCount3, tfCount4, tfCount5, tfCount6, tfCount7, tfCount8;
-	@FXML private TextField 		tfPrice1, tfPrice2, tfPrice3, tfPrice4, tfPrice5, tfPrice6, tfPrice7, tfPrice8;
+	@FXML private List<TextField> countTextFieldList;
+	@FXML private List<TextField> priceTextFieldList;
 	@FXML private TextField 		tfTotalCount, tfTotalPrice;
 	@FXML private TextField 		tfAdminID, tfAdminPW;
 	@FXML private Button 			btnSelect, btnReset, btnLogin, btnCalc;
@@ -44,7 +45,7 @@ public class CalculateView implements Initializable {
 	@FXML private Label				lblTotalMoney;
 	@FXML private AnchorPane		paneCalc;
 	
-	private int iCount1, iCount2, iCount3, iCount4, iCount5, iCount6, iCount7, iCount8;
+	private int[] count;
 	private int iPrice1, iPrice2, iPrice3, iPrice4, iPrice5, iPrice6, iPrice7, iPrice8;
 	private int iTotalCount = 0, iTotalPrice = 0;
 	private int iResultCount 	= 0;
@@ -58,14 +59,13 @@ public class CalculateView implements Initializable {
 	public void initialize(URL location, ResourceBundle resources)
 	{
 		// TODO Auto-generated method stub
-		tfCount1.setOnKeyReleased(event-> {	textField_empty_chk(); price_sum();	});
-		tfCount2.setOnKeyReleased(event-> { textField_empty_chk(); price_sum(); });
-		tfCount3.setOnKeyReleased(event-> {	textField_empty_chk(); price_sum(); });
-		tfCount4.setOnKeyReleased(event-> { textField_empty_chk(); price_sum(); });
-		tfCount5.setOnKeyReleased(event-> {	textField_empty_chk(); price_sum();	});
-		tfCount6.setOnKeyReleased(event-> {	textField_empty_chk(); price_sum(); });
-		tfCount7.setOnKeyReleased(event-> {	textField_empty_chk(); price_sum(); });
-		tfCount8.setOnKeyReleased(event-> {	textField_empty_chk(); price_sum(); });
+	    
+	    for (TextField field : countTextFieldList) {
+	        field.setOnKeyReleased(event-> {   
+	            textField_empty_chk(); 
+	            price_sum(); 
+	        });
+	    }
 		
 		LocalDate nowDate = LocalDate.now();
 		
@@ -129,16 +129,15 @@ public class CalculateView implements Initializable {
 		}
 	}
 	
-	public void textField_empty_chk()
-	{
-		iCount1 = (tfCount1.getText() == null || tfCount1.getText().length() == 0) ? 0 : Integer.parseInt(tfCount1.getText());
-		iCount2 = (tfCount2.getText() == null || tfCount2.getText().length() == 0) ? 0 : Integer.parseInt(tfCount2.getText());
-		iCount3 = (tfCount3.getText() == null || tfCount3.getText().length() == 0) ? 0 : Integer.parseInt(tfCount3.getText());
-		iCount4 = (tfCount4.getText() == null || tfCount4.getText().length() == 0) ? 0 : Integer.parseInt(tfCount4.getText());
-		iCount5 = (tfCount5.getText() == null || tfCount5.getText().length() == 0) ? 0 : Integer.parseInt(tfCount5.getText());
-		iCount6 = (tfCount6.getText() == null || tfCount6.getText().length() == 0) ? 0 : Integer.parseInt(tfCount6.getText());
-		iCount7 = (tfCount7.getText() == null || tfCount7.getText().length() == 0) ? 0 : Integer.parseInt(tfCount7.getText());
-		iCount8 = (tfCount8.getText() == null || tfCount8.getText().length() == 0) ? 0 : Integer.parseInt(tfCount8.getText());
+	private void setCountField() {
+	    for (int i = 0; i < countTextFieldList.size(); i++) {
+	        TextField field = countTextFieldList.get(i);
+	        if (StringUtil.isEmpty(field.getText())) {
+	            count[i] = 0;
+	        } else {
+	            count[i] =  Integer.parseInt(field.getText());
+	        }
+	    }
 	}
 	
 	public void price_sum()
