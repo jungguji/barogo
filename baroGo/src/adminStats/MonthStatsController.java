@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public class MonthStatsController implements Initializable {
 	
-	@FXML private LineChart lineChart;
+	@FXML private LineChart<?, ?> lineChart;
 	@FXML private ComboBox<String> cmbYear;
 	@FXML private ComboBox<String> cmbMonth;
 	@FXML private Button btnHome;
@@ -143,7 +143,7 @@ public class MonthStatsController implements Initializable {
 		lineChart.getData().add(series1);
 		lineChart.getData().add(series2);
 		
-		statsList = db.stats_query(selectYear, selectMonth);
+		statsList = db.getStatsListByYearMonth(selectYear, selectMonth);
 		
 		for(int i = 0; i<statsList.size(); i++)
 		{

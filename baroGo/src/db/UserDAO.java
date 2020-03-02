@@ -89,26 +89,4 @@ public class UserDAO extends DBManager {
         
         return useBean;
     }
-    
-    public void selectUser(String id) {
-        mysqlConnection();
-        makeStatement();
-        try {
-            String strUpdate = "update timetemp set id='"+id+"';";
-            String strInsert = "insert into timetemp value('" + id + "',0);";
-            String strResult = getTempId();
-            
-            if(strResult == null)
-            {
-                stmt.executeUpdate(strInsert);
-            } else {
-                stmt.executeUpdate(strUpdate);
-            }
-        }catch(Exception e) {
-            System.out.println("DBManager클占쏙옙占쏙옙 test() 占쏙옙占쏙옙");
-            e.printStackTrace();
-        }
-    }
-    
-    
 }

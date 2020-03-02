@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import adminCalculate.CalcBean;
 import adminSales.SaleInfoBean;
 import adminStats.StatsBean;
+import jgj.util.barogo.StringUtil;
 import useInfo.UseBean;
 import userInfoView.userInfoBean;
 
@@ -116,27 +116,6 @@ public class DBManager {
 		return "jgji";
 	}
 	
-	
-	// 테이블뷰에서 선택한 애가 누구인지
-	public void select_user(String id)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strUpdate = "update timetemp set id='"+id+"';";
-			String strInsert = "insert into timetemp value('" + id + "',0);";
-			String strResult = getTempId();
-			if(strResult == null) {
-				stmt.executeUpdate(strInsert);
-			} else {
-				stmt.executeUpdate(strUpdate);
-			}
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 test() 에러");
-			e.printStackTrace();
-		}
-	}
-	
 	public String getTempId() {
 		mysqlConnection();
 		makeStatement();
@@ -221,13 +200,13 @@ public class DBManager {
 	}
 	
 	// 메인뷰에서 남은시간 업데이트
-	public void view_user_remaintime_update(String a_strUpdate, String a_PCNum)
+	public void updateRemaintimeAndPcNumber(String updateTime, String pcNumber)
 	{
 		mysqlConnection();
 		makeStatement();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@22   :  " + a_strUpdate );
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@22   :  " + updateTime );
 		try {
-			String strQuery = "update user set remaintime='" + a_strUpdate + "' where pcnumber='" + a_PCNum +"';";
+			String strQuery = "update user set remaintime='" + updateTime + "' where pcnumber='" + pcNumber +"';";
 			stmt.executeUpdate(strQuery);
 		}catch(Exception e) {
 			System.out.println("DBManager클래스 user_remaintime_update() 에러");
@@ -308,14 +287,12 @@ public class DBManager {
 			String strQuery		= "select count(date), sum(price) from timesales where date='"+ date + "'" +
 									"union " +
 									"select count(date), sum(salesPrice) from receipt where date='"+ date +"';";
-			String strQuery2	= "select count(salesPrice), sum(salesPrice) from receipt where date='" + date + "' and salesType=1;";
 			
 			result 	= stmt.executeQuery(strQuery);
 			
 			int iCount = 0;
 			int iSum = 0;
-			while(result.next())
-			{
+			while(result.next()) {
 				iCount	+= 	result.getInt(1);
 				iSum 	+=	result.getInt(2);
 			}
@@ -323,16 +300,17 @@ public class DBManager {
 			calcBean.setiCount(iCount);
 			calcBean.setiSales(iSum);
 			
+			String strQuery2 = "select count(salesPrice), sum(salesPrice) from receipt where date='" + date + "' and salesType=1;";
 			res		= stmt.executeQuery(strQuery2);
 
-			if(res.next())
-			{
+			if(res.next()) {
 				calcBean.setiReturnCount(res.getInt(1));
 				calcBean.setiReturnSales(res.getInt(2));
 			}
-	} catch(Exception e) {
-		e.printStackTrace();
-	}
+		} catch(Exception e) {
+		    e.printStackTrace();
+		}
+		
 		return calcBean;
 	}
 	
@@ -463,56 +441,25 @@ public class DBManager {
 		return payPlan;
 	}
 
-	public void userTemp_query(String strID, String strPW) {
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strUpdate = "update usertemp set id='" + strID + "',pw='" + strPW + "';";
-			String strInsert = "insert into usertemp value('" + strID + "','" + strPW + "');";
-			String strResult = userTempPrint_query();
-			if (strResult == null) {
-				stmt.executeUpdate(strInsert);
-			} else {
-				stmt.executeUpdate(strUpdate);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public String userTempPrint_query() {
-		mysqlConnection();
-		makeStatement();
-		String strResult = null;
-		try {
-			String strQuery = "select id,pw from usertemp;";
-			result = stmt.executeQuery(strQuery);
-			while (result.next()) {
-				strResult = result.getString(1) + "," + result.getString(2);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return strResult;
-	}
-
-	public userInfoBean actioninit_query(int paymentPlan, String strID, String strPW) {
+	public userInfoBean actioninit_query(boolean isPrepayment, String strID) {
 		mysqlConnection();
 		makeStatement();
 		userInfoBean beanUserInfo = new userInfoBean();
 		try {
-			String strQuery = "select id,firstmoney,remaintime from user where id='" + strID + "' and pw='" + strPW + "';";
-			String strQuery2 = "select id from user where id='" + strID + "' and pw='" + strPW + "';";
-			if (paymentPlan == 0) {
-				result = stmt.executeQuery(strQuery);
+			
+			if (isPrepayment) {
+			    String query = "select id,firstmoney,remaintime from user where id='" + strID + "';";
+				result = stmt.executeQuery(query);
+				
 				while (result.next()) {
 					beanUserInfo.setUserID(result.getString("id"));
 					beanUserInfo.setFirstMoney(result.getInt("firstmoney"));
 					beanUserInfo.setstrRemainTime(result.getString("remaintime"));
 				}
-			} else if(paymentPlan == 1) {
-				result = stmt.executeQuery(strQuery2);
+			} else {
+			    String query = "select id from user where id='" + strID + "';";
+				result = stmt.executeQuery(query);
+				
 				while (result.next()) {
 					beanUserInfo.setUserID(result.getString("id"));
 				}
@@ -523,21 +470,18 @@ public class DBManager {
 		return beanUserInfo;
 	}
 	
-	public ArrayList<StatsBean> stats_query(String year, String month)
-	{
+	public ArrayList<StatsBean> getStatsListByYearMonth(String year, String month) {
 		mysqlConnection();
 		makeStatement();
 		
 		StatsBean statsBean;
 		ArrayList<StatsBean> statsList = new ArrayList<StatsBean>();
 		
-		try
-		{
+		try {
 			String strQuery = "select * from stats where date like '" + year + "-" + month + "%' order by date asc";
 			result = stmt.executeQuery(strQuery);
 			
-			while (result.next())
-			{
+			while (result.next()) {
 				String date = result.getString("date");
 				String day = date.substring(date.length() - 2, date.length());
 
@@ -549,16 +493,14 @@ public class DBManager {
 
 				statsList.add(statsBean);
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return statsList;
 	}
 	
-	public ArrayList<StatsBean> stats_query(String year)
-	{
+	public ArrayList<StatsBean> getStatsListByYear(String year) {
 		mysqlConnection();
 		makeStatement();
 
@@ -678,48 +620,30 @@ public class DBManager {
 		}
 	}
 	
-	
 	// 메인뷰에서 할때
-	public void view_user_add_time(String a_PCNum, int a_iAddTime)
-	{
+	public String getAddTime(String userId, int addTime) {
+	    String result = "";
+	    String remainTime = findRemainTime(userId);
+	    
 		mysqlConnection();
 		makeStatement();
 		try {
-			String strQuery = "select remaintime from user where pcnumber = '" + a_PCNum +"';";
-			result = stmt.executeQuery(strQuery);
-			
-			if(result.next()) 
-			{
-				// 남은 시간을 가져옴
-				String strRemainTime = result.getString(1);
-				String strUpdate = null;
-				if(strRemainTime == null || strRemainTime.length() == 0)
-				{
-					strUpdate = String.valueOf(a_iAddTime) + ":" + "00";
-				} 
-				else 
-				{
-					StringTokenizer strToken = new StringTokenizer(strRemainTime, ":");
-					String[] strSubMsg = new String[5];
-					
-					int i = 0;
-					while(strToken.hasMoreElements())
-					{
-						strSubMsg[i] = strToken.nextToken();
-						i++;
-					}
-					
-					int iTempHour = Integer.parseInt(strSubMsg[0]) + a_iAddTime;
-					String strHour = String.valueOf(iTempHour);
-					strUpdate = strHour + ":" + strSubMsg[1];
-				}
-				view_user_remaintime_update(strUpdate,a_PCNum);
+			if(StringUtil.isEmpty(remainTime)) {
+			    result = String.valueOf(addTime) + ":" + "00";
+			} else {
+				String[] strSubMsg = remainTime.split(":");
 				
+				int iTempHour = Integer.parseInt(strSubMsg[0]) + addTime;
+				String strHour = String.valueOf(iTempHour);
+				result = strHour + ":" + strSubMsg[1];
 			}
+			
 		} catch (Exception e) {
 			System.out.println("DBManager클래스 view_user_add_time() 에러");
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 	
 	public String user_id_return(String a_strPCNum)
@@ -753,48 +677,43 @@ public class DBManager {
 	      {
 	         String strQuery = "select pcnumber from user;";
 	         result = stmt.executeQuery(strQuery);
-	         while (result.next()) 
-	         {
+	         while (result.next()) {
 	            num.add(result.getInt("pcnumber"));
 	         }
 
-	         while (true) 
-	         {
+	         while (true)  {
 	            pcNumber = (1 + (int) (Math.random() * 10));
-	            if (!num.contains(pcNumber)) 
-	            {
+	            
+	            if (!num.contains(pcNumber)) {
 	               strQuery = "update user set pcnumber = '" + pcNumber + "' where id='" + strID + "' and pw='" + strPW + "';";
 	               stmt.executeUpdate(strQuery);
 	               break;
 	            }
 	         }
 
-	      } 
-	      catch (Exception e) 
-	      {
+	      }  catch (Exception e) {
 	         e.printStackTrace();
 	      }
 	   }
 	   
-	   public int pcNumber_print(String strID, String strPW) 
-	   {
+	   public int getPcNumberByUserId(String strID) {
 	      mysqlConnection();
 	      makeStatement();
 	      
 	      int pcNumber = 0;
 	      
 	      try {
-	         String strQuery = "select pcnumber from user where id='" + strID + "' and pw='" + strPW + "';";
+	         String strQuery = "select pcnumber from user where id='" + strID + "';";
 	         result = stmt.executeQuery(strQuery);
 	         
-	         if(result.next())
-	         {
+	         if (result.next()) {
 	            pcNumber = result.getInt("pcnumber");
 	         }
 	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
+	      
 	      return pcNumber;
 	   }
 	   
@@ -979,12 +898,11 @@ public class DBManager {
 		}
 	}
 	
-	public void m​ovementSeat_query(String strID, String strPW, String remaintime) {
+	public void updateSeatByuserId(String strID, String remaintime) {
 		mysqlConnection();
 		makeStatement();
 		try {
-			String strQuery = "update user set remaintime = remaintime +'" + remaintime + "' where id='" + strID + "' and pw='"
-					+ strPW + "';";
+			String strQuery = "update user set remaintime = remaintime +'" + remaintime + "' where id='" + strID + "';";
 			stmt.executeUpdate(strQuery);
 		} catch (Exception e) {
 			e.printStackTrace();

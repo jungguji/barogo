@@ -203,9 +203,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd1" mnemonicParsing="false" onAction="#handleMenuTimeAdd1Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick1" mnemonicParsing="false" onAction="#handleMenuKick1Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat1" mnemonicParsing="false" onAction="#handleMenu1ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd1" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick1" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat1" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -223,9 +223,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd2" mnemonicParsing="false" onAction="#handleMenuTimeAdd2Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick2" mnemonicParsing="false" onAction="#handleMenuKick2Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat2" mnemonicParsing="false" onAction="#handleMenu2ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd2" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick2" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat2" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -243,9 +243,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd3" mnemonicParsing="false" onAction="#handleMenuTimeAdd3Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick3" mnemonicParsing="false" onAction="#handleMenuKick3Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat3" mnemonicParsing="false" onAction="#handleMenu3ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd3" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick3" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat3" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -263,9 +263,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd4" mnemonicParsing="false" onAction="#handleMenuTimeAdd4Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick4" mnemonicParsing="false" onAction="#handleMenuKick4Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat4" mnemonicParsing="false" onAction="#handleMenu4ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd4" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick4" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat4" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -283,9 +283,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd5" mnemonicParsing="false" onAction="#handleMenuTimeAdd5Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick5" mnemonicParsing="false" onAction="#handleMenuKick5Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat5" mnemonicParsing="false" onAction="#handleMenu5ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd5" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick5" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat5" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -303,9 +303,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd6" mnemonicParsing="false" onAction="#handleMenuTimeAdd6Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick6" mnemonicParsing="false" onAction="#handleMenuKick6Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat6" mnemonicParsing="false" onAction="#handleMenu6ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd6" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick6" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat6" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -323,9 +323,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd7" mnemonicParsing="false" onAction="#handleMenuTimeAdd7Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick7" mnemonicParsing="false" onAction="#handleMenuKick7Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat7" mnemonicParsing="false" onAction="#handleMenu7ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd7" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick7" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat7" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -343,9 +343,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd8" mnemonicParsing="false" onAction="#handleMenuTimeAdd8Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick8" mnemonicParsing="false" onAction="#handleMenuKick8Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat8" mnemonicParsing="false" onAction="#handleMenu8ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd8" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick8" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat8" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -363,9 +363,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd9" mnemonicParsing="false" onAction="#handleMenuTimeAdd9Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick9" mnemonicParsing="false" onAction="#handleMenuKick9Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat9" mnemonicParsing="false" onAction="#handleMenu9ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd9" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick9" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat9" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -383,9 +383,9 @@
                                              <contextMenu>
                                                 <ContextMenu>
                                                    <items>
-                                                      <MenuItem fx:id="miMainTimeAdd10" mnemonicParsing="false" onAction="#handleMenuTimeAdd10Action" text="사용시간 추가" />
-                                                      <MenuItem fx:id="miUserKick10" mnemonicParsing="false" onAction="#handleMenuKick10Action" text="사용자 추방" />
-                                                      <MenuItem fx:id="menuItemChat10" mnemonicParsing="false" onAction="#handleMenu10ChatAction" text="대화걸기" />
+                                                      <MenuItem fx:id="miMainTimeAdd10" mnemonicParsing="false" onAction="#handleMenuTimeAddAction" text="사용시간 추가" />
+                                                      <MenuItem fx:id="miUserKick10" mnemonicParsing="false" onAction="#handleKickAction" text="사용자 추방" />
+                                                      <MenuItem fx:id="menuItemChat10" mnemonicParsing="false" onAction="#handleChatAction" text="대화걸기" />
                                                    </items>
                                                 </ContextMenu>
                                              </contextMenu>
@@ -1914,11 +1914,7 @@
                                     </ArrayList>
                                  </fx:define>
                                  </children>
-                                 
                               </VBox>
-                              
-                              
-
                            </children>
                         </AnchorPane>
                     </items>
