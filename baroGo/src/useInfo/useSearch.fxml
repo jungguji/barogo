@@ -14,12 +14,12 @@
          <items>
             <AnchorPane fx:id="pane" maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="41.0" prefWidth="998.0">
                <children>
-                  <TextField fx:id="textSearch" layoutX="14.0" layoutY="8.0" prefHeight="26.0" prefWidth="138.0" promptText="ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä">
+                  <TextField fx:id="textSearch" layoutX="14.0" layoutY="8.0" prefHeight="26.0" prefWidth="138.0" promptText="ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="btnSearch" layoutX="169.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBtnUseSearchAction" prefHeight="23.0" prefWidth="81.0" text="È¸¿ø °Ë»ö">
+                  <Button fx:id="btnSearch" layoutX="169.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBtnUseSearchAction" prefHeight="23.0" prefWidth="81.0" text="íšŒì› ê²€ìƒ‰">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
@@ -45,12 +45,12 @@
                      <children>
                         <HBox layoutX="14.0" layoutY="12.0" spacing="10.0">
                            <children>
-                              <Button id="1" fx:id="btn1" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="1000¿ø &#10;(1½Ã°£)" textAlignment="CENTER">
+                              <Button id="1" fx:id="btn1" layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="1000ì› &#10;(1ì‹œê°„)" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button id="2" fx:id="btn2" layoutX="173.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="2000¿ø&#10; (2½Ã°£)" textAlignment="CENTER">
+                              <Button id="2" fx:id="btn2" layoutX="173.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="2000ì›&#10; (2ì‹œê°„)" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -59,12 +59,12 @@
                         </HBox>
                         <HBox layoutX="14.0" layoutY="126.0" spacing="10.0">
                            <children>
-                              <Button id="3" fx:id="btn3" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="3000¿ø &#10;(3½Ã°£)" textAlignment="CENTER">
+                              <Button id="3" fx:id="btn3" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="3000ì› &#10;(3ì‹œê°„)" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button id="4" fx:id="btn4" layoutX="160.0" layoutY="131.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="5000¿ø&#10; (6½Ã°£)" textAlignment="CENTER">
+                              <Button id="4" fx:id="btn4" layoutX="160.0" layoutY="131.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="5000ì›&#10; (6ì‹œê°„)" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -73,12 +73,12 @@
                         </HBox>
                         <HBox layoutX="14.0" layoutY="228.0" spacing="10.0">
                            <children>
-                              <Button id="5" fx:id="btn5" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="7000¿ø&#10; (9½Ã°£)" textAlignment="CENTER">
+                              <Button id="5" fx:id="btn5" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="7000ì›&#10; (9ì‹œê°„)" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button id="6" fx:id="btn6" layoutX="180.0" layoutY="228.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="10000¿ø&#10; (13½Ã°£)" textAlignment="CENTER">
+                              <Button id="6" fx:id="btn6" layoutX="180.0" layoutY="228.0" mnemonicParsing="false" onAction="#handlebuttonAction" prefHeight="60.0" prefWidth="90.0" text="10000ì›&#10; (13ì‹œê°„)" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -87,12 +87,12 @@
                         </HBox>
                         <HBox spacing="10.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="236.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="90.0" text="½Ã°£" textAlignment="CENTER">
+                              <Button layoutX="14.0" layoutY="236.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="90.0" text="ì‹œê°„" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button layoutX="180.0" layoutY="228.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="90.0" text="½Ã°£" textAlignment="CENTER">
+                              <Button layoutX="180.0" layoutY="228.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="90.0" text="ì‹œê°„" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -101,16 +101,16 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Label layoutX="58.0" layoutY="8.0" text="½Ã°£Ãß°¡">
+                  <Label layoutX="58.0" layoutY="8.0" text="ì‹œê°„ ì¶”ê°€">
                      <font>
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
                   <TableView fx:id="tables" layoutX="227.0" layoutY="8.0" prefHeight="336.0" prefWidth="264.0">
                     <columns>
-                            <TableColumn prefWidth="76.0" text="È¸¿ø" />
-                            <TableColumn prefWidth="88.0" text="¾ÆÀÌµð" />
-                            <TableColumn prefWidth="94.0" text="»ýÀÏ" />
+                            <TableColumn prefWidth="76.0" text="íšŒì›" />
+                            <TableColumn prefWidth="88.0" text="ì•„ì´ë””" />
+                            <TableColumn prefWidth="94.0" text="ìƒì¼" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
