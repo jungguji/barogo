@@ -6,34 +6,32 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ViewerUtil {
-    public static void showStage(Object object, String resourceDirectory, String cssDirectory) throws Exception {
+    public static void showStage(Object object, String resourceDirectory, String cssDirectory, Object controller) throws Exception {
         try {
-            FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
+            FXMLLoader another = getFXMLLoader(object, resourceDirectory, controller);
+            
             AnchorPane anotherPage = (AnchorPane) another.load();
             Scene anotherScene = new Scene(anotherPage);
-            anotherScene.getStylesheets().add(object.getClass().getResource(cssDirectory).toString());
             
-            Stage stage = new Stage();
-            stage.setScene(anotherScene);
-            stage.show();
+            if (StringUtil.isNotEmpty(cssDirectory)) {
+                anotherScene.getStylesheets().add(object.getClass().getResource(cssDirectory).toString());
+            }
+            
+            showStage(anotherScene);
         } catch (Exception e) {
             throw e;
         }
     }
     
-    public static void showStageNotCss(Object object, String resourceDirectory, Object controller) throws Exception {
-        try{
-            FXMLLoader another = new FXMLLoader(object.getClass().getResource(resourceDirectory));
-            another.setController(controller);
-            
-            AnchorPane anotherPage = (AnchorPane) another.load();
-            Scene anotherScene = new Scene(anotherPage);
-            
-            Stage stage = new  Stage();
-            stage.setScene(anotherScene);
-            stage.show();
-        } catch(Exception e) {
-            throw e;
-        }
+    public static FXMLLoader getFXMLLoader(Object obj, String resourceDirectory, Object controller) {
+        FXMLLoader loader = new FXMLLoader(obj.getClass().getResource(resourceDirectory));
+        loader.setController(controller);
+        return loader;
+    }
+    
+    public static void showStage(Scene scene) {
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 }

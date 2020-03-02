@@ -223,28 +223,27 @@ public class CalculateView implements Initializable {
 		tvTotalSales.setItems(salesList);
 	}
 
-	public void handleBtnCalcAction(ActionEvent acton) throws Exception
-	{
+	public void handleBtnCalcAction(ActionEvent acton) throws Exception {
 		String strTotalPrice = tfTotalPrice.getText();
 		String strTotalMomey = lblTotalMoney.getText();
 		
 		if(strTotalMomey.equals("")) {
-		    ViewerUtil.showStageNotCss(this, "../adminCalculate/CalcNoSelect.fxml", new CalcPopup());
+		    ViewerUtil.showStage(this, "../adminCalculate/CalcNoSelect.fxml", null, new CalcPopup());
 			return;
 		} 
 
 		if(strTotalPrice.equals(strTotalMomey)) {
 			if(db.stats_overlap_chk(pickDate.getValue())) {
-			    ViewerUtil.showStageNotCss(this, "../adminCalculate/CalcOverlap.fxml", new CalcPopup());
+			    ViewerUtil.showStage(this, "../adminCalculate/CalcOverlap.fxml", null, new CalcPopup());
 			} else {
 				db.insert_stats_data(pickDate.getValue(), calcBean.getiSales(), Integer.parseInt(lblTotalMoney.getText()));
-				ViewerUtil.showStageNotCss(this, "../adminCalculate/CalcOk.fxml", new CalcPopup());
+				ViewerUtil.showStage(this, "../adminCalculate/CalcOk.fxml", null, new CalcPopup());
 				
 				Stage primaryStage = (Stage)paneCalc.getScene().getWindow();
 				primaryStage.close();
 			}
 		} else {
-		    ViewerUtil.showStageNotCss(this, "../adminCalculate/CalcPopUp.fxml", new CalcPopup());
+		    ViewerUtil.showStage(this, "../adminCalculate/CalcPopUp.fxml", null, new CalcPopup());
 		}
 	}
 }

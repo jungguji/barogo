@@ -1,6 +1,5 @@
 package useInfo;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -10,9 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,13 +21,13 @@ import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
 
 public class UserInfoSearch implements Initializable {
-    @FXML private TextField         textSearch;
-    @FXML private Button            btnSearch;
-    @FXML private TableView<SearchBean>     tables;
-    @FXML private AnchorPane        searchPane;
+    @FXML private TextField textSearch;
+    @FXML private Button btnSearch;
+    @FXML private TableView<SearchBean> tables;
+    @FXML private AnchorPane searchPane;
     
     private UserDAO dao = new UserDAO();
-    private SearchBean                  searchBean  = new SearchBean();
+    private SearchBean searchBean = new SearchBean();
     
     String userName;
     
@@ -41,10 +38,8 @@ public class UserInfoSearch implements Initializable {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<UseBean>  arUseBean;
-        
         try {
-            arUseBean = dao.userSearch(userName, searchBean);
+            ArrayList<UseBean> arUseBean = dao.userSearch(userName, searchBean);
             
             printUserInfoToTableView(arUseBean);
             
@@ -52,8 +47,7 @@ public class UserInfoSearch implements Initializable {
             tables.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SearchBean>() {
                 @Override
                 public void changed(ObservableValue<? extends SearchBean> observable, SearchBean oldValue, SearchBean newValue) {
-                    // TODO Auto-generated method stub
-                    dao.selectUser(newValue.getStrID());
+                    System.out.println("테이블뷰의 행 클릭");
                 }
             });
             
@@ -146,20 +140,20 @@ public class UserInfoSearch implements Initializable {
     
     public void handleBtnHomeAction(ActionEvent event) throws Exception {
         
-        ViewerUtil.showStageNotCss(this, "../useInfo/useInfoPopUP.fxml", new UserInfoPopUP());
+        ViewerUtil.showStage(this, "../useInfo/useInfoPopUP.fxml", null, new UserInfoPopUP());
         
         Stage primaryStage = (Stage)searchPane.getScene().getWindow();
         primaryStage.close();
     }
     
     public void TimeAddPeoplePopUp() throws Exception {
-        ViewerUtil.showStageNotCss(this, "../useInfo/TimeAddPeople.fxml", new TimeAddPeople());
+        ViewerUtil.showStage(this, "../useInfo/TimeAddPeople.fxml", null, new TimeAddPeople());
     }
     
     public void TimeAddPopUp(String userName, int addTime) {
         try {
             Object timeadd1 = new TimeAdd1(userName, addTime);
-            ViewerUtil.showStageNotCss(this, "../useInfo/TimeChk.fxml", timeadd1);
+            ViewerUtil.showStage(this, "../useInfo/TimeChk.fxml", null, timeadd1);
         } catch (Exception e) {
             e.printStackTrace();
         }

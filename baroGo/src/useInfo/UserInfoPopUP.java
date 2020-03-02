@@ -3,7 +3,6 @@ package useInfo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import db.DBManager;
 import db.UserDAO;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -35,16 +34,21 @@ public class UserInfoPopUP extends Application implements Initializable {
     @FXML private TextField        tfAccrueMoney;
     @FXML private TextField        tfAccrueTime;
     @FXML private TextField        tfName;
+
+    UserDAO dao = new UserDAO();
     
-    DBManager db = new DBManager();
+    String userId;
+    public UserInfoPopUP() {
+        this.userId = "";
+    }
+    
+    public UserInfoPopUP(String userId) {
+        this.userId = userId;
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            String userId = db.getTempId(); 
-            
-            UserDAO dao = new UserDAO();
-            
             if (StringUtil.isEmpty(userId)) {
                 return;
             }
@@ -80,14 +84,12 @@ public class UserInfoPopUP extends Application implements Initializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
-            Object obj = new UserInfoPopUP();
-            another.setController(obj);
+            FXMLLoader another = ViewerUtil.getFXMLLoader(this, "../useInfo/useInfoPopUP.fxml", new UserInfoPopUP());
             
             Parent root = another.load();
             
             Scene scene = new Scene(root);     
-            primaryStage.setTitle("ȸ������");  
+            primaryStage.setTitle("회원정보");  
             primaryStage.setScene(scene);      
             primaryStage.show();
         } catch (Exception e) {
@@ -103,12 +105,11 @@ public class UserInfoPopUP extends Application implements Initializable {
     public void handleBtnUseSearchAction(ActionEvent action) throws Exception {
         Object search = new UserInfoSearch(tfName.getText());
         
-        ViewerUtil.showStageNotCss(this, "../useInfo/useSearch.fxml", search);
+        ViewerUtil.showStage(this, "../useInfo/useSearch.fxml", null, search);
     }
     
     public void handleBtnPwChangeAction(ActionEvent action) throws Exception {
-        
         Object obj = new UserPasswordChange();
-        ViewerUtil.showStageNotCss(this, "../useInfo/password.fxml", obj);
+        ViewerUtil.showStage(this, "../useInfo/password.fxml", null, obj);
     }
 }
