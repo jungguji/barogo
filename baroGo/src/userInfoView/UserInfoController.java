@@ -1,13 +1,12 @@
 package userInfoView;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
 
-import adminChat.ServerBackground;
 import clientChat.ClientBack2;
 import db.DBManager;
 import javafx.application.Platform;
@@ -23,13 +22,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import userChat.ClientChatGui;
+import userChat.ClientChatServerBackground;
+import userChat.ClientKickBg;
+import userChat.ClientServerTimeAddBg;
 
 /**
  * 
- * @author ���⼺
- * 	�Խ�Ʈ �Խ�Ʈ Action ��Ʈ�ѷ�
- * 	�Խ�Ʈ�� ���� Ȯ��â
+ * @author 정기성
+ * 	게스트 게스트 Action 컨트롤러
+ * 	게스트의 정보 확인창
  */
 public class UserInfoController implements Initializable{
 
@@ -46,29 +49,41 @@ public class UserInfoController implements Initializable{
 	@FXML private Label				lblLatermoney;
 	@FXML private Text				tfPCNum;
 	
+	private String userId;
+	private boolean isPrepayment = false;
+	
+	public UserInfoController() {}
+	
+	public UserInfoController(String userId, boolean isPrepayment) {
+	    this.userId = userId;
+	    this.isPrepayment = isPrepayment;
+	}
+	
 	private DBManager db = new DBManager();
 	private ClientBack2 client = new ClientBack2();
 	
 	private int startMoney = 1000;
 	private int laterMoney = 0;
 	
-	private int hour = 0;
-	private int minute = 0;
-	
+	private int hour 			= 0;
+	private int minute 			= 0;
+	private static int iAddHour = 0;
+
 	public void handleBtnproduct(ActionEvent  action){
 	try{
 		FXMLLoader another = new FXMLLoader( getClass().getResource( "../userInfoView/Order.fxml" ));
 		try {
 		   AnchorPane anotherPage = (AnchorPane) another.load();
-		   // �ٸ�â ���� �۾� .... 2
+		   // 다른창 띄우는 작업 .... 2
 		   Scene anotherScene = new Scene(anotherPage);
 		   anotherScene.getStylesheets().add(
-					getClass().getResource("Style3.css").toString()); // CSS Style ����
-			System.out.println("��ǰ�� �ֹ��Ͻðڽ��ϱ�?");
+					getClass().getResource("../userInfoView/Order.css").toString()); // CSS Style 적용
+			System.out.println("상품을 주문하시겠습니까?");
 		   Stage stage = new  Stage();
+		   stage.initStyle(StageStyle.UTILITY);	// 테두리 제거
 		   stage.setScene(anotherScene);
 		   stage.show();
-		   // �ٸ�â ���� �۾� .... 2 ��.
+		   // 다른창 띄우는 작업 .... 2 끝.
 		} catch (IOException e) {
 		   // TODO Auto-generated catch block
 		   e.printStackTrace();
@@ -79,23 +94,31 @@ public class UserInfoController implements Initializable{
 }
 	public void handleBtnTalk(ActionEvent action) throws Exception
 	{
-		
 		ClientChatGui gui = new ClientChatGui(tfPCNum.getText());
 		gui.start(null);
 	}
 	
 	public void handleBtnSeat(ActionEvent action)
 	{
-		try
-		{
+	    if (isPrepayment) {
+	        String remainTime = lblremaintime.getText();
+            db.updateSeatByuserId(userId,remainTime);
+	    } else {
+	        String useTime = lblusetime .getText();
+            db.updateSeatByuserId(userId, useTime);
+	    }
+	    
+		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../guestLogin/Glogin.fxml"));
 			Parent mainView = loader.load();
 
-			System.out.println("�α���â���� ���ư��ϴ�.");
+			System.out.println("로그인창으로 돌아갑니다.");
 			Scene scene = new Scene(mainView);
 
-			scene.getStylesheets().add(getClass().getResource("Style3.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("../guestLogin/Glogin.css").toExternalForm());
 			Stage primaryStage = (Stage) btnSeat.getScene().getWindow();
+			primaryStage.setX(0);
+			primaryStage.setY(0);
 			primaryStage.setScene(scene);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,26 +127,18 @@ public class UserInfoController implements Initializable{
 	
 	public void handleBtnExitAction(ActionEvent action) throws InterruptedException 
 	{
-		if(salesType.getText().equals("����"))
-		{
-			db.user_data_save(lblid.getText(), lblremaintime.getText());
-			client.connet();
-			client.sendMessage(tfPCNum.getText());
-			client.socket_close();
-		} else {
-			client.connet();
-			client.sendMessage(tfPCNum.getText());
-			client.socket_close();
-		}
-
+		String strMsg = salesType.getText()+"\n"+ lblid.getText() + "\n" + lblremaintime.getText() + "\n" + "temp"+ "\n" + tfPCNum.getText();
+		
+		pc_exit(strMsg);
+		
 		/*
-		System.out.println("��ǻ�͸� �����մϴ�.");
+		System.out.println("컴퓨터를 종료합니다.");
 		Runtime runtime = Runtime.getRuntime();
 		try
 		{
 			Process process = runtime.exec("C:\\WINDOWS\\system32\\cmd.exe");
 			OutputStream os = process.getOutputStream();
-			os.write("shutdown -s -f -c -t \n\r".getBytes()); // 5�� �̳��� ���� ����
+			os.write("shutdown -s -f -c -t \n\r".getBytes()); // 5초 이내로 컴터 꺼짐
 			os.close();
 			process.waitFor();
 		} catch (IOException e) {
@@ -132,39 +147,53 @@ public class UserInfoController implements Initializable{
 		*/
 	}
 	
-	public void actioninit()
+	public void pc_exit(String a_strType) throws InterruptedException
 	{
-		userInfoBean beanUserInfo = new userInfoBean();
-		String user = db.userTempPrint_query();
+		String[] subString = a_strType.split("\n");
 		
-		String userInfo[] = new String[2];
-		StringTokenizer st = new StringTokenizer(user, ",");
-		int i = 0;
-		while (st.hasMoreTokens()) {
-			userInfo[i] = st.nextToken();
-			i++;
+		if(subString[0].equals("선불")) {
+			db.user_data_save(subString[1], subString[2]);
+			db.user_pcnum_reset(subString[1]);
+			client.connet();
+			client.sendMessage(subString[4]);
+			client.socket_close();
+		} else {
+			db.user_pcnum_reset(subString[1]);
+			client.connet();
+			client.sendMessage(subString[3]);
+			client.socket_close();
 		}
-		int payPlan = db.paymentPlanOutput_query(userInfo[0],userInfo[1]);
-		switch(payPlan)
-		{
-		case 0:
-			salesType.setText("����");
-			
-			beanUserInfo = db.actioninit_query(payPlan, userInfo[0], userInfo[1]);
+		
+		System.out.println("컴퓨터를 종료합니다.");
+		Runtime runtime = Runtime.getRuntime();
+		try {
+			Process process = runtime.exec("C:\\WINDOWS\\system32\\cmd.exe");
+			OutputStream os = process.getOutputStream();
+			os.write("shutdown -s -f -c -t \n\r".getBytes()); // 5초 이내로 컴터 꺼짐
+			os.close();
+			process.waitFor();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void actioninit() {
+		int pcNumber = db.getPcNumberByUserId(userId);
+		
+		System.out.println("pC번호 : " + pcNumber);
+		tfPCNum.setText(String.valueOf(pcNumber));
+		
+		userInfoBean beanUserInfo = new userInfoBean();
+		if (isPrepayment) {
+			salesType.setText("선불");
+			beanUserInfo = db.actioninit_query(isPrepayment, userId);
 			lblid.setText(beanUserInfo.getUserID());
 			
-			lblfirstmoney.setText(beanUserInfo.getFirstMoney()+" ��");
+			lblfirstmoney.setText(beanUserInfo.getFirstMoney()+" 원");
 			
 			String strInitRemainTime = beanUserInfo.getstrRemainTime();
 			
-			StringTokenizer strToken = new StringTokenizer(strInitRemainTime, ":");
-			String[] strTime = new String[2];
-			int j = 0;
-			
-			while(strToken.hasMoreElements())
-			{
-				strTime[j++] = strToken.nextToken();
-			}
+			String[] strTime = strInitRemainTime.split(":");
 			
 			hour = Integer.parseInt(strTime[0]); 
 			minute = Integer.parseInt(strTime[1]);
@@ -183,7 +212,10 @@ public class UserInfoController implements Initializable{
 									minute = 59;
 								}
 								
+								hour += iAddHour;
 								String time = hour + ":" + minute;
+								
+								iAddHour = 0;
 								Calendar calendar = Calendar.getInstance();
 								SimpleDateFormat dateforamt = new SimpleDateFormat("HH:mm");
 								
@@ -210,13 +242,11 @@ public class UserInfoController implements Initializable{
 			th1.setDaemon(true);
 			th1.start();
 			
-			break;
-			
-		case 1:
-			salesType.setText("�ĺ�");
-			beanUserInfo = db.actioninit_query(payPlan, userInfo[0], userInfo[1]);
+		} else {
+			salesType.setText("후불");
+			beanUserInfo = db.actioninit_query(isPrepayment, userId);
 			lblid.setText(beanUserInfo.getUserID());
-			lblLatermoney.setText(startMoney + "��");
+			lblLatermoney.setText(startMoney + "원");
 			
 			Task<Void> task = new Task<Void>() {
 				@Override
@@ -226,6 +256,7 @@ public class UserInfoController implements Initializable{
 							@Override
 							public void run() {
 								
+								hour += iAddHour;
 								String time = hour + ":" + minute;
 								
 								Calendar calendar = Calendar.getInstance();
@@ -233,7 +264,7 @@ public class UserInfoController implements Initializable{
 								
 								String strStartTime = dateforamt.format(calendar.getTime());
 								lblusetime.setText(time);
-								lblLatermoney.setText(startMoney + "��");
+								lblLatermoney.setText(startMoney + "원");
 								
 								client.connet();
 								client.sendMessage(tfPCNum.getText() + "\n" 
@@ -264,19 +295,36 @@ public class UserInfoController implements Initializable{
 					}
 				}
 			};
+			
 			Thread th = new Thread(task);
 			th.setDaemon(true);
 			th.start();
-			
-			break;
 		}
 	}
 
+	// 시간추가 한 시간
+	public void add_hour_time(String a_strTime) {
+		iAddHour = Integer.parseInt(a_strTime); 
+	}
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
 		actioninit();
 		
-		// �����ڿ��� ä�� �� ��� ���
+		// 관리자에서 채팅 올 경우 대기
+		// 추방당할 경우
+		// 시간 추가 당할 경우
+		
+		Thread th = new Thread(new ClientChatServerBackground(tfPCNum.getText()));
+		Thread th2 = new Thread(new ClientKickBg());
+		Thread th3 = new Thread(new ClientServerTimeAddBg());
+		
+		th.setDaemon(true);
+		th2.setDaemon(true);
+		th3.setDaemon(true);
+		
+		th.start();
+		th2.start();
+		th3.start();
 	}
 }

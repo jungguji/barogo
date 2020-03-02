@@ -15,8 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
+import userInfoView.UserInfoController;
 
 /**
  * 
@@ -34,53 +34,73 @@ public class LoginController implements Initializable {
     @FXML private Button            btnRestart;
     @FXML private Button             btnMember;
     @FXML private Button             btnPwfind;
+    @FXML private Button            btnPwOK;
     @FXML private RadioButton         rdoFirstPay;
     @FXML private RadioButton         rdoLaterPay;
 
     LoginDAO dao = new LoginDAO();
     
     public void handleBtnLoginAction(ActionEvent action) throws Exception {
-        String userID = ID.getText();
-        String userPW = PW.getText();
-
-        boolean isLogin = dao.guestLogin(userID, userPW);
+//        String userID = ID.getText();
+//        String userPW = PW.getText();
+        
+        String userId = "jgji";
+//
+//        boolean isLogin = dao.guestLogin(userID, userPW);
 
         try {
-            if (!isLogin) {
-                ID.setText("");
-                PW.setText("");
-                
-                return;
-            }
+//            if (!isLogin) {
+//                ID.setText("");
+//                PW.setText("");
+//                
+//                return;
+//            }
+//            
+//            if (!rdoFirstPay.isSelected() && !rdoLaterPay.isSelected()) {
+//                ViewerUtil.showStage(this, "PlanChk.fxml", "Style3.css", new PlanChk());
+//                return;
+//            }
+//            
+//            String remaintime = dao.findRemainTime(userID);
+//            if (rdoFirstPay.isSelected() && StringUtil.isEmpty(remaintime)) {
+//                ID.setText("");
+//                PW.setText("");
+//                ViewerUtil.showStage(this, "Paycheck.fxml", "Style3.css", new Paycheck());
+//                return;
+//            }
+//            
+//            if (rdoFirstPay.isSelected()) {
+//                dao.paymentPlanInsert_query(0, userID, userPW);
+//            } else if (rdoLaterPay.isSelected()) {
+//                dao.paymentPlanInsert_query(1, userID, userPW);
+//            }
+//            
+//            dao.userTemp_query(userID, userPW);
+//            
+//            Calendar calendar = Calendar.getInstance();
+//            
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            String date = dateFormat.format(calendar.getTime());
+//            
+//            dateFormat = new SimpleDateFormat("HH:mm");
+//            String time = dateFormat.format(calendar.getTime());
+//            
+//            dao.startTime_query(date, time);
+//            
+//            int pcNumber = (1+ (int)(Math.random()*10));
+//            System.out.println(" pc 번호 : " +pcNumber);
+//            dao.pcNumber_query(userID, userPW, pcNumber);
             
-            if (!rdoFirstPay.isSelected() && !rdoLaterPay.isSelected()) {
-                ViewerUtil.showStage(this, "PlanChk.fxml", "Style3.css");
-                return;
-            }
-            
-            String remaintime = dao.findRemainTime(userID);
-            if (rdoFirstPay.isSelected() && StringUtil.isEmpty(remaintime)) {
-                ID.setText("");
-                PW.setText("");
-                ViewerUtil.showStage(this, "paycheck.fxml", "Style3.css");
-                return;
-            }
-            
+            boolean isPrepayment = false;
             if (rdoFirstPay.isSelected()) {
-                dao.paymentPlanInsert_query(0, userID, userPW);
-            } else if (rdoLaterPay.isSelected()) {
-                dao.paymentPlanInsert_query(1, userID, userPW);
+                isPrepayment = true;
             }
             
-            dao.userTemp_query(userID, userPW);
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../userInfoView/userInfoView.fxml"));
+            FXMLLoader loader = ViewerUtil.getFXMLLoader(this, "../userInfoView/userInfoView.fxml", new UserInfoController(userId, isPrepayment));
             Parent mainView = loader.load();
 
             Scene scene = new Scene(mainView);
-            scene.getStylesheets().add(getClass().getResource("Style3.css").toString()); // CSS
-                                                                                            // style
-                                                                                            // �쟻�슜
+            scene.getStylesheets().add(getClass().getResource("../userInfoView/userInfoView.css").toString()); // CSS style 적용
             Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
             primaryStage.setScene(scene);
         } catch (Exception e1) {
@@ -112,17 +132,28 @@ public class LoginController implements Initializable {
     }
 
     public void handleBtnMember(ActionEvent action) {
-        System.out.println("�쉶�썝媛��엯 �븯�떆寃좎뒿�땲源�?");
         try { 
-            ViewerUtil.showStage(this, "Membership.fxml", "Style3.css");
+            ViewerUtil.showStage(this, "Membership.fxml", "global.css", new MembershipController());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
     public void handleBtnPwfind(ActionEvent action) {
-        System.out.println("鍮꾨�踰덊샇瑜� 李얠쑝�떆寃좎뒿�땲源�?");
+        System.out.println("비밀번호 찾기");
+        try{
+            ViewerUtil.showStage(this, "PWfind.fxml", "global.css", new LoginController());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public void handleBtnPwOK(ActionEvent action) {
+        System.out.println("확인");
+        Stage primaryStage = (Stage) btnPwOK.getScene().getWindow();
+        primaryStage.close();   
+        }
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
