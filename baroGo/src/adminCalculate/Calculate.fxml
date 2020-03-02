@@ -10,8 +10,7 @@
 
 <AnchorPane fx:id="paneCalc"
 			prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" 
-			xmlns:fx="http://javafx.com/fxml/1" 
-			fx:controller="adminCalculate.CalculateView">
+			xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <GridPane gridLinesVisible="true" layoutX="35.0" layoutY="62.0" prefHeight="586.0" prefWidth="300.0">
         <columnConstraints>
@@ -65,42 +64,42 @@
             <TextField fx:id="tfPrice8" alignment="CENTER_RIGHT" disable="true" prefHeight="88.0" prefWidth="100.0" promptText="0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../img/50000.png" />
+                  <Image url="@../images/money/50000won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../img/10000.png" />
+                  <Image url="@../images/money/10000won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../img/5000.png" />
+                  <Image url="@../images/money/5000won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../img/1000.png" />
+                  <Image url="@../images/money/1000won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
                <image>
-                  <Image url="@../../img/500.png" />
+                  <Image url="@../images/money/500won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="6">
                <image>
-                  <Image url="@../../img/100.png" />
+                  <Image url="@../images/money/100won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7">
                <image>
-                  <Image url="@../../img/50.png" />
+                  <Image url="@../images/money/50won.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8">
                <image>
-                  <Image url="@../../img/10.png" />
+                  <Image url="@../images/money/10won.png" />
                </image>
             </ImageView>
             <TextField fx:id="tfTotalPrice" alignment="CENTER_RIGHT" disable="true" prefHeight="88.0" prefWidth="100.0" promptText="0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
@@ -260,7 +259,7 @@
       </GridPane>
       <ImageView fitHeight="150.0" fitWidth="260.0" layoutX="818.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Desktop/image/close.png" />
+            <Image url="@../images/close.png" />
          </image>
       </ImageView>
    </children>
