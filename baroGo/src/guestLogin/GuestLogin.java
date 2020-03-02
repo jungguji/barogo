@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class GuestLogin extends Application {
 	@FXML private Label labelpwch;
@@ -16,18 +17,22 @@ public class GuestLogin extends Application {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass()
 					.getResource("Glogin.fxml"));
-			Scene scene = new Scene(root); // Àå¸é »ı¼º
+			Scene scene = new Scene(root); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            scene.getStylesheets().add(
+                    getClass().getResource("Glogin.css").toString()); // CSS style ì ìš©
+            
+//            primaryStage.setMaximized(true);        // ì°½ ë¬´ì¡°ê±´ ìµœëŒ€í™”!!!!!!!!!!!!!!!!!!!!!!!!!!
+            primaryStage.initStyle(StageStyle.TRANSPARENT); // í…Œë‘ë¦¬ ì œê±°
 
-			//primaryStage.initStyle(StageStyle.TRANSPARENT);	// Å×µÎ¸® Á¦°Å
-			primaryStage.setTitle("È¸¿øÁ¤º¸"); // À©µµ¿ì Ã¢ Á¦¸ñ
-			primaryStage.setScene(scene); // À©µµ¿ìÃ¢¿¡ Àå¸é ¼³Á¤
-			primaryStage.show(); // À©µµ¿ì º¸¿©ÁÖ±â
+			primaryStage.setTitle("íšŒì›ì •ë³´"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½
+			primaryStage.setScene(scene); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			primaryStage.show(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 		} catch (Exception e) {
 			throw e;
 		}
 	}
 
 	public static void main(String[] args) {
-		launch(args);	//main °´Ã¼ »ı¼º ¹× ¸ŞÀÎ À©µµ¿ì »ı¼º
+		launch(args);	//main ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 }
