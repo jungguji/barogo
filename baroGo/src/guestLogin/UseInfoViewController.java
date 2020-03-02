@@ -20,14 +20,13 @@ public class UseInfoViewController implements Initializable {
 		this.primaryStage = primaryStage;
 	}
 	
-	
 	public void handleBtnUseInfoViewAction(ActionEvent action)
 	{
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Glogin.fxml"));
 			Parent mainView = loader.load();
 
-			System.out.println("·Î±×ÀÎÃ¢À¸·Î µ¹¾Æ°©´Ï´Ù.");
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½Ï´ï¿½.");
 			//Parent mainView = FXMLLoader.load(getClass().getResource("AdminMainView.fxml"));
 			Scene scene = new Scene(mainView);
 			Stage primaryStage = (Stage)btnSeat.getScene().getWindow();
