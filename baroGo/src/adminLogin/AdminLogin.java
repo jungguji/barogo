@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 
 /**
  * 
- * @author ÁöÁß±¸
- *	°ü¸®ÀÚ ·Î±×ÀÎÃ¢
+ * @author ï¿½ï¿½ï¿½ß±ï¿½
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½Ã¢
  *	
  */
 public class AdminLogin extends Application {
@@ -23,7 +23,7 @@ public class AdminLogin extends Application {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 
-			primaryStage.setTitle("¹Ù·Îgo Ä«¿îÅÍ");
+			primaryStage.setTitle("ë°”ë¡œgo ì¹´ìš´í„°");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
