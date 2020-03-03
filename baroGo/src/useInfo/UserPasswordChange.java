@@ -12,11 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import jgj.util.barogo.StringUtil;
 
 /**
- * @author ÁöÁß±¸
- *		È¸¿øÁ¤º¸¿¡¼­ Ãâ·ÂµÈ È¸¿øÀÇ ºñ¹Ğ¹öÈ£¸¦ ¹Ù²ãÁÖ´Â Å¬·¡½º
+ * @author ì§€ì¤‘êµ¬
+ *		íšŒì›ì •ë³´ì—ì„œ ì¶œë ¥ëœ íšŒì›ì˜ ë¹„ë°€ë²„í˜¸ë¥¼ ë°”ê¿”ì£¼ëŠ” í´ë˜ìŠ¤
  */
 public class UserPasswordChange extends Application {
 	@FXML private AnchorPane	panePasswd;
@@ -30,35 +29,36 @@ public class UserPasswordChange extends Application {
 	public void start(Stage primaryStage) throws Exception{
 		
 		Parent root = FXMLLoader.load(getClass().getResource("password.fxml"));
-		Scene scene = new Scene(root);	//Àå¸é »ı¼º
+		Scene scene = new Scene(root);	//ì¥ë©´ ìƒì„±
 		scene.getStylesheets().add(getClass().getResource("../guestLogin/global.css").toExternalForm());
-		primaryStage.initStyle(StageStyle.UTILITY);	// Å×µÎ¸® Á¦°Å
-		primaryStage.setTitle("ºñ¹Ğ¹øÈ£ º¯°æ");	//À©µµ¿ì Ã¢ Á¦¸ñ
-		primaryStage.setScene(scene);		//À©µµ¿ìÃ¢¿¡ Àå¸é ¼³Á¤
-		primaryStage.show();				//À©µµ¿ì º¸¿©ÁÖ±â
+		primaryStage.initStyle(StageStyle.UTILITY);	// í…Œë‘ë¦¬ ì œê±°
+		primaryStage.setTitle("ë¹„ë°€ë²ˆí˜¸ ë³€ê²½");	//ìœˆë„ìš° ì°½ ì œëª©
+		primaryStage.setScene(scene);		//ìœˆë„ìš°ì°½ì— ì¥ë©´ ì„¤ì •
+		primaryStage.show();				//ìœˆë„ìš° ë³´ì—¬ì£¼ê¸°
 	}
 	
 	public void handleBtnOkAction(ActionEvent action)
 	{
-		String password		= pwfNewPW.getText();
-		String passwordConfirm		= pwfNewPWChk.getText();
+		String strPw		= pwfNewPW.getText();
+		String strPwChk		= pwfNewPWChk.getText();
 		
-		if(StringUtil.isEmpty(password) || StringUtil.isEmpty(passwordConfirm)) {
-			System.out.println("ºóÄ­ÀÌ ÀÖ½À´Ï´Ù.");
-			
+		System.out.println("ìœ¼ì•… : "+strPw);
+		System.out.println("ìœ¼ì•…2 : "+strPwChk);
+		
+		if(strPw.equals("") || strPwChk.equals(""))
+		{
+			System.out.println("ë¹ˆì¹¸ì´ ìˆìŠµë‹ˆë‹¤.");
 			pwfNewPW.setText("");
 			pwfNewPWChk.setText("");
-			
-		} else if(password.length() < 4) {
-			System.out.println("ºñ¹Ğ¹øÈ£´Â ÃÖ¼Ò 4ÀÚ ÀÔ´Ï´Ù.");
-		}else if(!password.equals(passwordConfirm)) {
-			System.out.println("ÀÔ·ÂÇÑ µÎ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù");
+		} else if(strPw.length() < 4) {
+			System.out.println("ë¹„ë°€ë²ˆí˜¸ëŠ” ìµœì†Œ 4ì ì…ë‹ˆë‹¤.");
+		}else if(!strPw.equals(strPwChk)) {
+			System.out.println("ì…ë ¥í•œ ë‘ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤");
 		} else {
-			db.user_passwd_change(password);
-			System.out.println("ºñ¹Ğ¹øÈ£ º¯°æ ¿Ï·á");
+			db.user_passwd_change(strPw);
+			System.out.println("ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì™„ë£Œ");
 			pwfNewPW.setText("");
 			pwfNewPWChk.setText("");
-			
 			Stage primaryStage = (Stage)panePasswd.getScene().getWindow();
 			primaryStage.close();
 		}
@@ -71,6 +71,6 @@ public class UserPasswordChange extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);	//main °´Ã¼ »ı¼º ¹× ¸ŞÀÎ À©µµ¿ì »ı¼º
+		launch(args);	//main ê°ì²´ ìƒì„± ë° ë©”ì¸ ìœˆë„ìš° ìƒì„±
 	}
 }
