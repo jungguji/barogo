@@ -32,7 +32,7 @@ import javafx.stage.Stage;
 import jgj.util.barogo.StringUtil;
 
 public class SaleController implements Initializable {
-	@FXML private TableView<SaleInfoBean> productTableView;
+	@FXML private TableView<SalesVO> productTableView;
 
 	@FXML private Button snack;
 	@FXML private Button drink;
@@ -48,7 +48,7 @@ public class SaleController implements Initializable {
 
 	private DBManager db = new DBManager();
 	
-	ArrayList<SaleInfoBean> saleList = new ArrayList<SaleInfoBean>();
+	ArrayList<SalesVO> saleList = new ArrayList<SalesVO>();
 	
 	ArrayList<String> ProductNameList = new ArrayList<String>();
 	ArrayList<Integer> PriceList = new ArrayList<Integer>();
@@ -75,11 +75,11 @@ public class SaleController implements Initializable {
 	    Button catetoryButton = (Button) action.getSource();
 	    
 	    String category = catetoryButton.getId();
-		ArrayList<SaleInfoBean> saleList = db.findNameAndPriceByCategory(category);
+		ArrayList<SalesVO> saleList = db.findNameAndPriceByCategory(category);
 
 		int productType = getProductType(category);
 		for (int i = 0; i < saleList.size(); i++) {
-		    SaleInfoBean sale = saleList.get(i);
+		    SalesVO sale = saleList.get(i);
 		    Button productButton = productButtonList.get(i);
 		    
 		    Map<String, Object> map = new HashMap<String, Object>();
@@ -113,7 +113,7 @@ public class SaleController implements Initializable {
 	    
         Map<String, Object> map = (Map<String, Object>) button.getUserData();
 	    
-		SaleInfoBean sale = new SaleInfoBean();
+		SalesVO sale = new SalesVO();
 		sale.setProductName((String) map.get("name"));
 		sale.setProductType((int) map.get("productType"));
 		sale.setPrice((int) map.get("price"));
@@ -151,7 +151,7 @@ public class SaleController implements Initializable {
 			receiptNo = 1;
 		}
 		
-		for (SaleInfoBean saleBean : saleList) {
+		for (SalesVO saleBean : saleList) {
 			
 			ProductNameList.add(saleBean.getProductName());
 			ProductTypeList.add(saleBean.getProductType());
@@ -330,7 +330,7 @@ public class SaleController implements Initializable {
 			public void handle(ActionEvent event) {
 				int i = 0, salesType = 0;
 
-				for (SaleInfoBean saleBean : saleList) {
+				for (SalesVO saleBean : saleList) {
 					db.uploadGoods(receiptNo, ProductNameList.get(i), CountList.get(i), PriceList.get(i), date, time);
 					i++;
 				}

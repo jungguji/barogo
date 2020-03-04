@@ -2,15 +2,15 @@ package db;
 
 import java.util.ArrayList;
 
-import useInfo.SearchBean;
-import useInfo.UseBean;
+import useInfo.SearchDTO;
+import useInfo.UserVO;
 
 public class UserDAO extends DBManager {
     
-    public ArrayList<UseBean> userSearch(String a_strUserName, SearchBean bean) throws Exception {
+    public ArrayList<UserVO> userSearch(String a_strUserName, SearchDTO bean) throws Exception {
         mysqlConnection();
         makeStatement();
-        ArrayList<UseBean> userList = new ArrayList<UseBean>();
+        ArrayList<UserVO> userList = new ArrayList<UserVO>();
         
         try{
             String strQuery = "select * from user where name = '" + a_strUserName +"';";
@@ -24,21 +24,21 @@ public class UserDAO extends DBManager {
                 bean.setStrID(result.getString("id"));
                 bean.setBirth(strBirth.toString());
 
-                UseBean useBean = new UseBean();
-                useBean.setiPCNumber(result.getInt(1));
-                useBean.setStrName(result.getString(2));
-                useBean.setStrID(result.getString(3));
-                useBean.setbSex(result.getBoolean(5));
-                useBean.setStrEmail(result.getString(6));
-                useBean.setbPaymentplan(result.getBoolean(8));
-                useBean.setStrRemaintime(result.getString(9));
-                useBean.setStrUsetime(result.getString(10));
-                useBean.setiAccruemoney(result.getInt(11));
-                useBean.setStrAccruetime(result.getString(12));
-                useBean.setiBirth1(result.getInt(13));
-                useBean.setiBirth2(result.getInt(14));
-                useBean.setiBirth3(result.getInt(15));
-                userList.add(useBean);
+                UserVO UserVO = new UserVO();
+                UserVO.setiPCNumber(result.getInt(1));
+                UserVO.setStrName(result.getString(2));
+                UserVO.setStrID(result.getString(3));
+                UserVO.setbSex(result.getBoolean(5));
+                UserVO.setStrEmail(result.getString(6));
+                UserVO.setbPaymentplan(result.getBoolean(8));
+                UserVO.setStrRemaintime(result.getString(9));
+                UserVO.setStrUsetime(result.getString(10));
+                UserVO.setiAccruemoney(result.getInt(11));
+                UserVO.setStrAccruetime(result.getString(12));
+                UserVO.setiBirth1(result.getInt(13));
+                UserVO.setiBirth2(result.getInt(14));
+                UserVO.setiBirth3(result.getInt(15));
+                userList.add(UserVO);
             }
         } catch(Exception e) {
             throw e;
@@ -47,7 +47,7 @@ public class UserDAO extends DBManager {
         return userList;
     }
     
-    public UseBean userSearch(String a_strUserID) {
+    public UserVO userSearch(String a_strUserID) {
 //      mysqlConnection();
 //      makeStatement();
 //      try{
@@ -55,38 +55,39 @@ public class UserDAO extends DBManager {
 //          result = stmt.executeQuery(query);
 //          
 //          if (result.next()) {
-//              useBean.setiPCNumber(result.getInt(1));
-//              useBean.setStrName(result.getString(2));
-//              useBean.setStrID(result.getString(3));
-//              useBean.setbSex(result.getBoolean(5));
-//              useBean.setStrEmail(result.getString(6));
-//              useBean.setbPaymentplan(result.getBoolean(8));
-//              useBean.setStrRemaintime(result.getString(9));
-//              useBean.setStrUsetime(result.getString(10));
-//              useBean.setiAccruemoney(result.getInt(11));
-//              useBean.setStrAccruetime(result.getString(12));
-//              useBean.setiBirth1(result.getInt(13));
-//              useBean.setiBirth2(result.getInt(14));
-//              useBean.setiBirth3(result.getInt(15));
+//              UserVO.setiPCNumber(result.getInt(1));
+//              UserVO.setStrName(result.getString(2));
+//              UserVO.setStrID(result.getString(3));
+//              UserVO.setbSex(result.getBoolean(5));
+//              UserVO.setStrEmail(result.getString(6));
+//              UserVO.setbPaymentplan(result.getBoolean(8));
+//              UserVO.setStrRemaintime(result.getString(9));
+//              UserVO.setStrUsetime(result.getString(10));
+//              UserVO.setiAccruemoney(result.getInt(11));
+//              UserVO.setStrAccruetime(result.getString(12));
+//              UserVO.setiBirth1(result.getInt(13));
+//              UserVO.setiBirth2(result.getInt(14));
+//              UserVO.setiBirth3(result.getInt(15));
 //          }
 //      } catch(Exception e) {
 //          e.printStackTrace();
 //      }
         
-        useBean.setiPCNumber(1);
-        useBean.setStrName("중구");
-        useBean.setStrID("jgji");
-        useBean.setbSex(true);
-        useBean.setStrEmail("");
-        useBean.setbPaymentplan(true);
-        useBean.setStrRemaintime("");
-        useBean.setStrUsetime("");
-        useBean.setiAccruemoney(11000);
-        useBean.setStrAccruetime("");
-        useBean.setiBirth1(93);
-        useBean.setiBirth2(12);
-        useBean.setiBirth3(13);
+        UserVO vo = new UserVO();
+        vo.setiPCNumber(1);
+        vo.setStrName("중구");
+        vo.setStrID("jgji");
+        vo.setbSex(true);
+        vo.setStrEmail("");
+        vo.setbPaymentplan(true);
+        vo.setStrRemaintime("");
+        vo.setStrUsetime("");
+        vo.setiAccruemoney(11000);
+        vo.setStrAccruetime("");
+        vo.setiBirth1(93);
+        vo.setiBirth2(12);
+        vo.setiBirth3(13);
         
-        return useBean;
+        return vo;
     }
 }

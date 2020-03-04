@@ -53,7 +53,7 @@ public class UserInfoPopUP extends Application implements Initializable {
                 return;
             }
             
-            UseBean useBean = dao.userSearch(userId);
+            UserVO useBean = dao.userSearch(userId);
             
             tfPCNumber.setText(Integer.toString(useBean.getiPCNumber()));
             tfUseName.setText(useBean.getStrName());

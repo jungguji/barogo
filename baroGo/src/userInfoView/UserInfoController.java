@@ -36,18 +36,17 @@ import userChat.ClientServerTimeAddBg;
  */
 public class UserInfoController implements Initializable{
 
-	@FXML private Button			btnproduct;
-	@FXML private Button			btntalk;
-	@FXML private Button			btnSeat;
-	@FXML private Button			btnExit;
-	
-	@FXML private Label				salesType;
-	@FXML private Label				lblid;
-	@FXML private Label				lblusetime;
-	@FXML private Label				lblremaintime;
-	@FXML private Label				lblfirstmoney;
-	@FXML private Label				lblLatermoney;
-	@FXML private Text				tfPCNum;
+	@FXML private Button btnproduct;
+	@FXML private Button btntalk;
+	@FXML private Button btnSeat;
+	@FXML private Button btnExit;
+	@FXML private Label salesType;
+	@FXML private Label lblid;
+	@FXML private Label lblusetime;
+	@FXML private Label lblremaintime;
+	@FXML private Label lblfirstmoney;
+	@FXML private Label lblLatermoney;
+	@FXML private Text tfPCNum;
 	
 	private String userId;
 	private boolean isPrepayment = false;
@@ -92,8 +91,7 @@ public class UserInfoController implements Initializable{
 		e.printStackTrace();
 	}
 }
-	public void handleBtnTalk(ActionEvent action) throws Exception
-	{
+	public void handleBtnTalk(ActionEvent action) throws Exception {
 		ClientChatGui gui = new ClientChatGui(tfPCNum.getText());
 		gui.start(null);
 	}
@@ -183,7 +181,7 @@ public class UserInfoController implements Initializable{
 		System.out.println("pC번호 : " + pcNumber);
 		tfPCNum.setText(String.valueOf(pcNumber));
 		
-		userInfoBean beanUserInfo = new userInfoBean();
+		UserInfoVO beanUserInfo = new UserInfoVO();
 		if (isPrepayment) {
 			salesType.setText("선불");
 			beanUserInfo = db.actioninit_query(isPrepayment, userId);

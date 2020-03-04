@@ -1,12 +1,15 @@
 package useInfo;
 
-public class UseBean {
+import org.apache.ibatis.type.Alias;
+
+@Alias("user")
+public class UserVO {
 	private int		iPCNumber;
 	private String	strName;
 	private String	strID;
 	private boolean	bSex;
 	private String	strEmail;
-	private boolean	bPaymentplan;	// 0Àº false
+	private boolean	bPaymentplan;	// 0ï¿½ï¿½ false
 	private String	strRemaintime;
 	private String	strUsetime;
 	private int		iAccruemoney;

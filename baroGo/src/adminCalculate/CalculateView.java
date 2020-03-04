@@ -39,7 +39,7 @@ public class CalculateView implements Initializable {
 	@FXML private TextField 		tfAdminID, tfAdminPW;
 	@FXML private Button 			btnSelect, btnReset, btnLogin, btnCalc;
 	@FXML private Label 			lblAdmin;
-	@FXML private TableView<Sales> 	tvTotalSales;
+	@FXML private TableView<SalesDTO> 	tvTotalSales;
 	@FXML private DatePicker		pickDate;
 	@FXML private Label				lblTotalMoney;
 	@FXML private AnchorPane		paneCalc;
@@ -54,7 +54,7 @@ public class CalculateView implements Initializable {
 	private final static int PAYS_10 = 10;
 	
 	private DBManager	db			= new DBManager();
-	private CalcBean	calcBean	= new CalcBean();
+	private CalculateVO	calcBean	= new CalculateVO();
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
@@ -70,8 +70,8 @@ public class CalculateView implements Initializable {
 		
 		pickDate.setPromptText(String.valueOf(nowDate));
 		
-		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("","", "")
+		ObservableList<SalesDTO> salesList = FXCollections.observableArrayList(
+				new SalesDTO("","", "")
 		);
 		
 		// ���̺��÷��� �� ����
@@ -173,8 +173,8 @@ public class CalculateView implements Initializable {
 
 	public void handleBtnResetAction(ActionEvent action)
 	{
-		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("","", "")
+		ObservableList<SalesDTO> salesList = FXCollections.observableArrayList(
+				new SalesDTO("","", "")
 		);
 		
 		tvTotalSales.setItems(salesList);
@@ -215,10 +215,10 @@ public class CalculateView implements Initializable {
 
 		lblTotalMoney.setText(String.valueOf(resultsum));
 		
-		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("총 매출액", String.valueOf(iSalesCount), String.valueOf(iSalesSum)),
-				new Sales("총 반품액", String.valueOf(iReturnCount) , String.valueOf(iReturnSum)),
-				new Sales("순 매출액", String.valueOf(resultCount), String.valueOf(resultsum))
+		ObservableList<SalesDTO> salesList = FXCollections.observableArrayList(
+				new SalesDTO("총 매출액", String.valueOf(iSalesCount), String.valueOf(iSalesSum)),
+				new SalesDTO("총 반품액", String.valueOf(iReturnCount) , String.valueOf(iReturnSum)),
+				new SalesDTO("순 매출액", String.valueOf(resultCount), String.valueOf(resultsum))
 		);
 		tvTotalSales.setItems(salesList);
 	}

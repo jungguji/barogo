@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 
 public class ReturnController implements Initializable {
 	
-	@FXML private TableView<SaleInfoBean> ReturnTableView;
+	@FXML private TableView<SalesVO> ReturnTableView;
 	
 	@FXML private TextField 		tfReceiptNo;
 	@FXML private DatePicker 		dpDate;
@@ -36,8 +36,8 @@ public class ReturnController implements Initializable {
 	
 	DBManager db = new DBManager();
 	
-	SaleInfoBean saleInfoBean = new SaleInfoBean();
-	ArrayList<SaleInfoBean> Bean = new ArrayList<SaleInfoBean>();
+	SalesVO saleInfoBean = new SalesVO();
+	ArrayList<SalesVO> Bean = new ArrayList<SalesVO>();
 	
 	public void handleBtnSearchAction(ActionEvent action)
 	{
@@ -75,7 +75,7 @@ public class ReturnController implements Initializable {
 
 		ReturnText.setLayoutX(90);
 		ReturnText.setLayoutY(34);
-		ReturnText.setText("¹ÝÇ° ÇÏ½Ã°Ú½À´Ï±î?");
+		ReturnText.setText("ï¿½ï¿½Ç° ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?");
 		ReturnText.setFont(Font.font("MDotum",15));
 
 		Button btnOK = new Button();
@@ -86,7 +86,7 @@ public class ReturnController implements Initializable {
 		btnOK.setMnemonicParsing(false);
 		btnOK.setPrefHeight(26);
 		btnOK.setPrefWidth(60);
-		btnOK.setText("È®ÀÎ");
+		btnOK.setText("È®ï¿½ï¿½");
 		btnOK.setFont(Font.font("Aral",13));
 		
 		btnCancel.setLayoutX(191);
@@ -94,7 +94,7 @@ public class ReturnController implements Initializable {
 		btnCancel.setMnemonicParsing(false);
 		btnCancel.setPrefHeight(26);
 		btnCancel.setPrefWidth(60);
-		btnCancel.setText("Ãë¼Ò");
+		btnCancel.setText("ï¿½ï¿½ï¿½");
 		btnCancel.setFont(Font.font("Aral",13));
 
 		rootList.add(ReturnText);
@@ -137,7 +137,7 @@ public class ReturnController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO ÀÚµ¿ »ý¼ºµÈ ¸Þ¼Òµå ½ºÅÓ
+		// TODO ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 		TableColumn ProductName = (TableColumn) ReturnTableView.getColumns().get(0);
 		ProductName.setCellValueFactory(new PropertyValueFactory("ProductName"));
 		ProductName.setStyle("-fx-alignment: CENTER;");

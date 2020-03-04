@@ -20,7 +20,7 @@ public class ReceiverProduct extends Application{
 
 	private AnchorPane root = new AnchorPane();
 	private ObservableList<Node> list = root.getChildren();
-	TableView<SendProductBean> tvSendProduct = new TableView<SendProductBean>();
+	TableView<SendProductDTO> tvSendProduct = new TableView<SendProductDTO>();
 	
 	String msg;
 	
@@ -70,7 +70,7 @@ public class ReceiverProduct extends Application{
 		String[] temp = new String[255];
 		
 		
-		ArrayList<SendProductBean> arProBean = new ArrayList<SendProductBean>();
+		ArrayList<SendProductDTO> arProBean = new ArrayList<SendProductDTO>();
 		int i = 0;
 		
 		
@@ -85,7 +85,7 @@ public class ReceiverProduct extends Application{
 				temp2[j] = strToken2.nextToken();
 				j++;
 			}
-			SendProductBean haha = new SendProductBean();
+			SendProductDTO haha = new SendProductDTO();
 			haha.setStrProductName(temp2[0]);
 			haha.setStrProductCount(temp2[1]);
 			
@@ -93,8 +93,8 @@ public class ReceiverProduct extends Application{
 			i++;
 		}
 		
-		for (SendProductBean B : arProBean) {
-			SendProductBean proData = new SendProductBean();
+		for (SendProductDTO B : arProBean) {
+			SendProductDTO proData = new SendProductDTO();
 			
 			proData.setStrProductName(B.getStrProductName());
 			proData.setStrProductCount(B.getStrProductCount());

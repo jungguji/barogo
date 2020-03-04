@@ -23,11 +23,11 @@ import jgj.util.barogo.ViewerUtil;
 public class UserInfoSearch implements Initializable {
     @FXML private TextField textSearch;
     @FXML private Button btnSearch;
-    @FXML private TableView<SearchBean> tables;
+    @FXML private TableView<SearchDTO> tables;
     @FXML private AnchorPane searchPane;
     
     private UserDAO dao = new UserDAO();
-    private SearchBean searchBean = new SearchBean();
+    private SearchDTO searchBean = new SearchDTO();
     
     String userName;
     
@@ -39,14 +39,14 @@ public class UserInfoSearch implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ArrayList<UseBean> arUseBean = dao.userSearch(userName, searchBean);
+            ArrayList<UserVO> arUserVO = dao.userSearch(userName, searchBean);
             
-            printUserInfoToTableView(arUseBean);
+            printUserInfoToTableView(arUserVO);
             
             // 테이블뷰의 행 클릭햇을때
-            tables.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SearchBean>() {
+            tables.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SearchDTO>() {
                 @Override
-                public void changed(ObservableValue<? extends SearchBean> observable, SearchBean oldValue, SearchBean newValue) {
+                public void changed(ObservableValue<? extends SearchDTO> observable, SearchDTO oldValue, SearchDTO newValue) {
                     System.out.println("테이블뷰의 행 클릭");
                 }
             });
@@ -114,7 +114,7 @@ public class UserInfoSearch implements Initializable {
     public void handleBtnUseSearchAction(ActionEvent event) {
         tables.getItems().clear();
         try {
-            ArrayList<UseBean> userList = dao.userSearch(textSearch.getText(), searchBean);
+            ArrayList<UserVO> userList = dao.userSearch(textSearch.getText(), searchBean);
             
             printUserInfoToTableView(userList);
         } catch (Exception e) {
@@ -122,11 +122,11 @@ public class UserInfoSearch implements Initializable {
         }
     }
     
-    private void printUserInfoToTableView(ArrayList<UseBean> useBean) {
+    private void printUserInfoToTableView(ArrayList<UserVO> UserVO) {
         StringBuilder birth = new StringBuilder();
         
-        for (UseBean B : useBean) {
-            SearchBean userData = new SearchBean();
+        for (UserVO B : UserVO) {
+            SearchDTO userData = new SearchDTO();
             
             birth.append("").append(B.getiBirth1()).append(".").append(B.getiBirth2()).append(".").append(B.getiBirth3());
             

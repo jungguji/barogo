@@ -38,7 +38,7 @@ public class MonthStatsController implements Initializable {
 	
 	ObservableList<String> YearList = FXCollections.observableArrayList("2016 ��");
 	
-	ArrayList<StatsBean> statsList = new ArrayList<StatsBean>();
+	ArrayList<StatsVO> statsList = new ArrayList<StatsVO>();
 	
 	private ArrayList<String> day = new ArrayList<String>();
 	private ArrayList<Integer> sales = new ArrayList<Integer>();
@@ -147,7 +147,7 @@ public class MonthStatsController implements Initializable {
 		
 		for(int i = 0; i<statsList.size(); i++)
 		{
-			StatsBean str = statsList.get(i);
+			StatsVO str = statsList.get(i);
 			day.add(str.getDay());
 			sales.add(str.getSales());
 			
