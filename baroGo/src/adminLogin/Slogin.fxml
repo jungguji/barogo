@@ -14,8 +14,7 @@
 			prefHeight="300.0" 
 			prefWidth="500.0" 
 			xmlns="http://javafx.com/javafx/8" 
-			xmlns:fx="http://javafx.com/fxml/1"
-			fx:controller="adminLogin.LoginController">
+			xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="id" alignment="CENTER" layoutX="176.0" layoutY="126.0" promptText="User ID" />
       <PasswordField fx:id="pw" alignment="CENTER" layoutX="176.0" layoutY="179.0" promptText="Password" />
