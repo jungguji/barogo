@@ -1,6 +1,9 @@
 package adminLogin;
 
 
+import org.apache.ibatis.session.SqlSession;
+
+import barogo.login.repository.LoginMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jgj.util.barogo.BCryptPasswordEncoder;
 
 /**
  * 
@@ -24,21 +28,24 @@ public class LoginController{
     @FXML private TextField         id;
     @FXML private PasswordField        pw;
     @FXML private Button             btnLogin;
-
-    public void handleBtnLoginAction(ActionEvent action)
-    {
+    
+    SqlSession sqlSession;
+    LoginMapper mapper;
+    
+    public LoginController(SqlSession sqlSession) {
+        this.sqlSession = sqlSession;
+        this.mapper = sqlSession.getMapper(LoginMapper.class);
+    }
+    
+    public void handleBtnLoginAction(ActionEvent action) {
+        
         try {
-//            String adminId = id.getText();
-//            String adminPw = pw.getText();
-//            
-//            boolean isLogin = LoginDAO.adminLogin(adminId, adminPw);
-//            
-//            if(!isLogin) {
-//                id.setText("");
-//                pw.setText("");
-//                
-//                return;
-//            }
+            if(!isLogin()) {
+                id.setText("");
+                pw.setText("");
+                
+                return;
+            }
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../adminView/AdminMainView.fxml"));
             Parent mainView = loader.load();
@@ -55,5 +62,22 @@ public class LoginController{
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    private boolean isLogin() {
+        boolean isResult = true;
+        
+        String userId = id.getText();
+        String password = pw.getText();
+        
+        String adminPassword  = mapper.findPasswordById(userId);
+        
+        BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
+        if (!bcryptPasswordEncoder.matches(password, adminPassword)) {
+            isResult = false;
+            System.out.println("비밀번호 아예 틀림");
+        }
+        
+        return isResult;
     }
 }
