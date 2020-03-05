@@ -1,99 +1,101 @@
 package useInfo;
 
+import java.time.LocalTime;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("user")
 public class UserVO {
-	private int		iPCNumber;
-	private String	strName;
-	private String	strID;
-	private boolean	bSex;
-	private String	strEmail;
-	private boolean	bPaymentplan;	// 0�� false
-	private String	strRemaintime;
-	private String	strUsetime;
-	private int		iAccruemoney;
-	private String	strAccruetime;
-	private int		iBirth1;
-	private int		iBirth2;
-	private int		iBirth3;
-	
-	public int getiPCNumber() {
-		return iPCNumber;
-	}
-	public void setiPCNumber(int iPCNumber) {
-		this.iPCNumber = iPCNumber;
-	}
-	public String getStrName() {
-		return strName;
-	}
-	public void setStrName(String strName) {
-		this.strName = strName;
-	}
-	public String getStrID() {
-		return strID;
-	}
-	public void setStrID(String strID) {
-		this.strID = strID;
-	}
-	public boolean isbSex() {
-		return bSex;
-	}
-	public void setbSex(boolean bSex) {
-		this.bSex = bSex;
-	}
-	public String getStrEmail() {
-		return strEmail;
-	}
-	public void setStrEmail(String strEmail) {
-		this.strEmail = strEmail;
-	}
-	public boolean isbPaymentplan() {
-		return bPaymentplan;
-	}
-	public void setbPaymentplan(boolean bPaymentplan) {
-		this.bPaymentplan = bPaymentplan;
-	}
-	public String getStrRemaintime() {
-		return strRemaintime;
-	}
-	public void setStrRemaintime(String strRemaintime) {
-		this.strRemaintime = strRemaintime;
-	}
-	public String getStrUsetime() {
-		return strUsetime;
-	}
-	public void setStrUsetime(String strUsetime) {
-		this.strUsetime = strUsetime;
-	}
-	public int getiAccruemoney() {
-		return iAccruemoney;
-	}
-	public void setiAccruemoney(int iAccruemoney) {
-		this.iAccruemoney = iAccruemoney;
-	}
-	public String getStrAccruetime() {
-		return strAccruetime;
-	}
-	public void setStrAccruetime(String strAccruetime) {
-		this.strAccruetime = strAccruetime;
-	}
-	public int getiBirth1() {
-		return iBirth1;
-	}
-	public void setiBirth1(int iBirth1) {
-		this.iBirth1 = iBirth1;
-	}
-	public int getiBirth2() {
-		return iBirth2;
-	}
-	public void setiBirth2(int iBirth2) {
-		this.iBirth2 = iBirth2;
-	}
-	public int getiBirth3() {
-		return iBirth3;
-	}
-	public void setiBirth3(int iBirth3) {
-		this.iBirth3 = iBirth3;
-	}
+    private int id;
+    private int pcNumber;
+    private String name;
+    private String userId;
+    private String password;
+    private String sex;
+    private String email;
+    private boolean prepayment;
+    private LocalTime remainTime;
+    private LocalTime useTime;
+    private int cumulativeAmount;
+    private LocalTime cumulativeTime;
+    private String dateOfBirth;
+    
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getPcNumber() {
+        return pcNumber;
+    }
+    public void setPcNumber(int pcNumber) {
+        this.pcNumber = pcNumber;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public boolean isPrepayment() {
+        return prepayment;
+    }
+    public void setPrepayment(boolean prepayment) {
+        this.prepayment = prepayment;
+    }
+    public LocalTime getRemainTime() {
+        return remainTime;
+    }
+    public void setRemainTime(LocalTime remainTime) {
+        this.remainTime = remainTime;
+    }
+    public LocalTime getUseTime() {
+        return useTime;
+    }
+    public void setUseTime(LocalTime useTime) {
+        this.useTime = useTime;
+    }
+    public int getCumulativeAmount() {
+        return cumulativeAmount;
+    }
+    public void setCumulativeAmount(int cumulativeAmount) {
+        this.cumulativeAmount = cumulativeAmount;
+    }
+    public LocalTime getCumulativeTime() {
+        return cumulativeTime;
+    }
+    public void setCumulativeTime(LocalTime cumulativeTime) {
+        this.cumulativeTime = cumulativeTime;
+    }
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 }

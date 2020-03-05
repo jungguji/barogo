@@ -1,10 +1,14 @@
 package useInfo;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import db.UserDAO;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import barogo.user.repository.UserMapper;
+import db.MyBatisConnectionFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -20,28 +24,29 @@ import javafx.stage.Stage;
 import jgj.util.barogo.StringUtil;
 import jgj.util.barogo.ViewerUtil;
 
-public class UserInfoSearch implements Initializable {
+public class UserSearchController implements Initializable {
     @FXML private TextField textSearch;
     @FXML private Button btnSearch;
     @FXML private TableView<SearchDTO> tables;
     @FXML private AnchorPane searchPane;
     
-    private UserDAO dao = new UserDAO();
-    private SearchDTO searchBean = new SearchDTO();
+    SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     
     String userName;
+    SqlSession sqlSession;
+    UserMapper mapper;
     
-    public UserInfoSearch(String userName) {
+    public UserSearchController(String userName, SqlSession sqlSession) {
         this.userName = userName;
+        this.sqlSession = sqlSession;
+        this.mapper = sqlSession.getMapper(UserMapper.class);
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ArrayList<UserVO> arUserVO = dao.userSearch(userName, searchBean);
-            
-            printUserInfoToTableView(arUserVO);
+            setTableColumn();
             
             // 테이블뷰의 행 클릭햇을때
             tables.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SearchDTO>() {
@@ -70,7 +75,7 @@ public class UserInfoSearch implements Initializable {
 
     public void handlebuttonAction(ActionEvent event) throws Exception {
         if (StringUtil.isEmpty(userName)) {
-            TimeAddPeoplePopUp();
+            popUpTimeAddPeople();
             
             return;
         }
@@ -78,7 +83,7 @@ public class UserInfoSearch implements Initializable {
         Button botton = (Button) event.getSource();
         int addTime = getAddTime(botton.getId());
         
-        TimeAddPopUp(userName, addTime);
+        popUpTimeAdd(userName, addTime);
     }
     
     private int getAddTime(String buttonId) {
@@ -114,43 +119,42 @@ public class UserInfoSearch implements Initializable {
     public void handleBtnUseSearchAction(ActionEvent event) {
         tables.getItems().clear();
         try {
-            ArrayList<UserVO> userList = dao.userSearch(textSearch.getText(), searchBean);
-            
-            printUserInfoToTableView(userList);
+            setTableColumn();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    private void printUserInfoToTableView(ArrayList<UserVO> UserVO) {
-        StringBuilder birth = new StringBuilder();
+    private void setTableColumn() {
+        if (StringUtil.isEmpty(this.userName)) {
+            userName = textSearch.getText();
+        }
         
-        for (UserVO B : UserVO) {
+        List<UserVO> userList = mapper.findByName(userName);
+        for (UserVO user : userList) {
+            
             SearchDTO userData = new SearchDTO();
-            
-            birth.append("").append(B.getiBirth1()).append(".").append(B.getiBirth2()).append(".").append(B.getiBirth3());
-            
-            userData.setStrID(B.getStrID());
-            userData.setStrName(B.getStrName());
-            userData.setBirth(birth.toString());
+            userData.setStrID(user.getUserId());
+            userData.setStrName(user.getName());
+            userData.setBirth(user.getDateOfBirth());
             
             tables.getItems().add(userData);
         }
     }
     
     public void handleBtnHomeAction(ActionEvent event) throws Exception {
-        
-        ViewerUtil.showStage(this, "../useInfo/useInfoPopUP.fxml", null, new UserInfoPopUP());
+        Object obj = new UserInfoPopUP(sqlSessionFactory.openSession());
+        ViewerUtil.showStage(this, "../useInfo/useInfoPopUP.fxml", null, obj);
         
         Stage primaryStage = (Stage)searchPane.getScene().getWindow();
         primaryStage.close();
     }
     
-    public void TimeAddPeoplePopUp() throws Exception {
+    public void popUpTimeAddPeople() throws Exception {
         ViewerUtil.showStage(this, "../useInfo/TimeAddPeople.fxml", null, new TimeAddPeople());
     }
     
-    public void TimeAddPopUp(String userName, int addTime) {
+    public void popUpTimeAdd(String userName, int addTime) {
         try {
             Object timeadd1 = new TimeAdd1(userName, addTime);
             ViewerUtil.showStage(this, "../useInfo/TimeChk.fxml", null, timeadd1);

@@ -3,7 +3,11 @@ package useInfo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import db.UserDAO;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import barogo.user.repository.UserMapper;
+import db.MyBatisConnectionFactory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,15 +39,22 @@ public class UserInfoPopUP extends Application implements Initializable {
     @FXML private TextField        tfAccrueTime;
     @FXML private TextField        tfName;
 
-    UserDAO dao = new UserDAO();
+    SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     
     String userId;
-    public UserInfoPopUP() {
-        this.userId = "";
+    SqlSession sqlSession;
+    UserMapper mapper;
+    
+    public UserInfoPopUP(String userId, SqlSession sqlSession) {
+        this.userId = userId;
+        this.sqlSession = sqlSession;
+        this.mapper = sqlSession.getMapper(UserMapper.class);
     }
     
-    public UserInfoPopUP(String userId) {
-        this.userId = userId;
+    public UserInfoPopUP(SqlSession sqlSession) {
+        this.userId = "";
+        this.sqlSession = sqlSession;
+        this.mapper = sqlSession.getMapper(UserMapper.class);
     }
     
     @Override
@@ -53,29 +64,29 @@ public class UserInfoPopUP extends Application implements Initializable {
                 return;
             }
             
-            UserVO useBean = dao.userSearch(userId);
+            UserVO user = mapper.findByUserId(userId);
             
-            tfPCNumber.setText(Integer.toString(useBean.getiPCNumber()));
-            tfUseName.setText(useBean.getStrName());
-            tfUseID.setText(useBean.getStrID());
-            tfUseEmail.setText(useBean.getStrEmail());
+            tfPCNumber.setText(Integer.toString(user.getPcNumber()));
+            tfUseName.setText(user.getName());
+            tfUseID.setText(user.getUserId());
+            tfUseEmail.setText(user.getEmail());
             
-            if(useBean.isbPaymentplan()) {
-                rdoLaterPay.setSelected(true);
-            } else {
+            if(user.isPrepayment()) {
                 rdoFirstPay.setSelected(true);
-            }
-            
-            if(useBean.isbSex()) {
-                rdoWoman.setSelected(true);
             } else {
-                rdoMan.setSelected(true);
+                rdoLaterPay.setSelected(true);
             }
             
-            tfUseTime.setText(useBean.getStrUsetime());
-            tfRemainTime.setText(useBean.getStrRemaintime());
-            tfAccrueMoney.setText(Integer.toString(useBean.getiAccruemoney()));
-            tfAccrueTime.setText(useBean.getStrAccruetime());
+            if("male".equals(user.getSex())) {
+                rdoMan.setSelected(true);
+            } else {
+                rdoWoman.setSelected(true);
+            }
+            
+            tfUseTime.setText(user.getUseTime().toString());
+            tfRemainTime.setText(user.getRemainTime().toString());
+            tfAccrueMoney.setText(Integer.toString(user.getCumulativeAmount()));
+            tfAccrueTime.setText(user.getCumulativeTime().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,7 +95,8 @@ public class UserInfoPopUP extends Application implements Initializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            FXMLLoader another = ViewerUtil.getFXMLLoader(this, "../useInfo/useInfoPopUP.fxml", new UserInfoPopUP());
+            Object obj = new UserInfoPopUP(sqlSessionFactory.openSession());
+            FXMLLoader another = ViewerUtil.getFXMLLoader(this, "../useInfo/useInfoPopUP.fxml", obj);
             
             Parent root = another.load();
             
@@ -103,7 +115,8 @@ public class UserInfoPopUP extends Application implements Initializable {
     }
     
     public void handleBtnUseSearchAction(ActionEvent action) throws Exception {
-        Object search = new UserInfoSearch(tfName.getText());
+        SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
+        Object search = new UserSearchController(tfName.getText(), sqlSessionFactory.openSession());
         
         ViewerUtil.showStage(this, "../useInfo/useSearch.fxml", null, search);
     }
