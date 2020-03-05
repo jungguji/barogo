@@ -3,7 +3,7 @@ package adminLogin;
 
 import org.apache.ibatis.session.SqlSession;
 
-import barogo.login.repository.LoginMapper;
+import barogo.user.repository.UserMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,11 +30,11 @@ public class LoginController{
     @FXML private Button             btnLogin;
     
     SqlSession sqlSession;
-    LoginMapper mapper;
+    UserMapper mapper;
     
     public LoginController(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
-        this.mapper = sqlSession.getMapper(LoginMapper.class);
+        this.mapper = sqlSession.getMapper(UserMapper.class);
     }
     
     public void handleBtnLoginAction(ActionEvent action) {
