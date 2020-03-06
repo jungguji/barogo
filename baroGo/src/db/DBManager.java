@@ -77,20 +77,6 @@ public class DBManager {
 		}
 	}
 	
-	// 메인뷰에서 남은시간 업데이트
-	public void updateRemaintimeAndPcNumber(String updateTime, String pcNumber) {
-		mysqlConnection();
-		makeStatement();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@22   :  " + updateTime );
-		try {
-			String strQuery = "update user set remaintime='" + updateTime + "' where pcnumber='" + pcNumber +"';";
-			stmt.executeUpdate(strQuery);
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 user_remaintime_update() 에러");
-			e.printStackTrace();
-		}
-	}
-	
 	public void user_passwd_change(String a_strPw) {
 		mysqlConnection();
 		makeStatement();
