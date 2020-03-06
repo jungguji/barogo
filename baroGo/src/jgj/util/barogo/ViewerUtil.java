@@ -10,7 +10,7 @@ public class ViewerUtil {
         try {
             FXMLLoader another = getFXMLLoader(object, resourceDirectory, controller);
             
-            AnchorPane anotherPage = (AnchorPane) another.load();
+            AnchorPane anotherPage = another.load();
             Scene anotherScene = new Scene(anotherPage);
             
             if (StringUtil.isNotEmpty(cssDirectory)) {
