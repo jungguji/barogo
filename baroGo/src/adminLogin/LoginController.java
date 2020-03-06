@@ -2,8 +2,11 @@ package adminLogin;
 
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
+import adminView.UseInfoViewController;
 import barogo.user.repository.UserMapper;
+import db.MyBatisConnectionFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,10 +28,11 @@ import jgj.util.barogo.BCryptPasswordEncoder;
  */
 public class LoginController{
 
-    @FXML private TextField         id;
-    @FXML private PasswordField        pw;
-    @FXML private Button             btnLogin;
+    @FXML private TextField id;
+    @FXML private PasswordField pw;
+    @FXML private Button btnLogin;
     
+    SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     SqlSession sqlSession;
     UserMapper mapper;
     
@@ -48,6 +52,8 @@ public class LoginController{
             }
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../adminView/AdminMainView.fxml"));
+            Object obj = new UseInfoViewController(sqlSession);
+            loader.setController(obj);
             Parent mainView = loader.load();
     
             //Parent mainView = FXMLLoader.load(getClass().getResource("AdminMainView.fxml"));
@@ -77,7 +83,7 @@ public class LoginController{
             isResult = false;
             System.out.println("비밀번호 아예 틀림");
         }
-        
+
         return isResult;
     }
 }
