@@ -3,7 +3,10 @@ package guestLogin;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import db.LoginDAO;
+import db.MyBatisConnectionFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +42,8 @@ public class LoginController implements Initializable {
     @FXML private RadioButton         rdoLaterPay;
 
     LoginDAO dao = new LoginDAO();
+    
+    SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     
     public void handleBtnLoginAction(ActionEvent action) throws Exception {
 //        String userID = ID.getText();
@@ -96,7 +101,7 @@ public class LoginController implements Initializable {
                 isPrepayment = true;
             }
             
-            FXMLLoader loader = ViewerUtil.getFXMLLoader(this, "../userInfoView/userInfoView.fxml", new UserInfoController(userId, isPrepayment));
+            FXMLLoader loader = ViewerUtil.getFXMLLoader(this, "../userInfoView/userInfoView.fxml", new UserInfoController(userId, isPrepayment, sqlSessionFactory.openSession(true)));
             Parent mainView = loader.load();
 
             Scene scene = new Scene(mainView);

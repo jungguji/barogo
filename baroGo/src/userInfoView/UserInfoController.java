@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import org.apache.ibatis.session.SqlSession;
+
+import barogo.user.repository.UserMapper;
 import clientChat.ClientBack2;
 import db.DBManager;
 import javafx.application.Platform;
@@ -23,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import useInfo.UserVO;
 import userChat.ClientChatGui;
 import userChat.ClientChatServerBackground;
 import userChat.ClientKickBg;
@@ -51,11 +56,16 @@ public class UserInfoController implements Initializable{
 	private String userId;
 	private boolean isPrepayment = false;
 	
+	SqlSession sqlSession;
+    UserMapper mapper;
+    
 	public UserInfoController() {}
 	
-	public UserInfoController(String userId, boolean isPrepayment) {
+	public UserInfoController(String userId, boolean isPrepayment, SqlSession sqlSession) {
 	    this.userId = userId;
 	    this.isPrepayment = isPrepayment;
+	    this.sqlSession = sqlSession;
+	    this.mapper = sqlSession.getMapper(UserMapper.class);
 	}
 	
 	private DBManager db = new DBManager();
@@ -96,11 +106,15 @@ public class UserInfoController implements Initializable{
 		gui.start(null);
 	}
 	
-	public void handleBtnSeat(ActionEvent action)
-	{
+	public void handleBtnSeat(ActionEvent action) {
 	    if (isPrepayment) {
 	        String remainTime = lblremaintime.getText();
-            db.updateSeatByuserId(userId,remainTime);
+	        
+	        String[] hourAndMinute = remainTime.split(":");
+	        LocalTime time = LocalTime.of(Integer.parseInt(hourAndMinute[0]), Integer.parseInt(hourAndMinute[1]));
+	        
+            mapper.updateRemianTimeByUserId(time, userId);
+            sqlSession.commit();
 	    } else {
 	        String useTime = lblusetime .getText();
             db.updateSeatByuserId(userId, useTime);
@@ -176,20 +190,20 @@ public class UserInfoController implements Initializable{
 	}
 	
 	public void actioninit() {
-		int pcNumber = db.getPcNumberByUserId(userId);
+	    UserVO user = mapper.findByUserId(userId);
+	    
+		int pcNumber = user.getPcNumber();
 		
 		System.out.println("pC번호 : " + pcNumber);
 		tfPCNum.setText(String.valueOf(pcNumber));
 		
-		UserInfoVO beanUserInfo = new UserInfoVO();
+		lblid.setText(user.getUserId());
 		if (isPrepayment) {
 			salesType.setText("선불");
-			beanUserInfo = db.actioninit_query(isPrepayment, userId);
-			lblid.setText(beanUserInfo.getUserID());
 			
-			lblfirstmoney.setText(beanUserInfo.getFirstMoney()+" 원");
+			lblfirstmoney.setText(user.getCumulativeAmount()+" 원");
 			
-			String strInitRemainTime = beanUserInfo.getstrRemainTime();
+			String strInitRemainTime = user.getRemainTime().toString();
 			
 			String[] strTime = strInitRemainTime.split(":");
 			
@@ -242,8 +256,6 @@ public class UserInfoController implements Initializable{
 			
 		} else {
 			salesType.setText("후불");
-			beanUserInfo = db.actioninit_query(isPrepayment, userId);
-			lblid.setText(beanUserInfo.getUserID());
 			lblLatermoney.setText(startMoney + "원");
 			
 			Task<Void> task = new Task<Void>() {
