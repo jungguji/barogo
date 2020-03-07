@@ -41,18 +41,18 @@ public class UserInfoPopUP extends Application implements Initializable {
 
     SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     
-    String userId;
+    int pcNumber;
     SqlSession sqlSession;
     UserMapper mapper;
     
-    public UserInfoPopUP(String userId, SqlSession sqlSession) {
-        this.userId = userId;
+    public UserInfoPopUP(int pcNumber, SqlSession sqlSession) {
+        this.pcNumber = pcNumber;
         this.sqlSession = sqlSession;
         this.mapper = sqlSession.getMapper(UserMapper.class);
     }
     
     public UserInfoPopUP(SqlSession sqlSession) {
-        this.userId = "";
+        this.pcNumber = 0;
         this.sqlSession = sqlSession;
         this.mapper = sqlSession.getMapper(UserMapper.class);
     }
@@ -60,11 +60,11 @@ public class UserInfoPopUP extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            if (StringUtil.isEmpty(userId)) {
+            if (StringUtil.isEmpty(pcNumber)) {
                 return;
             }
             
-            UserVO user = mapper.findByUserId(userId);
+            UserVO user = mapper.findByPcNumber(pcNumber);
             
             tfPCNumber.setText(Integer.toString(user.getPcNumber()));
             tfUseName.setText(user.getName());

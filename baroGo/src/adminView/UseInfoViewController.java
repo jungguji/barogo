@@ -73,6 +73,12 @@ public class UseInfoViewController implements Initializable {
     
     public void handleBtnUseInfoViewAction(ActionEvent action) throws Exception {
         Object obj = new UserInfoPopUP(sqlSessionFactory.openSession());
+        
+        if (StringUtil.isNotEmpty(txtPcNum.getText())) {
+            int pcNumber = Integer.parseInt(txtPcNum.getText());
+            obj = new UserInfoPopUP(pcNumber, sqlSessionFactory.openSession());
+        }
+        
         ViewerUtil.showStage(this, "../useInfo/useInfoPopUP.fxml", "../useInfo/useInfo.css", obj);
     }
 
@@ -447,13 +453,13 @@ public class UseInfoViewController implements Initializable {
             aisFlag[i] = false;
         }
         
-//        Thread th = new Thread(new ServerBack2());
-//        Thread th2 = new Thread(new ServerBackground());
-//        
-//        th.setDaemon(true);
-//        th2.setDaemon(true);
-//        
-//        th.start();
-//        th2.start();
+        Thread th = new Thread(new ServerBack2());
+        Thread th2 = new Thread(new ServerBackground());
+        
+        th.setDaemon(true);
+        th2.setDaemon(true);
+        
+        th.start();
+        th2.start();
     }
 }
