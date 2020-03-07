@@ -1,5 +1,7 @@
 package guestLogin;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,8 +25,8 @@ import userInfoView.UserInfoController;
 
 /**
  * 
- * @author 吏�以묎뎄 愿�由ъ옄 濡쒓렇�씤李� 踰꾪듉 而⑦듃濡ㅻ윭 id�� pw瑜� �꽆寃⑤컺�븘 db�뿉 ���옣�맂 媛믨낵 鍮꾧탳 留욎쑝硫�
- *         �쉶�썝�젙蹂댁갹(Action.fxml)�쓣 �떎�뻾
+ * @author 지중구 
+ *      손님 로그인을 처리하는 클래스
  *
  */
 public class LoginController implements Initializable {
@@ -113,26 +115,43 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void handleBtnExitAction(ActionEvent event) {
-        btnExit.setOnAction(e -> {
-            System.out.println("醫낅즺 �빀�땲�떎.");
-            System.exit(0);
-        });
+    public void handleBtnExitAction(ActionEvent event) throws InterruptedException {
+        System.out.println("컴퓨터를 종료합니다.");
+//        Runtime runtime = Runtime.getRuntime();
+//        try {
+//
+//            Process process = runtime.exec("C:\\WINDOWS\\system32\\cmd.exe");
+//            OutputStream os = process.getOutputStream();
+//            os.write("shutdown -s -f -t 5 \n\r".getBytes());    //5초 이내로 컴터 꺼짐
+//            os.close();
+//            process.waitFor();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        };
     }
 
     public void handleBtnradioSelect(ActionEvent action) {
         if (rdoFirstPay.isSelected()) {
-            System.out.println("�꽑遺덉엯�땲�떎.");
+            System.out.println("선불입니다.");
         }
         if (rdoLaterPay.isSelected()) {
-            System.out.println("�썑遺덉엯�땲�떎.");
+            System.out.println("후불");
         }
     }
 
-    public void handleBtnRestart(ActionEvent event) {
-        // btnExit.setOnAction(e -> {
-        // restart(scene);
-        System.out.println("�떎�떆 �떆�옉�빀�땲�떎.");
+    public void handleBtnRestart(ActionEvent event) throws InterruptedException {
+        System.out.println("컴퓨터를 다시 시작합니다.");
+//        Runtime runtime = Runtime.getRuntime();
+//        try {
+//
+//            Process process = runtime.exec("C:\\WINDOWS\\system32\\cmd.exe");
+//            OutputStream os = process.getOutputStream();
+//            os.write("shutdown -r -f -t 5 \n\r".getBytes());    //5초 이내로 컴터 꺼졌다가 다시켜짐
+//            os.close();
+//            process.waitFor();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
