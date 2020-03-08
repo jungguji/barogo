@@ -2,6 +2,7 @@ package adminStats;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
@@ -28,15 +29,7 @@ public class MonthStatsController implements Initializable {
 	@FXML private ComboBox<String> cmbMonth;
 	@FXML private Button btnHome;
 	
-	private String selectYear;
-	private String selectMonth;
-	
 	DBManager db = new DBManager();
-	
-	ObservableList<String> MonthList = 
-			FXCollections.observableArrayList("1 ��","2 ��","3 ��","4 ��","5 ��","6 ��","7 ��","8 ��","9 ��","10 ��","11 ��","12 ��");
-	
-	ObservableList<String> YearList = FXCollections.observableArrayList("2016 ��");
 	
 	ArrayList<StatsVO> statsList = new ArrayList<StatsVO>();
 	
@@ -61,17 +54,18 @@ public class MonthStatsController implements Initializable {
 
 	}
 	
-	public void handleCmbCheckAction(ActionEvent action)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+    public void handleCmbCheckAction(ActionEvent action)
 	{
 		StringTokenizer st = new StringTokenizer(cmbYear.getValue(), " ");
-		selectYear = st.nextToken();
+		String selectYear = st.nextToken();
 		
 		StringTokenizer st1 = new StringTokenizer(cmbMonth.getValue(), " ");
-		selectMonth = st1.nextToken();
+		String selectMonth = st1.nextToken();
 		
 		
 		XYChart.Series series1 = new XYChart.Series();
-		series1.setName("�Ѹ���");
+		series1.setName("�Ѹ월�");
 		series1.setData(FXCollections.observableArrayList(
 				new XYChart.Data("1",68000),
 				new XYChart.Data("2",30000),
@@ -106,7 +100,7 @@ public class MonthStatsController implements Initializable {
 				));
 		
 		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("�Ѹ���");
+		series2.setName("�Ѹ월�");
 		series2.setData(FXCollections.observableArrayList(
 				new XYChart.Data("1",60000),
 				new XYChart.Data("2",28000),
@@ -164,11 +158,17 @@ public class MonthStatsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO �ڵ� ������ �޼ҵ� ����
-		
-		cmbYear.setValue("2016 ��");
+	    LocalDate local = LocalDate.now();
+	    
+		cmbYear.setValue(String.valueOf(local.getYear()));
+		ObservableList<String> YearList = FXCollections.observableArrayList(String.valueOf(local.getYear()));
 		cmbYear.setItems(YearList);
-		cmbMonth.setValue("1 ��");
+		
+		
+		cmbMonth.setValue(String.valueOf(local.getMonth()));
+		
+		ObservableList<String> MonthList = 
+	            FXCollections.observableArrayList("1 월","2 월","3 월","4 월","5 월","6 월","7 월","8 월","9 월","10 월","11 월","12 월");
 		cmbMonth.setItems(MonthList);
 
 	}
