@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class UseInfoViewController implements Initializable {
 	@FXML private Button 		btnSeat;
@@ -27,10 +28,11 @@ public class UseInfoViewController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Glogin.fxml"));
 			Parent mainView = loader.load();
 
-			System.out.println("·Î±×ÀÎÃ¢À¸·Î µ¹¾Æ°©´Ï´Ù.");
+			System.out.println("ë¡œê·¸ì¸ì°½ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 			//Parent mainView = FXMLLoader.load(getClass().getResource("AdminMainView.fxml"));
 			Scene scene = new Scene(mainView);
 			Stage primaryStage = (Stage)btnSeat.getScene().getWindow();
+			primaryStage.initStyle(StageStyle.TRANSPARENT);	// í…Œë‘ë¦¬ ì œê±°
 			primaryStage.setScene(scene);
 			
 			} catch(Exception e) {

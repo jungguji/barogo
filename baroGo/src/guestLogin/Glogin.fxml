@@ -10,94 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="649.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guestLogin.LoginController">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guestLogin.LoginController">
    <children>
-      <Pane layoutX="8.0" layoutY="6.0" prefHeight="756.0" prefWidth="1096.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="6.0">
+      <Pane fx:id="Image" prefHeight="900.0" prefWidth="1610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView pickOnBounds="true" preserveRatio="true">
+            <ImageView layoutX="-10.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Desktop/image/WP3F9TFB.jpg" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="563.0" layoutY="124.0" prefHeight="393.0" prefWidth="466.0" snapToPixel="false">
-               <children>
-                  <ImageView pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../Desktop/image/0318158-2590-D31A-401E725F77B1A7A3.png" />
-                     </image>
-                  </ImageView>
-                  <HBox layoutX="61.0" layoutY="190.0" spacing="30.0">
-                     <children>
-                        <Label layoutX="60.0" layoutY="250.0" prefHeight="30.0" prefWidth="78.0" text="아이디" textAlignment="CENTER">
-                           <font>
-                              <Font name="Arial Bold" size="25.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="ID" alignment="CENTER" layoutX="148.0" layoutY="252.0" prefHeight="30.0" promptText="User ID" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="35.0" layoutY="254.0" spacing="30.0">
-                     <children>
-                        <Label layoutX="31.0" layoutY="317.0" prefHeight="30.0" prefWidth="103.0" text="비밀번호" textAlignment="CENTER">
-                           <font>
-                              <Font name="Arial Bold" size="25.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="PW" alignment="CENTER" layoutX="149.0" layoutY="314.0" prefHeight="30.0" promptText="Password" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="btnLogin" layoutX="390.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleBtnLoginAction" prefHeight="101.0" prefWidth="104.0" text="로그인">
-                     <font>
-                        <Font name="Arial Bold" size="16.0" />
-                     </font>
-                  </Button>
-                  <HBox layoutX="179.0" layoutY="347.0" spacing="30.0">
-                     <children>
-                        <Button fx:id="btnMember" layoutX="186.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleBtnMember" prefHeight="32.0" prefWidth="88.0" text="회원가입">
-                           <font>
-                              <Font name="Arial Bold" size="16.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnPwfind" layoutX="308.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleBtnPwfind" prefHeight="32.0" prefWidth="136.0" text="비밀번호 찾기">
-                           <font>
-                              <Font name="Arial Bold" size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="207.0" layoutY="305.0" spacing="50.0">
-                     <children>
-                        <RadioButton fx:id="rdoFirstPay" layoutX="626.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleBtnradioSelect" text="선불">
-                           <font>
-                              <Font name="Arial" size="20.0" />
-                           </font>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="RadioGroup" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="rdoLaterPay" layoutX="703.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleBtnradioSelect" text="후불" toggleGroup="$RadioGroup">
-                           <font>
-                              <Font name="Arial" size="20.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </HBox>
-                  <Text layoutX="41.0" layoutY="143.0" rotate="-15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="바로 go">
-                     <fill>
-                        <LinearGradient endX="0.9571428571428572" endY="0.8809523809523809" startX="0.9619047619047619" startY="0.08095238095238096">
-                           <stops>
-                              <Stop color="#43daa3" />
-                              <Stop color="#0b65c6ab" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                     <font>
-                        <Font name="HYwulB" size="63.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <HBox layoutX="748.0" layoutY="546.0" spacing="8.0">
+            <HBox layoutX="1184.0" layoutY="845.0" spacing="8.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="59.0" layoutX="1245.0" layoutY="734.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -121,6 +43,84 @@
                   </Button>
                </children>
             </HBox>
+            <AnchorPane fx:id="Image2" layoutX="1055.0" layoutY="421.0" prefHeight="393.0" prefWidth="466.0" snapToPixel="false">
+               <children>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Desktop/image/0318158-2590-D31A-401E725F77B1A7A3.png" />
+                     </image>
+                  </ImageView>
+                  <HBox layoutX="35.0" layoutY="254.0" spacing="30.0">
+                     <children>
+                        <Label fx:id="lblPw" layoutX="31.0" layoutY="317.0" prefHeight="30.0" prefWidth="103.0" text="비밀번호" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="PW" alignment="CENTER" layoutX="149.0" layoutY="314.0" prefHeight="30.0" promptText="Password" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="61.0" layoutY="190.0" spacing="30.0">
+                     <children>
+                        <Label fx:id="lblId" layoutX="60.0" layoutY="250.0" prefHeight="30.0" prefWidth="78.0" text="아이디" textAlignment="CENTER">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ID" alignment="CENTER" layoutX="148.0" layoutY="252.0" prefHeight="30.0" promptText="User ID" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnLogin" layoutX="327.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleBtnLoginAction" prefHeight="101.0" prefWidth="104.0" text="로그인">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <HBox layoutX="126.0" layoutY="347.0" spacing="30.0">
+                     <children>
+                        <Button fx:id="btnMember" layoutX="186.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleBtnMember" prefHeight="32.0" prefWidth="88.0" text="회원가입">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnPwfind" layoutX="308.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleBtnPwfind" prefHeight="32.0" prefWidth="188.0" text="아이디/비밀번호 찾기">
+                           <font>
+                              <Font name="Arial Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="207.0" layoutY="305.0" spacing="50.0">
+                     <children>
+                        <RadioButton fx:id="rdoFirstPay" layoutX="626.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleBtnradioSelect" text="선불">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="RadioGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rdoLaterPay" layoutX="703.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleBtnradioSelect" text="후불" toggleGroup="$RadioGroup">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </HBox>
+                  <Text fx:id="Txtbaro" layoutX="41.0" layoutY="143.0" rotate="-15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="바로 go">
+                     <fill>
+                        <LinearGradient endX="0.9571428571428572" endY="0.8809523809523809" startX="0.9619047619047619" startY="0.08095238095238096">
+                           <stops>
+                              <Stop color="#43daa3" />
+                              <Stop color="#0b65c6ab" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                     <font>
+                        <Font name="DomCasual BT" size="63.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
       </Pane>
    </children>

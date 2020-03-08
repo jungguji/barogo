@@ -1,6 +1,9 @@
 package userInfoView;
 
-public class userInfoBean {
+import org.apache.ibatis.type.Alias;
+
+@Alias("userInfo")
+public class UserInfoVO {
 	private String userID;
 	private int firstMoney;
 	private String strRemainTime;

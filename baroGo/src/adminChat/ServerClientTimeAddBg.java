@@ -13,14 +13,14 @@ public class ServerClientTimeAddBg {
 	private Socket socket;
 	private DataOutputStream out;
 	
-	public void connet(int a_iAddTime) {
+	public void connet(int addTime) {
 		try {
 			socket = new Socket("127.0.0.1", 3553);
 			System.out.println("¼­¹ö ¿¬°áµÊ.");
 			
 			out = new DataOutputStream(socket.getOutputStream());
 			
-			out.writeUTF(String.valueOf(a_iAddTime));
+			out.writeUTF(String.valueOf(addTime));
 			out.flush();
 			socket.close();
 		} catch (IOException e) {

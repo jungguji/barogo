@@ -1,6 +1,9 @@
 package adminStats;
 
-public class StatsBean {
+import org.apache.ibatis.type.Alias;
+
+@Alias("stats")
+public class StatsVO {
 	private String day;
 	private int sales;
 	private int profit;

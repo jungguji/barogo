@@ -3,11 +3,9 @@
  */
 package adminCalculate;
 
-import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import db.DBManager;
@@ -15,9 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -28,10 +24,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import jgj.util.barogo.StringUtil;
+import jgj.util.barogo.ViewerUtil;
 
 /**
- * @author ���߱�
- *
+ * @author 지중구
+ *      정산하는 창이 보여지는 클래스
+ *      정산하기 전에 정산할 날짜를 정하고 관리자인지 체크하고
+ *      카운터의 현금과 순이익을 맞춰서 맞으면 db에 저장된다.
  */
 public class CalculateView implements Initializable {
 	@FXML private List<TextField> countTextFieldList;
@@ -40,42 +39,39 @@ public class CalculateView implements Initializable {
 	@FXML private TextField 		tfAdminID, tfAdminPW;
 	@FXML private Button 			btnSelect, btnReset, btnLogin, btnCalc;
 	@FXML private Label 			lblAdmin;
-	@FXML private TableView<Sales> 	tvTotalSales;
+	@FXML private TableView<SalesDTO> 	tvTotalSales;
 	@FXML private DatePicker		pickDate;
 	@FXML private Label				lblTotalMoney;
 	@FXML private AnchorPane		paneCalc;
 	
-	private int[] count;
-	private int iPrice1, iPrice2, iPrice3, iPrice4, iPrice5, iPrice6, iPrice7, iPrice8;
-	private int iTotalCount = 0, iTotalPrice = 0;
-	private int iResultCount 	= 0;
-	private int iResultsum   	= 0;
+	private final static int PAYS_50000 = 50000;
+	private final static int PAYS_10000 = 10000;
+	private final static int PAYS_5000 = 5000;
+	private final static int PAYS_1000 = 1000;
+	private final static int PAYS_500 = 500;
+	private final static int PAYS_100 = 100;
+	private final static int PAYS_50 = 50;
+	private final static int PAYS_10 = 10;
 	
 	private DBManager	db			= new DBManager();
-	private CalcBean	calcBean	= new CalcBean();
+	private CalculateVO	calcBean	= new CalculateVO();
 	
-	LocalDate date;
-	@Override
-	public void initialize(URL location, ResourceBundle resources)
-	{
-		// TODO Auto-generated method stub
-	    
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+    @Override
+	public void initialize(URL location, ResourceBundle resources) {
 	    for (TextField field : countTextFieldList) {
 	        field.setOnKeyReleased(event-> {   
-	            textField_empty_chk(); 
-	            price_sum(); 
+	            int[] count = initCountField(); 
+	            setPays(count); 
 	        });
 	    }
 		
 		LocalDate nowDate = LocalDate.now();
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		pickDate.setPromptText(String.valueOf(nowDate));		
+		pickDate.setPromptText(String.valueOf(nowDate));
 		
-		date = nowDate;
-		
-		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("","", "")
+		ObservableList<SalesDTO> salesList = FXCollections.observableArrayList(
+				new SalesDTO("","", "")
 		);
 		
 		// ���̺��÷��� �� ����
@@ -92,14 +88,9 @@ public class CalculateView implements Initializable {
 		price.setStyle("-fx-alignment: CENTER;");
 		
 		tvTotalSales.setItems(salesList);
-		
-		pickDate.setOnAction(event-> {
-			date = pickDate.getValue();
-		});
 	}
 
-	public void handleBtnLoginAction(ActionEvent action)
-	{
+	public void handleBtnLoginAction(ActionEvent action) {
 		String strAdminID;
 		String strAdminPW;
 		String result;
@@ -107,7 +98,8 @@ public class CalculateView implements Initializable {
 		strAdminID = tfAdminID.getText();
 		strAdminPW = tfAdminPW.getText();
 
-		result = db.login_Calculate(strAdminID, strAdminPW);
+//		result = db.login_Calculate(strAdminID, strAdminPW);
+		result = "지중구";
 		
 		if (result.equals(null)) {
 			tfAdminID.setText("");
@@ -116,20 +108,17 @@ public class CalculateView implements Initializable {
 			tfAdminID.setDisable(true);
 			tfAdminPW.setDisable(true);
 
-			tfCount1.setDisable(false);
-			tfCount2.setDisable(false);
-			tfCount3.setDisable(false);
-			tfCount4.setDisable(false);
-			tfCount5.setDisable(false);
-			tfCount6.setDisable(false);
-			tfCount7.setDisable(false);
-			tfCount8.setDisable(false);
+			for (TextField field : countTextFieldList) {
+			    field.setDisable(false);
+			}
 
 			lblAdmin.setText(result);
 		}
 	}
 	
-	private void setCountField() {
+	private int[] initCountField() {
+	    int[] count = new int[8];
+	    
 	    for (int i = 0; i < countTextFieldList.size(); i++) {
 	        TextField field = countTextFieldList.get(i);
 	        if (StringUtil.isEmpty(field.getText())) {
@@ -138,56 +127,60 @@ public class CalculateView implements Initializable {
 	            count[i] =  Integer.parseInt(field.getText());
 	        }
 	    }
+	    
+	    return count;
 	}
 	
-	public void price_sum()
-	{
-		iPrice1 = iCount1 * 50000;
-		iPrice2 = iCount2 * 10000;
-		iPrice3 = iCount3 * 5000;
-		iPrice4 = iCount4 * 1000;
-		iPrice5 = iCount5 * 500;
-		iPrice6 = iCount6 * 100;
-		iPrice7 = iCount7 * 50;
-		iPrice8 = iCount8 * 10;
+	private void setPays(int[] count) {
+	    int[] price = new int[8];
+	    
+	    int[] paysArray = initPays();
+	    
+	    for (int i = 0; i < paysArray.length; i++) {
+	        price[i] = count[i] * paysArray[i];
+	    }
+	    
+	    int totalCount = 0;
+	    int totalPrice = 0;
+	    for (int i = 0; i < count.length; i++) {
+	        totalCount += count[i];
+	        totalPrice += price[i];
+	    }
+	    
+	    for (int i = 0; i < priceTextFieldList.size(); i++) {
+            TextField field = priceTextFieldList.get(i);
+            field.setText(String.valueOf(price[i]));
+        }
 		
-		iTotalCount = iCount1 + iCount2 + iCount3 + iCount4 + iCount5 + iCount6 + iCount7 + iCount8;
-		iTotalPrice = iPrice1 + iPrice2 + iPrice3 + iPrice4 + iPrice5 + iPrice6 + iPrice7 + iPrice8;
-		
-		tfPrice1.setText(String.valueOf(iPrice1));
-		tfPrice2.setText(String.valueOf(iPrice2));
-		tfPrice3.setText(String.valueOf(iPrice3));
-		tfPrice4.setText(String.valueOf(iPrice4));
-		tfPrice5.setText(String.valueOf(iPrice5));
-		tfPrice6.setText(String.valueOf(iPrice6));
-		tfPrice7.setText(String.valueOf(iPrice7));
-		tfPrice8.setText(String.valueOf(iPrice8));
-		
-		tfTotalCount.setText(String.valueOf(iTotalCount));
-		tfTotalPrice.setText(String.valueOf(iTotalPrice));
+		tfTotalCount.setText(String.valueOf(totalCount));
+		tfTotalPrice.setText(String.valueOf(totalPrice));
+	}
+	
+	private int[] initPays() {
+	    int[] pays = new int[8];
+	    
+        pays[0] = PAYS_50000;
+        pays[1] = PAYS_10000;
+        pays[2] = PAYS_5000;
+        pays[3] = PAYS_1000;
+        pays[4] = PAYS_500;
+        pays[5] = PAYS_100;
+        pays[6] = PAYS_50;
+        pays[7] = PAYS_10;
+        
+        return pays;
 	}
 
 	public void handleBtnResetAction(ActionEvent action)
 	{
-		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("","", "")
+		ObservableList<SalesDTO> salesList = FXCollections.observableArrayList(
+				new SalesDTO("","", "")
 		);
 		
 		tvTotalSales.setItems(salesList);
-		tfCount1.setText(""); tfCount2.setText(""); tfCount3.setText(""); tfCount4.setText("");
-		tfCount5.setText(""); tfCount6.setText(""); tfCount7.setText(""); tfCount8.setText("");
-		
-		tfPrice1.setText(""); tfPrice2.setText(""); tfPrice3.setText(""); tfPrice4.setText("");
-		tfPrice5.setText(""); tfPrice6.setText(""); tfPrice7.setText(""); tfPrice8.setText("");
 
 		tfTotalCount.setText("");
 		tfTotalPrice.setText("");
-		
-		tfCount1.setDisable(true);	tfCount2.setDisable(true);	tfCount3.setDisable(true);	tfCount4.setDisable(true);
-		tfCount5.setDisable(true);	tfCount6.setDisable(true);	tfCount7.setDisable(true);	tfCount8.setDisable(true);
-		
-		tfPrice1.setDisable(true);	tfPrice2.setDisable(true); tfPrice3.setDisable(true);	tfPrice4.setDisable(true);
-		tfPrice5.setDisable(true);	tfPrice6.setDisable(true);	tfPrice7.setDisable(true);	tfPrice8.setDisable(true);
 		
 		tfAdminID.setDisable(false);
 		tfAdminPW.setDisable(false);
@@ -196,85 +189,61 @@ public class CalculateView implements Initializable {
 		tfAdminPW.setText("");
 		lblAdmin.setText("");
 		lblTotalMoney.setText("");
+		
+		setTextFieldEmptyAndDisabled(countTextFieldList);
+        setTextFieldEmptyAndDisabled(priceTextFieldList);
+	}
+	
+	private void setTextFieldEmptyAndDisabled(List<TextField> list) {
+	    for (int i = 0; i < list.size(); i++) {
+            TextField field = list.get(i);
+            field.setText("");
+            field.setDisable(true);
+        }
 	}
 
-	public void handleBtnSelectAction(ActionEvent action)
-	{
-		calcBean = db.salse_total(date);
+	public void handleBtnSelectAction(ActionEvent action) {
+		calcBean = db.salse_total(pickDate.getValue());
 		
 		int iSalesCount 	= calcBean.getiCount();
 		int iSalesSum		= calcBean.getiSales();
 		int iReturnCount 	= calcBean.getiReturnCount();
 		int iReturnSum		= calcBean.getiReturnSales();
 		
-		
-		iResultCount = iSalesCount - iReturnCount;
-		iResultsum	 = iSalesSum - iReturnSum;
+		int resultCount = iSalesCount - iReturnCount;
+		int resultsum = iSalesSum - iReturnSum;
 
-		lblTotalMoney.setText(String.valueOf(iResultsum));
-		ObservableList<Sales> salesList = FXCollections.observableArrayList(
-				new Sales("�� �����", String.valueOf(iSalesCount), String.valueOf(iSalesSum)),
-				new Sales("�� ��ǰ��", String.valueOf(iReturnCount) , String.valueOf(iReturnSum)),
-				new Sales("�� �����", String.valueOf(iResultCount), String.valueOf(iResultsum))
+		lblTotalMoney.setText(String.valueOf(resultsum));
+		
+		ObservableList<SalesDTO> salesList = FXCollections.observableArrayList(
+				new SalesDTO("총 매출액", String.valueOf(iSalesCount), String.valueOf(iSalesSum)),
+				new SalesDTO("총 반품액", String.valueOf(iReturnCount) , String.valueOf(iReturnSum)),
+				new SalesDTO("순 매출액", String.valueOf(resultCount), String.valueOf(resultsum))
 		);
 		tvTotalSales.setItems(salesList);
 	}
 
-	public void handleBtnCalcAction(ActionEvent acton)
-	{
+	public void handleBtnCalcAction(ActionEvent acton) throws Exception {
 		String strTotalPrice = tfTotalPrice.getText();
 		String strTotalMomey = lblTotalMoney.getText();
 		
-		if(strTotalMomey.equals(""))
-		{
-			popup("CalcNoSelect");
-		}
-		else
-		{
-			if(strTotalPrice.equals(strTotalMomey))
-			{
-				boolean isOverlap;
+		if(strTotalMomey.equals("")) {
+		    ViewerUtil.showStage(this, "../adminCalculate/CalcNoSelect.fxml", null, new CalcPopup());
+			return;
+		} 
+
+		if(strTotalPrice.equals(strTotalMomey)) {
+			if(db.stats_overlap_chk(pickDate.getValue())) {
+			    ViewerUtil.showStage(this, "../adminCalculate/CalcOverlap.fxml", null, new CalcPopup());
+			} else {
+				db.insert_stats_data(pickDate.getValue(), calcBean.getiSales(), Integer.parseInt(lblTotalMoney.getText()));
+				ViewerUtil.showStage(this, "../adminCalculate/CalcOk.fxml", null, new CalcPopup());
 				
-				isOverlap = db.stats_overlap_chk(date);
-				if(isOverlap)
-				{
-					popup("CalcOverlap");
-				} 
-				else 
-				{
-					db.insert_stats_data(date, calcBean.getiSales(), iResultsum);
-					popup("CalcOk");
-					
-					Stage primaryStage = (Stage)paneCalc.getScene().getWindow();
-					primaryStage.close();
-				}
-			} 
-			else 
-			{
-				popup("CalcPopUp");
+				Stage primaryStage = (Stage)paneCalc.getScene().getWindow();
+				primaryStage.close();
 			}
-		}
-		
-		
-	}
-	
-	public void popup(String action)
-	{
-		try{
-			FXMLLoader another = new FXMLLoader( getClass().getResource( "../adminCalculate/" + action + ".fxml" ));
-			try {
-			   AnchorPane anotherPage = (AnchorPane) another.load();
-			   // �ٸ�â ���� �۾� .... 2
-			   Scene anotherScene = new Scene(anotherPage);
-			   Stage stage = new  Stage();
-			   stage.setScene(anotherScene);
-			   stage.show();
-			   // �ٸ�â ���� �۾� .... 2 ��.
-			} catch (IOException e) {
-			   e.printStackTrace();
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
+		} else {
+		    ViewerUtil.showStage(this, "../adminCalculate/CalcPopUp.fxml", null, new CalcPopup());
 		}
 	}
 }

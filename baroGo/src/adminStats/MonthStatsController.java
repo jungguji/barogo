@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public class MonthStatsController implements Initializable {
 	
-	@FXML private LineChart lineChart;
+	@FXML private LineChart<?, ?> lineChart;
 	@FXML private ComboBox<String> cmbYear;
 	@FXML private ComboBox<String> cmbMonth;
 	@FXML private Button btnHome;
@@ -38,7 +38,7 @@ public class MonthStatsController implements Initializable {
 	
 	ObservableList<String> YearList = FXCollections.observableArrayList("2016 ��");
 	
-	ArrayList<StatsBean> statsList = new ArrayList<StatsBean>();
+	ArrayList<StatsVO> statsList = new ArrayList<StatsVO>();
 	
 	private ArrayList<String> day = new ArrayList<String>();
 	private ArrayList<Integer> sales = new ArrayList<Integer>();
@@ -143,11 +143,11 @@ public class MonthStatsController implements Initializable {
 		lineChart.getData().add(series1);
 		lineChart.getData().add(series2);
 		
-		statsList = db.stats_query(selectYear, selectMonth);
+		statsList = db.getStatsListByYearMonth(selectYear, selectMonth);
 		
 		for(int i = 0; i<statsList.size(); i++)
 		{
-			StatsBean str = statsList.get(i);
+			StatsVO str = statsList.get(i);
 			day.add(str.getDay());
 			sales.add(str.getSales());
 			

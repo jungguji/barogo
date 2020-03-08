@@ -3,8 +3,11 @@ package useInfo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import db.DBManager;
-import db.UserDAO;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import barogo.user.repository.UserMapper;
+import db.MyBatisConnectionFactory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,43 +38,55 @@ public class UserInfoPopUP extends Application implements Initializable {
     @FXML private TextField        tfAccrueMoney;
     @FXML private TextField        tfAccrueTime;
     @FXML private TextField        tfName;
+
+    SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     
-    DBManager db = new DBManager();
+    int pcNumber;
+    SqlSession sqlSession;
+    UserMapper mapper;
+    
+    public UserInfoPopUP(int pcNumber, SqlSession sqlSession) {
+        this.pcNumber = pcNumber;
+        this.sqlSession = sqlSession;
+        this.mapper = sqlSession.getMapper(UserMapper.class);
+    }
+    
+    public UserInfoPopUP(SqlSession sqlSession) {
+        this.pcNumber = 0;
+        this.sqlSession = sqlSession;
+        this.mapper = sqlSession.getMapper(UserMapper.class);
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            String userId = db.getTempId(); 
-            
-            UserDAO dao = new UserDAO();
-            
-            if (StringUtil.isEmpty(userId)) {
+            if (StringUtil.isEmpty(pcNumber)) {
                 return;
             }
             
-            UseBean useBean = dao.userSearch(userId);
+            UserVO user = mapper.findByPcNumber(pcNumber);
             
-            tfPCNumber.setText(Integer.toString(useBean.getiPCNumber()));
-            tfUseName.setText(useBean.getStrName());
-            tfUseID.setText(useBean.getStrID());
-            tfUseEmail.setText(useBean.getStrEmail());
+            tfPCNumber.setText(Integer.toString(user.getPcNumber()));
+            tfUseName.setText(user.getName());
+            tfUseID.setText(user.getUserId());
+            tfUseEmail.setText(user.getEmail());
             
-            if(useBean.isbPaymentplan()) {
-                rdoLaterPay.setSelected(true);
-            } else {
+            if(user.isPrepayment()) {
                 rdoFirstPay.setSelected(true);
-            }
-            
-            if(useBean.isbSex()) {
-                rdoWoman.setSelected(true);
             } else {
-                rdoMan.setSelected(true);
+                rdoLaterPay.setSelected(true);
             }
             
-            tfUseTime.setText(useBean.getStrUsetime());
-            tfRemainTime.setText(useBean.getStrRemaintime());
-            tfAccrueMoney.setText(Integer.toString(useBean.getiAccruemoney()));
-            tfAccrueTime.setText(useBean.getStrAccruetime());
+            if("male".equals(user.getSex())) {
+                rdoMan.setSelected(true);
+            } else {
+                rdoWoman.setSelected(true);
+            }
+            
+            tfUseTime.setText(user.getUseTime().toString());
+            tfRemainTime.setText(user.getRemainTime().toString());
+            tfAccrueMoney.setText(Integer.toString(user.getCumulativeAmount()));
+            tfAccrueTime.setText(user.getCumulativeTime().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,14 +95,13 @@ public class UserInfoPopUP extends Application implements Initializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
-            FXMLLoader another = new FXMLLoader( getClass().getResource( "../useInfo/useInfoPopUP.fxml" ));
-            Object obj = new UserInfoPopUP();
-            another.setController(obj);
+            Object obj = new UserInfoPopUP(sqlSessionFactory.openSession());
+            FXMLLoader another = ViewerUtil.getFXMLLoader(this, "../useInfo/useInfoPopUP.fxml", obj);
             
             Parent root = another.load();
             
             Scene scene = new Scene(root);     
-            primaryStage.setTitle("ȸ������");  
+            primaryStage.setTitle("회원정보");  
             primaryStage.setScene(scene);      
             primaryStage.show();
         } catch (Exception e) {
@@ -101,14 +115,14 @@ public class UserInfoPopUP extends Application implements Initializable {
     }
     
     public void handleBtnUseSearchAction(ActionEvent action) throws Exception {
-        Object search = new UserInfoSearch(tfName.getText());
+        SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
+        Object search = new UserSearchController(tfName.getText(), sqlSessionFactory.openSession());
         
-        ViewerUtil.showStageNotCss(this, "../useInfo/useSearch.fxml", search);
+        ViewerUtil.showStage(this, "../useInfo/useSearch.fxml", null, search);
     }
     
     public void handleBtnPwChangeAction(ActionEvent action) throws Exception {
-        
         Object obj = new UserPasswordChange();
-        ViewerUtil.showStageNotCss(this, "../useInfo/password.fxml", obj);
+        ViewerUtil.showStage(this, "../useInfo/password.fxml", null, obj);
     }
 }

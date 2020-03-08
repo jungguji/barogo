@@ -1,29 +1,37 @@
 package adminLogin;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import db.MyBatisConnectionFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jgj.util.barogo.ViewerUtil;
 
 
 /**
  * 
- * @author ÁöÁß±¸
- *	°ü¸®ÀÚ ·Î±×ÀÎÃ¢
+ * @author ï¿½ï¿½ï¿½ß±ï¿½
+ *	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½Ã¢
  *	
  */
 public class AdminLogin extends Application {
 
     public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader
-					.load(getClass()
-					.getResource("Slogin.fxml"));
+		    
+		    SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
+		    LoginController controller = new LoginController(sqlSessionFactory.openSession());
+		    
+		    FXMLLoader loader = ViewerUtil.getFXMLLoader(this, "Slogin.fxml", controller);
+			AnchorPane root = loader.load();
+			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 
-			primaryStage.setTitle("¹Ù·Îgo Ä«¿îÅÍ");
+			primaryStage.setTitle("ë°”ë¡œgo ì¹´ìš´í„°");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

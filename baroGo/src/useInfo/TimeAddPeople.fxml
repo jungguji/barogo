@@ -24,7 +24,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="105.0" layoutY="67.0" text="�ð��� �߰��� ����� �����Ͻÿ�.">
+                        <Label layoutX="105.0" layoutY="67.0" text="시간을 추가할 사람을 선택하시오.">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>

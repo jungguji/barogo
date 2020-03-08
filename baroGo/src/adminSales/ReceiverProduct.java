@@ -20,13 +20,11 @@ public class ReceiverProduct extends Application{
 
 	private AnchorPane root = new AnchorPane();
 	private ObservableList<Node> list = root.getChildren();
-	TableView<SendProductBean> tvSendProduct = new TableView<SendProductBean>();
+	TableView<SendProductDTO> tvSendProduct = new TableView<SendProductDTO>();
 	
 	String msg;
 	
-	
-	public ReceiverProduct(String a_strMsg)
-	{
+	public ReceiverProduct(String a_strMsg) {
 		root.setPrefHeight(500);
 		root.setPrefWidth(280);
 		
@@ -35,9 +33,9 @@ public class ReceiverProduct extends Application{
 		tvSendProduct.prefHeight(334);
 		tvSendProduct.prefWidth(254);
 		
-		TableColumn productName = new TableColumn("»óÇ°¸í");
-		TableColumn productCount = new TableColumn("°¹¼ö");
-		TableColumn etc = new TableColumn("ºñ°í");
+		TableColumn productName = new TableColumn("ï¿½ï¿½Ç°ï¿½ï¿½");
+		TableColumn productCount = new TableColumn("ï¿½ï¿½ï¿½ï¿½");
+		TableColumn etc = new TableColumn("ï¿½ï¿½ï¿½");
 		
 		tvSendProduct.getColumns().addAll(productName, productCount,etc);
 		
@@ -55,7 +53,7 @@ public class ReceiverProduct extends Application{
 		lbl.setLayoutY(14);
 		lbl.setPrefHeight(34);
 		lbl.setPrefWidth(132);
-		lbl.setText("ÁÖ¹® ¿äÃ»");
+		lbl.setText("ï¿½Ö¹ï¿½ ï¿½ï¿½Ã»");
 		lbl.setFont(Font.font(28));
 		
 		Label lblPCNum = new Label();
@@ -72,7 +70,7 @@ public class ReceiverProduct extends Application{
 		String[] temp = new String[255];
 		
 		
-		ArrayList<SendProductBean> arProBean = new ArrayList<SendProductBean>();
+		ArrayList<SendProductDTO> arProBean = new ArrayList<SendProductDTO>();
 		int i = 0;
 		
 		
@@ -87,7 +85,7 @@ public class ReceiverProduct extends Application{
 				temp2[j] = strToken2.nextToken();
 				j++;
 			}
-			SendProductBean haha = new SendProductBean();
+			SendProductDTO haha = new SendProductDTO();
 			haha.setStrProductName(temp2[0]);
 			haha.setStrProductCount(temp2[1]);
 			
@@ -95,8 +93,8 @@ public class ReceiverProduct extends Application{
 			i++;
 		}
 		
-		for (SendProductBean B : arProBean) {
-			SendProductBean proData = new SendProductBean();
+		for (SendProductDTO B : arProBean) {
+			SendProductDTO proData = new SendProductDTO();
 			
 			proData.setStrProductName(B.getStrProductName());
 			proData.setStrProductCount(B.getStrProductCount());

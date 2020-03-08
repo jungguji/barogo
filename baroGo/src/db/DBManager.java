@@ -7,13 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-import adminCalculate.CalcBean;
-import adminSales.SaleInfoBean;
-import adminStats.StatsBean;
-import useInfo.UseBean;
-import userInfoView.userInfoBean;
+import adminCalculate.CalculateVO;
+import adminSales.SalesVO;
+import adminStats.StatsVO;
+import jgj.util.barogo.StringUtil;
+import userInfoView.UserInfoVO;
 
 /**
  * @author 지중구, 강지은
@@ -26,9 +25,6 @@ public class DBManager {
 	Connection db_conn		= null;
 	Statement stmt			= null;
 	ResultSet result		= null;
-	
-	UseBean useBean			= new UseBean();
-	int count = 0;
 	
 	public void mysqlConnection() {
 	    System.out.println("mysqlConnection()");
@@ -45,94 +41,6 @@ public class DBManager {
 		try{
 			stmt = db_conn.createStatement();
 		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public boolean login_query(String strID,String strPW, boolean isAdmin)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			
-			String strQuery = "select id from admins where id='" + strID + "' and pw='" + strPW + "';";
-			String strQuery2 = "select id from user where id='" + strID + "' and pw='" + strPW + "';";
-			
-			if(isAdmin) {
-				result = stmt.executeQuery(strQuery);
-			} else {
-				result = stmt.executeQuery(strQuery2);
-			}
-			
-			if(result.next()) {
-				System.out.println("로그인완료");
-				return true;
-			} else {
-				System.out.println("로그인실패");
-				return false;
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
-	public void search_temp(String a_strName)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strInsert = "insert into searchtemp value('" + a_strName + "');";
-			String strUpdate = "update searchtemp set id='"+a_strName+"';";
-			String strResult = search_temp_print();
-			if(strResult == null)
-			{
-				stmt.executeUpdate(strInsert);
-			} else {
-				stmt.executeUpdate(strUpdate);
-			}
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 search_temp() 에러");
-			e.printStackTrace();
-		}
-	}
-	
-	public String search_temp_print()
-	{
-//		mysqlConnection();
-//		makeStatement();
-//		String strResult = null;
-//		try {
-//			String strQuery = "select * from searchtemp";
-//			result = stmt.executeQuery(strQuery);
-//			
-//			if(result.next()) {
-//				strResult = result.getString(1);
-//			}
-//		}catch(Exception e) {
-//			System.out.println("DBManager클래스 search_temp_print() 에러");
-//			e.printStackTrace();
-//		}
-		return "jgji";
-	}
-	
-	
-	// 테이블뷰에서 선택한 애가 누구인지
-	public void select_user(String id)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strUpdate = "update timetemp set id='"+id+"';";
-			String strInsert = "insert into timetemp value('" + id + "',0);";
-			String strResult = getTempId();
-			if(strResult == null) {
-				stmt.executeUpdate(strInsert);
-			} else {
-				stmt.executeUpdate(strUpdate);
-			}
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 test() 에러");
 			e.printStackTrace();
 		}
 	}
@@ -156,59 +64,8 @@ public class DBManager {
 		return "jgji";
 	}
 	
-	public int temp_time_print(String a_strID)
-	{
-		mysqlConnection();
-		makeStatement();
-		int iResult = 0;
-		try {
-			String strQuery = "select add_time from timetemp where id='"+ a_strID + "';";
-			result =  stmt.executeQuery(strQuery);
-			while(result.next()) 
-			{
-				iResult = result.getInt(1);
-			}
-			
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 temp_time_print() 에러");
-			e.printStackTrace();
-		}
-		return iResult;
-	}
-	
-	public void temp_delete()
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			String strQuery = "delete from timetemp;";
-			String strQuery2 = "delete from searchtemp;";
-			stmt.executeUpdate(strQuery);
-			stmt.executeUpdate(strQuery2);
-			
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 temp_delete() 에러");
-			e.printStackTrace();
-		}
-	}
-	
-	public void time_temp_insert(int a_iAddTime)
-	{
-		mysqlConnection();
-		makeStatement();
-		try {
-			System.out.println("time_temp_insert = " + a_iAddTime);
-			String strQuery = "update timetemp set add_time="+ a_iAddTime +";";
-			stmt.executeUpdate(strQuery);
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 time_temp_insert() 에러");
-			e.printStackTrace();
-		}
-	}
-	
 	// 남은시간 업데이트
-	public void updateUserRemaintimeById(String time, String userId)
-	{
+	public void updateUserRemaintimeById(String time, String userId) {
 		mysqlConnection();
 		makeStatement();
 		try {
@@ -220,23 +77,7 @@ public class DBManager {
 		}
 	}
 	
-	// 메인뷰에서 남은시간 업데이트
-	public void view_user_remaintime_update(String a_strUpdate, String a_PCNum)
-	{
-		mysqlConnection();
-		makeStatement();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@22   :  " + a_strUpdate );
-		try {
-			String strQuery = "update user set remaintime='" + a_strUpdate + "' where pcnumber='" + a_PCNum +"';";
-			stmt.executeUpdate(strQuery);
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 user_remaintime_update() 에러");
-			e.printStackTrace();
-		}
-	}
-	
-	public void user_passwd_change(String a_strPw)
-	{
+	public void user_passwd_change(String a_strPw) {
 		mysqlConnection();
 		makeStatement();
 		String strResult = getTempId();
@@ -250,8 +91,7 @@ public class DBManager {
 	}
 	//db.membership_insert(userName, userbirtday, bUserSex, userID, userPW, userEmail);
 	public void membership_insert(String a_strUserName, String a_strUserBirtday, boolean a_bUserSex, 
-					String a_strUserID, String a_strUserPW, String a_UserEmail) 
-	{
+					String a_strUserID, String a_strUserPW, String a_UserEmail)  {
 		mysqlConnection();
 		makeStatement();
 		try {
@@ -273,33 +113,10 @@ public class DBManager {
 		}
 	}
 	
-	public String login_Calculate(String strID,String strPW)
-	{
+	public CalculateVO salse_total(LocalDate date) {
 		mysqlConnection();
 		makeStatement();
-		String strRes = null;
-		try {
-				String strQuery = "select name from admins where id='" + strID + "' and pw='" + strPW + "';";
-				result = stmt.executeQuery(strQuery);
-				System.out.println(strQuery);
-			if(result.next()) {
-				System.out.println("로그인완료");
-				strRes = result.getString(1);
-			} else {
-				System.out.println("로그인실패");
-			}
-		} catch(Exception e) {
-			System.out.println("login_Calculate() 오류 ");
-			e.printStackTrace();
-		}
-		return strRes;
-	}
-	
-	public CalcBean salse_total(LocalDate date)
-	{
-		mysqlConnection();
-		makeStatement();
-		CalcBean calcBean = new CalcBean();
+		CalculateVO calcBean = new CalculateVO();
 		ResultSet res;
 		
 		try {
@@ -308,14 +125,12 @@ public class DBManager {
 			String strQuery		= "select count(date), sum(price) from timesales where date='"+ date + "'" +
 									"union " +
 									"select count(date), sum(salesPrice) from receipt where date='"+ date +"';";
-			String strQuery2	= "select count(salesPrice), sum(salesPrice) from receipt where date='" + date + "' and salesType=1;";
 			
 			result 	= stmt.executeQuery(strQuery);
 			
 			int iCount = 0;
 			int iSum = 0;
-			while(result.next())
-			{
+			while(result.next()) {
 				iCount	+= 	result.getInt(1);
 				iSum 	+=	result.getInt(2);
 			}
@@ -323,21 +138,21 @@ public class DBManager {
 			calcBean.setiCount(iCount);
 			calcBean.setiSales(iSum);
 			
+			String strQuery2 = "select count(salesPrice), sum(salesPrice) from receipt where date='" + date + "' and salesType=1;";
 			res		= stmt.executeQuery(strQuery2);
 
-			if(res.next())
-			{
+			if(res.next()) {
 				calcBean.setiReturnCount(res.getInt(1));
 				calcBean.setiReturnSales(res.getInt(2));
 			}
-	} catch(Exception e) {
-		e.printStackTrace();
-	}
+		} catch(Exception e) {
+		    e.printStackTrace();
+		}
+		
 		return calcBean;
 	}
 	
-	public void insert_stats_data(LocalDate date, int a_iSales, int a_iProfit)
-	{
+	public void insert_stats_data(LocalDate date, int a_iSales, int a_iProfit) {
 		mysqlConnection();
 		makeStatement();
 		try {
@@ -350,8 +165,7 @@ public class DBManager {
 		}
 	}
 	
-	public boolean stats_overlap_chk(LocalDate a_date)
-	{
+	public boolean stats_overlap_chk(LocalDate a_date) {
 		mysqlConnection();
 		makeStatement();
 		String strDate = null;
@@ -397,7 +211,7 @@ public class DBManager {
 		return remainTime;
 	}
 
-	public ArrayList<SaleInfoBean> findNameAndPriceByCategory(String category) {
+	public ArrayList<SalesVO> findNameAndPriceByCategory(String category) {
 		
 //		String strQuery = "select name,price from product where category='" + category + "';";
 //		try {
@@ -416,15 +230,15 @@ public class DBManager {
 //			e.printStackTrace();
 //		}
 		
-		ArrayList<SaleInfoBean> list = new ArrayList<SaleInfoBean>();
+		ArrayList<SalesVO> list = new ArrayList<SalesVO>();
 		
-        SaleInfoBean SaleInfoBean = new SaleInfoBean();
+        SalesVO SaleInfoBean = new SalesVO();
         SaleInfoBean.setProductName("치토스");
         SaleInfoBean.setPrice(2555);
-        SaleInfoBean SaleInfoBean1 = new SaleInfoBean();
+        SalesVO SaleInfoBean1 = new SalesVO();
         SaleInfoBean1.setProductName("시발");
         SaleInfoBean1.setPrice(33333);
-        SaleInfoBean SaleInfoBean2 = new SaleInfoBean();
+        SalesVO SaleInfoBean2 = new SalesVO();
         SaleInfoBean2.setProductName("미친");
         SaleInfoBean2.setPrice(77775);
         
@@ -463,56 +277,25 @@ public class DBManager {
 		return payPlan;
 	}
 
-	public void userTemp_query(String strID, String strPW) {
+	public UserInfoVO actioninit_query(boolean isPrepayment, String strID) {
 		mysqlConnection();
 		makeStatement();
+		UserInfoVO beanUserInfo = new UserInfoVO();
 		try {
-			String strUpdate = "update usertemp set id='" + strID + "',pw='" + strPW + "';";
-			String strInsert = "insert into usertemp value('" + strID + "','" + strPW + "');";
-			String strResult = userTempPrint_query();
-			if (strResult == null) {
-				stmt.executeUpdate(strInsert);
-			} else {
-				stmt.executeUpdate(strUpdate);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public String userTempPrint_query() {
-		mysqlConnection();
-		makeStatement();
-		String strResult = null;
-		try {
-			String strQuery = "select id,pw from usertemp;";
-			result = stmt.executeQuery(strQuery);
-			while (result.next()) {
-				strResult = result.getString(1) + "," + result.getString(2);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return strResult;
-	}
-
-	public userInfoBean actioninit_query(int paymentPlan, String strID, String strPW) {
-		mysqlConnection();
-		makeStatement();
-		userInfoBean beanUserInfo = new userInfoBean();
-		try {
-			String strQuery = "select id,firstmoney,remaintime from user where id='" + strID + "' and pw='" + strPW + "';";
-			String strQuery2 = "select id from user where id='" + strID + "' and pw='" + strPW + "';";
-			if (paymentPlan == 0) {
-				result = stmt.executeQuery(strQuery);
+			
+			if (isPrepayment) {
+			    String query = "select id,firstmoney,remaintime from user where id='" + strID + "';";
+				result = stmt.executeQuery(query);
+				
 				while (result.next()) {
 					beanUserInfo.setUserID(result.getString("id"));
 					beanUserInfo.setFirstMoney(result.getInt("firstmoney"));
 					beanUserInfo.setstrRemainTime(result.getString("remaintime"));
 				}
-			} else if(paymentPlan == 1) {
-				result = stmt.executeQuery(strQuery2);
+			} else {
+			    String query = "select id from user where id='" + strID + "';";
+				result = stmt.executeQuery(query);
+				
 				while (result.next()) {
 					beanUserInfo.setUserID(result.getString("id"));
 				}
@@ -523,25 +306,22 @@ public class DBManager {
 		return beanUserInfo;
 	}
 	
-	public ArrayList<StatsBean> stats_query(String year, String month)
-	{
+	public ArrayList<StatsVO> getStatsListByYearMonth(String year, String month) {
 		mysqlConnection();
 		makeStatement();
 		
-		StatsBean statsBean;
-		ArrayList<StatsBean> statsList = new ArrayList<StatsBean>();
+		StatsVO statsBean;
+		ArrayList<StatsVO> statsList = new ArrayList<StatsVO>();
 		
-		try
-		{
+		try {
 			String strQuery = "select * from stats where date like '" + year + "-" + month + "%' order by date asc";
 			result = stmt.executeQuery(strQuery);
 			
-			while (result.next())
-			{
+			while (result.next()) {
 				String date = result.getString("date");
 				String day = date.substring(date.length() - 2, date.length());
 
-				statsBean = new StatsBean();
+				statsBean = new StatsVO();
 
 				statsBean.setDay(day);
 				statsBean.setSales(result.getInt("sales"));
@@ -549,21 +329,19 @@ public class DBManager {
 
 				statsList.add(statsBean);
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return statsList;
 	}
 	
-	public ArrayList<StatsBean> stats_query(String year)
-	{
+	public ArrayList<StatsVO> getStatsListByYear(String year) {
 		mysqlConnection();
 		makeStatement();
 
-		StatsBean statsBean;
-		ArrayList<StatsBean> statsList = new ArrayList<StatsBean>();
+		StatsVO statsBean;
+		ArrayList<StatsVO> statsList = new ArrayList<StatsVO>();
 
 		int Msales[] = new int[12];
 		int Mprofit[] = new int[12];
@@ -634,7 +412,7 @@ public class DBManager {
 			{
 				String Month = "" + (i + 1);
 
-				statsBean = new StatsBean();
+				statsBean = new StatsVO();
 
 				statsBean.setDay(Month);
 				statsBean.setSales(Msales[i]);
@@ -650,8 +428,7 @@ public class DBManager {
 		return statsList;
 	}
 	
-	public void user_data_save(String a_strID, String a_strRemainTime)
-	{
+	public void user_data_save(String a_strID, String a_strRemainTime) {
 		mysqlConnection();
 		makeStatement();
 		try {
@@ -664,8 +441,7 @@ public class DBManager {
 		}
 	}
 	
-	public void user_pcnum_reset(String a_strID)
-	{
+	public void user_pcnum_reset(String a_strID) {
 		mysqlConnection();
 		makeStatement();
 		try {
@@ -678,52 +454,33 @@ public class DBManager {
 		}
 	}
 	
-	
 	// 메인뷰에서 할때
-	public void view_user_add_time(String a_PCNum, int a_iAddTime)
-	{
+	public String getAddTime(String userId, int addTime) {
+	    String result = "";
+	    String remainTime = findRemainTime(userId);
+	    
 		mysqlConnection();
 		makeStatement();
 		try {
-			String strQuery = "select remaintime from user where pcnumber = '" + a_PCNum +"';";
-			result = stmt.executeQuery(strQuery);
-			
-			if(result.next()) 
-			{
-				// 남은 시간을 가져옴
-				String strRemainTime = result.getString(1);
-				String strUpdate = null;
-				if(strRemainTime == null || strRemainTime.length() == 0)
-				{
-					strUpdate = String.valueOf(a_iAddTime) + ":" + "00";
-				} 
-				else 
-				{
-					StringTokenizer strToken = new StringTokenizer(strRemainTime, ":");
-					String[] strSubMsg = new String[5];
-					
-					int i = 0;
-					while(strToken.hasMoreElements())
-					{
-						strSubMsg[i] = strToken.nextToken();
-						i++;
-					}
-					
-					int iTempHour = Integer.parseInt(strSubMsg[0]) + a_iAddTime;
-					String strHour = String.valueOf(iTempHour);
-					strUpdate = strHour + ":" + strSubMsg[1];
-				}
-				view_user_remaintime_update(strUpdate,a_PCNum);
+			if(StringUtil.isEmpty(remainTime)) {
+			    result = String.valueOf(addTime) + ":" + "00";
+			} else {
+				String[] strSubMsg = remainTime.split(":");
 				
+				int iTempHour = Integer.parseInt(strSubMsg[0]) + addTime;
+				String strHour = String.valueOf(iTempHour);
+				result = strHour + ":" + strSubMsg[1];
 			}
+			
 		} catch (Exception e) {
 			System.out.println("DBManager클래스 view_user_add_time() 에러");
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 	
-	public String user_id_return(String a_strPCNum)
-	{
+	public String user_id_return(String a_strPCNum) {
 		String strID = null;
 		mysqlConnection();
 		makeStatement();
@@ -742,8 +499,7 @@ public class DBManager {
 		return strID;
 	}
 	
-	public void pcNumber_query(String strID, String strPW, int pcNumber) 
-	   {
+	public void pcNumber_query(String strID, String strPW, int pcNumber) {
 	      mysqlConnection();
 	      makeStatement();
 	      
@@ -753,56 +509,50 @@ public class DBManager {
 	      {
 	         String strQuery = "select pcnumber from user;";
 	         result = stmt.executeQuery(strQuery);
-	         while (result.next()) 
-	         {
+	         while (result.next()) {
 	            num.add(result.getInt("pcnumber"));
 	         }
 
-	         while (true) 
-	         {
+	         while (true)  {
 	            pcNumber = (1 + (int) (Math.random() * 10));
-	            if (!num.contains(pcNumber)) 
-	            {
+	            
+	            if (!num.contains(pcNumber)) {
 	               strQuery = "update user set pcnumber = '" + pcNumber + "' where id='" + strID + "' and pw='" + strPW + "';";
 	               stmt.executeUpdate(strQuery);
 	               break;
 	            }
 	         }
 
-	      } 
-	      catch (Exception e) 
-	      {
+	      }  catch (Exception e) {
 	         e.printStackTrace();
 	      }
 	   }
 	   
-	   public int pcNumber_print(String strID, String strPW) 
-	   {
+	   public int getPcNumberByUserId(String strID) {
 	      mysqlConnection();
 	      makeStatement();
 	      
 	      int pcNumber = 0;
 	      
 	      try {
-	         String strQuery = "select pcnumber from user where id='" + strID + "' and pw='" + strPW + "';";
+	         String strQuery = "select pcnumber from user where id='" + strID + "';";
 	         result = stmt.executeQuery(strQuery);
 	         
-	         if(result.next())
-	         {
+	         if (result.next()) {
 	            pcNumber = result.getInt("pcnumber");
 	         }
 	         
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
+	      
 	      return pcNumber;
 	   }
 	   
 	   
-	   public ArrayList<SaleInfoBean> SearchReceipt(String receiptNo, LocalDate date)
-		{
-			SaleInfoBean saleInfoBean;
-			ArrayList<SaleInfoBean> Bean = new ArrayList<SaleInfoBean>();
+	   public ArrayList<SalesVO> SearchReceipt(String receiptNo, LocalDate date) {
+			SalesVO saleInfoBean;
+			ArrayList<SalesVO> Bean = new ArrayList<SalesVO>();
 			
 			mysqlConnection();
 			makeStatement();
@@ -814,7 +564,7 @@ public class DBManager {
 
 				while (result.next())
 				{
-					saleInfoBean = new SaleInfoBean();
+					saleInfoBean = new SalesVO();
 					saleInfoBean.setProductName(result.getString("productName"));
 					saleInfoBean.setCount(result.getInt("salesCount"));
 					saleInfoBean.setPrice(result.getInt("price"));
@@ -826,8 +576,7 @@ public class DBManager {
 			return Bean;
 		}
 	   
-	   public void ReturnGoods(String receiptNo, LocalDate Date)
-		{
+	   public void ReturnGoods(String receiptNo, LocalDate Date) {
 			mysqlConnection();
 			makeStatement();
 			try {
@@ -838,8 +587,7 @@ public class DBManager {
 			}
 		}
 	   
-	   public void Return_query(String receiptNo, LocalDate Date)
-		{
+	   public void Return_query(String receiptNo, LocalDate Date) {
 			mysqlConnection();
 			makeStatement();
 			try {
@@ -850,13 +598,12 @@ public class DBManager {
 			}
 		}
 	   
-	   public ArrayList<SaleInfoBean> Frequencyofsale_query(String year, String month)
-		{
+	   public ArrayList<SalesVO> Frequencyofsale_query(String year, String month) {
 			mysqlConnection();
 			makeStatement();
 			
-			SaleInfoBean saleInfoBean;
-			ArrayList<SaleInfoBean> Bean = new ArrayList<SaleInfoBean>();
+			SalesVO saleInfoBean;
+			ArrayList<SalesVO> Bean = new ArrayList<SalesVO>();
 			
 			try {
 				String strQuery = "select productName,sum(salesCount) as salesCount from uploadGoods where date like '" + year + "-" + month + "%' group by productName order by salesCount desc limit 10;";
@@ -864,7 +611,7 @@ public class DBManager {
 				
 				while(result.next())
 				{
-					saleInfoBean = new SaleInfoBean();
+					saleInfoBean = new SalesVO();
 					saleInfoBean.setProductName(result.getString("productName"));
 					saleInfoBean.setCount(result.getInt("salesCount"));
 					Bean.add(saleInfoBean);
@@ -876,13 +623,12 @@ public class DBManager {
 			return Bean;
 		}
 	   
-	   public ArrayList<SaleInfoBean> Frequencyofsale_query(String year)
-		{
+	   public ArrayList<SalesVO> Frequencyofsale_query(String year) {
 			mysqlConnection();
 			makeStatement();
 			
-			SaleInfoBean saleInfoBean;
-			ArrayList<SaleInfoBean> Bean = new ArrayList<SaleInfoBean>();
+			SalesVO saleInfoBean;
+			ArrayList<SalesVO> Bean = new ArrayList<SalesVO>();
 			
 			try {
 				String strQuery = "select productName,sum(salesCount) as salesCount from uploadGoods where date like '" + year + "%' group by productName order by salesCount desc limit 10;";
@@ -890,7 +636,7 @@ public class DBManager {
 				
 				while(result.next())
 				{
-					saleInfoBean = new SaleInfoBean();
+					saleInfoBean = new SalesVO();
 					saleInfoBean.setProductName(result.getString("productName"));
 					saleInfoBean.setCount(result.getInt("salesCount"));
 					Bean.add(saleInfoBean);
@@ -979,12 +725,11 @@ public class DBManager {
 		}
 	}
 	
-	public void m​ovementSeat_query(String strID, String strPW, String remaintime) {
+	public void updateSeatByuserId(String strID, String remaintime) {
 		mysqlConnection();
 		makeStatement();
 		try {
-			String strQuery = "update user set remaintime = remaintime +'" + remaintime + "' where id='" + strID + "' and pw='"
-					+ strPW + "';";
+			String strQuery = "update user set remaintime = remaintime +'" + remaintime + "' where id='" + strID + "';";
 			stmt.executeUpdate(strQuery);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1103,32 +848,4 @@ public class DBManager {
 		}
 		return category;
 	}
-	
-	public boolean id_overlap_chk(String userid)
-	{
-		mysqlConnection();
-		makeStatement();
-
-		try {
-			String strQuery =	"select id from user where id='" + userid + "';";
-			System.out.println(strQuery);
-			
-			result = stmt.executeQuery(strQuery);
-			
-			if(result.next())
-			{			
-				System.out.println("아이디 중복!");
-				return true;
-			} else {
-				System.out.println("아이디 사용가능!");
-				return false;
-			}
-		}catch(Exception e) {
-			System.out.println("DBManager클래스 id_overlap_chk() 에러");
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	
 }

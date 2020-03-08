@@ -1,6 +1,9 @@
 package adminCalculate;
 
-public class CalcBean {
+import org.apache.ibatis.type.Alias;
+
+@Alias("calculate")
+public class CalculateVO {
 	private int iCount;
 	private int iSales;
 	private int iReturnCount;

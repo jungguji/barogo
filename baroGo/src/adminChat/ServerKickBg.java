@@ -6,9 +6,9 @@ import java.net.Socket;
 
 /**
  * 
- * @author ÁöÁß±¸
- * 		°ü¸®ÀÚ¿¡¼­ ¼Õ´ÔÀ» °­Á¦ Á¾·á½ÃÅ³ ¶§ »ç¿ëµÇ´Â Å¬·¡½º
- * 		ÆÄ¶ó¹ÌÅÍ·Î »ç¿ëÁßÀÎ ¼Õ´ÔÀÚ¸®ÀÇ Á¤º¸°¡ ³Ñ¾î°¨ (btnSeat.getText)
+ * @author ì§€ì¤‘êµ¬
+ *      ê´€ë¦¬ìì—ì„œ ì†ë‹˜ì„ ê°•ì œ ì¢…ë£Œì‹œí‚¬ ë•Œ ì‚¬ìš©ë˜ëŠ” í´ë˜ìŠ¤
+ *      íŒŒë¼ë¯¸í„°ë¡œ ì‚¬ìš©ì¤‘ì¸ ì†ë‹˜ìë¦¬ì˜ ì •ë³´ê°€ ë„˜ì–´ê° (btnSeat.getText)
  *
  */
 public class ServerKickBg {
@@ -19,7 +19,7 @@ public class ServerKickBg {
 	public void connet(String a_strType) {
 		try {
 			socket = new Socket("127.0.0.1", 8426);
-			System.out.println("¼­¹ö ¿¬°áµÊ.");
+			System.out.println("ì„œë²„ ì ‘ì†");
 			
 			out = new DataOutputStream(socket.getOutputStream());
 			

@@ -1,6 +1,6 @@
 package adminSales;
 
-public class SendProductBean {
+public class SendProductDTO {
 	String strProductName;
 	String		strProductCount;
 	

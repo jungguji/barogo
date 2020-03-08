@@ -1,6 +1,6 @@
 package useInfo;
 
-public class SearchBean {
+public class SearchDTO {
 	private String	strName;
 	private String	strID;
 	private String 	birth;

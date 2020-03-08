@@ -1,6 +1,9 @@
 package adminSales;
 
-public class SaleInfoBean {
+import org.apache.ibatis.type.Alias;
+
+@Alias("sales")
+public class SalesVO {
 	private String ProductName;
 	private int ProductType;
 	private int Price;
