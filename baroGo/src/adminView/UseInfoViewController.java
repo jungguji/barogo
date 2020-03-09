@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import adminCalculate.CalculateView;
+import adminCalculate.CalculateViewController;
 import adminChat.ServerBackground;
 import adminChat.ServerChatClientGui;
 import adminChat.ServerKickBg;
@@ -83,7 +83,7 @@ public class UseInfoViewController implements Initializable {
     }
 
     public void handleBtnCalculateAction(ActionEvent action) throws Exception {
-        ViewerUtil.showStage(this, "../adminCalculate/Calculate.fxml", "../adminCalculate/adminCalculate.css", new CalculateView());
+        ViewerUtil.showStage(this, "../adminCalculate/Calculate.fxml", "../adminCalculate/adminCalculate.css", new CalculateViewController(sqlSession, mapper));
     }
     
     public void handleBtnSalesAction(ActionEvent action) throws Exception {
