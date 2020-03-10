@@ -211,10 +211,10 @@ public class CalculateViewController implements Initializable {
     public void handleBtnSelectAction(ActionEvent action) {
         calcBean = db.salse_total(pickDate.getValue());
         
-        int iSalesCount     = calcBean.getiCount();
-        int iSalesSum        = calcBean.getiSales();
-        int iReturnCount     = calcBean.getiReturnCount();
-        int iReturnSum        = calcBean.getiReturnSales();
+        int iSalesCount = calcBean.getiCount();
+        int iSalesSum = calcBean.getiSales();
+        int iReturnCount = calcBean.getiReturnCount();
+        int iReturnSum = calcBean.getiReturnSales();
         
         int resultCount = iSalesCount - iReturnCount;
         int resultsum = iSalesSum - iReturnSum;

@@ -13,15 +13,15 @@ public class MonthStats extends Application {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("MonthStats.fxml"));
 
-		Scene scene = new Scene(root);	//Àå¸é »ý¼º
-		scene.getStylesheets().add(getClass().getResource("Style3.css").toString());	//CSS style Àû¿ë
+		Scene scene = new Scene(root);	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		scene.getStylesheets().add(getClass().getResource("Style3.css").toString());	//CSS style ï¿½ï¿½ï¿½ï¿½
 		
-		primaryStage.setTitle("¿ùº°Åë°è");	//À©µµ¿ì Ã¢ Á¦¸ñ
-		primaryStage.setScene(scene);		//À©µµ¿ìÃ¢¿¡ Àå¸é ¼³Á¤
-		primaryStage.show();				//À©µµ¿ì º¸¿©ÁÖ±â
+		primaryStage.setTitle("ì›”ë³„í†µê³„");	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½
+		primaryStage.setScene(scene);		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		primaryStage.show();				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	}
 
 	public static void main(String[] args) {
-		launch(args);	//main °´Ã¼ »ý¼º ¹× ¸ÞÀÎ À©µµ¿ì »ý¼º
+		launch(args);	//main ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 }
