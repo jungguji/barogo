@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 
@@ -31,11 +32,6 @@ public class MonthStatsController implements Initializable {
 	
 	DBManager db = new DBManager();
 	
-	ArrayList<StatsVO> statsList = new ArrayList<StatsVO>();
-	
-	private ArrayList<String> day = new ArrayList<String>();
-	private ArrayList<Integer> sales = new ArrayList<Integer>();
-	
 	public void handleBtnHomeAction(ActionEvent action) {
 
 		try {
@@ -55,8 +51,7 @@ public class MonthStatsController implements Initializable {
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-    public void handleCmbCheckAction(ActionEvent action)
-	{
+    public void handleCmbCheckAction(ActionEvent action) {
 		StringTokenizer st = new StringTokenizer(cmbYear.getValue(), " ");
 		String selectYear = st.nextToken();
 		
@@ -137,10 +132,13 @@ public class MonthStatsController implements Initializable {
 		lineChart.getData().add(series1);
 		lineChart.getData().add(series2);
 		
-		statsList = db.getStatsListByYearMonth(selectYear, selectMonth);
 		
-		for(int i = 0; i<statsList.size(); i++)
-		{
+		ArrayList<StatsVO> statsList = db.getStatsListByYearMonth(selectYear, selectMonth);
+		
+		List<String> day = new ArrayList<String>();
+		List<Integer> sales = new ArrayList<Integer>();
+		
+		for(int i = 0; i < statsList.size(); i++) {
 			StatsVO str = statsList.get(i);
 			day.add(str.getDay());
 			sales.add(str.getSales());
@@ -163,7 +161,6 @@ public class MonthStatsController implements Initializable {
 		cmbYear.setValue(String.valueOf(local.getYear()));
 		ObservableList<String> YearList = FXCollections.observableArrayList(String.valueOf(local.getYear()));
 		cmbYear.setItems(YearList);
-		
 		
 		cmbMonth.setValue(String.valueOf(local.getMonth()));
 		
