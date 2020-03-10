@@ -25,7 +25,9 @@ public class ViewerUtil {
     
     public static FXMLLoader getFXMLLoader(Object obj, String resourceDirectory, Object controller) {
         FXMLLoader loader = new FXMLLoader(obj.getClass().getResource(resourceDirectory));
-        loader.setController(controller);
+        if (CommonUtil.isNotEmpty(controller)) {
+            loader.setController(controller);
+        }
         return loader;
     }
     
