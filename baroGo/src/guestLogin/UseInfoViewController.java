@@ -15,12 +15,6 @@ import javafx.stage.StageStyle;
 
 public class UseInfoViewController implements Initializable {
 	@FXML private Button 		btnSeat;
-	private Stage primaryStage;
-	
-	public void setPrimaryStage(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-	}
-	
 	
 	public void handleBtnUseInfoViewAction(ActionEvent action)
 	{
