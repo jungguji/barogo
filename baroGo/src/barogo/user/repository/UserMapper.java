@@ -15,6 +15,9 @@ import useInfo.UserVO;
 @Mapper
 public interface UserMapper {
 
+    @Select("SELECT id FROM admin WHERE id=#{userId} AND password = #{password}")
+    String findAdmin(@Param("userId") String userId, @Param("password") String password);
+    
     @Select("SELECT password FROM admin WHERE id=#{userId}")
     String findPasswordById(@Param("userId") String userId);
     
