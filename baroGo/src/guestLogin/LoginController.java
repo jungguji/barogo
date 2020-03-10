@@ -1,7 +1,5 @@
 package guestLogin;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,17 +29,16 @@ import userInfoView.UserInfoController;
  */
 public class LoginController implements Initializable {
 
-    // Slogin.fxml�쓽 TExtField�쓽 fx:id �씤 寃� �씠�븯 �룞臾�
-    @FXML private TextField         ID;
-    @FXML private PasswordField     PW;
-    @FXML private Button             btnLogin;
-    @FXML private Button             btnExit;
-    @FXML private Button            btnRestart;
-    @FXML private Button             btnMember;
-    @FXML private Button             btnPwfind;
-    @FXML private Button            btnPwOK;
-    @FXML private RadioButton         rdoFirstPay;
-    @FXML private RadioButton         rdoLaterPay;
+    @FXML private TextField ID;
+    @FXML private PasswordField PW;
+    @FXML private Button btnLogin;
+    @FXML private Button btnExit;
+    @FXML private Button btnRestart;
+    @FXML private Button btnMember;
+    @FXML private Button btnPwfind;
+    @FXML private Button btnPwOK;
+    @FXML private RadioButton rdoFirstPay;
+    @FXML private RadioButton rdoLaterPay;
 
     LoginDAO dao = new LoginDAO();
     
@@ -98,16 +95,12 @@ public class LoginController implements Initializable {
 //            System.out.println(" pc 번호 : " +pcNumber);
 //            dao.pcNumber_query(userID, userPW, pcNumber);
             
-            boolean isPrepayment = false;
-            if (rdoFirstPay.isSelected()) {
-                isPrepayment = true;
-            }
-            
-            FXMLLoader loader = ViewerUtil.getFXMLLoader(this, "../userInfoView/userInfoView.fxml", new UserInfoController(userId, isPrepayment, sqlSessionFactory.openSession(true)));
+            FXMLLoader loader = ViewerUtil.getFXMLLoader(this, "../userInfoView/userInfoView.fxml", new UserInfoController(userId, sqlSessionFactory.openSession(true)));
             Parent mainView = loader.load();
 
             Scene scene = new Scene(mainView);
             scene.getStylesheets().add(getClass().getResource("../userInfoView/userInfoView.css").toString()); // CSS style 적용
+            
             Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
             primaryStage.setScene(scene);
         } catch (Exception e1) {
