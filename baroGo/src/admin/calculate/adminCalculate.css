@@ -1,0 +1,81 @@
+.root { 
+	-fx-background-color: 
+        #c0c0c0,
+        linear-gradient(#fafdfe, #e8f5fc);
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+	-fx-font-family: "Haan Baekje M";
+    
+}
+
+#Txtmoney, #Total, #Txtnum, #Txtprice, #Txtpick, #TxtSale, #Txtid, #Txtpw, #TxtRegister, #Txtname, #TxtToTal {
+	-fx-font-family: "Haan Baekje M";
+}
+
+
+.button{ 
+	-fx-background-color: 
+        rgba(0,0,0,0.08),
+        linear-gradient(#5a61af, #51536d),
+        linear-gradient(#e4fbff 0%,#cee6fb 10%, #a5d3fb 50%, #88c6fb 51%, #d5faff 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-text-fill: #242d35;
+    -fx-font-family: "Haan Baekje M";
+    -fx-font-size: 25px;
+	 } 
+
+#Image{
+	-fx-background-image: url("../images/close.png");
+}
+
+#won10{
+	-fx-background-image: url("../images/money/10won.png");
+}
+
+#won50{
+	-fx-background-image: url("../images/money/50won.png");
+}
+
+#won100{
+	-fx-background-image: url("../images/money/100won.png");
+}
+#won500{
+	-fx-background-image: url("../images/money/500won.png");
+}
+
+#won1000{
+	-fx-background-image: url("../images/money/1000won.png");
+}
+
+#won5000{
+	-fx-background-image: url("../images/money/5000won.png");
+}
+
+#won10000{
+	-fx-background-image: url("../images/money/10000won.png");
+}
+
+#won50000{
+	-fx-background-image: url("../images/money/50000won.png");
+}
+
+#CalcNoSelectImage {
+	-fx-background-image: url("../images/question2.png");
+}
+
+#CalcOKImage {
+	-fx-background-image: url("../images/question2.png");
+}
+
+#CalcOverlap {
+	-fx-background-image: url("../images/question2.png");
+}
+
+#CalcPopUpImage {
+	-fx-background-image: url("../images/question2.png");
+}
+// 카운터 일일정산(Calculator) CSS
